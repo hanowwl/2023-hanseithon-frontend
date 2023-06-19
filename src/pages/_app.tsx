@@ -4,7 +4,9 @@ import type { AppProps } from "next/app";
 
 import { Global, Theme, ThemeProvider } from "@emotion/react";
 
-import { darkTheme, globalStyle } from "../styles";
+import { Navbar } from "src/components/common";
+import { NAVBAR_MENU } from "src/constants";
+import { darkTheme, globalStyle } from "src/styles";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme] = useState<Theme>(darkTheme);
@@ -12,6 +14,11 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={globalStyle(theme)} />
+
+      <Navbar
+        menu={NAVBAR_MENU}
+        actions={[{ size: "small", text: "한세톤 참여하기", href: "/auth/register" }]}
+      />
       <Component {...pageProps} />
     </ThemeProvider>
   );
