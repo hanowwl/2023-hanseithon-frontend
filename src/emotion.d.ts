@@ -19,6 +19,11 @@ declare module "@emotion/react" {
         };
       };
 
+      input: {
+        background: string;
+      };
+
+      outline: string;
       background: string;
       foreground: string;
     };
