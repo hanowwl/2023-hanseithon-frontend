@@ -27,9 +27,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <S.InputElementContainer>
           <S.InputElement ref={ref} type={inputType} {...props} />
 
-          {type === "password" && (
+          {isPasswordInput && (
             <S.InputPasswordVisibleButton type="button" onClick={handleOnClickPasswordVisible}>
-              <FontAwesomeIcon icon={isPasswordInput ? faEyeSlash : faEye} />
+              <FontAwesomeIcon icon={inputType === "password" ? faEyeSlash : faEye} />
             </S.InputPasswordVisibleButton>
           )}
         </S.InputElementContainer>
