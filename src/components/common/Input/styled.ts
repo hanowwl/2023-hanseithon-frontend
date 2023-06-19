@@ -56,3 +56,16 @@ export const InputElement = styled.input`
     -webkit-text-fill-color: ${(props) => props.theme.color.text.primary.default} !important;
   }
 `;
+
+export const InputPasswordVisibleButton = styled.button`
+  outline: none;
+  border: none;
+  background: none;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: ${(props) => props.theme.color.text.primary.default};
+`;
