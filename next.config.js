@@ -6,6 +6,8 @@ const nextConfig = {
   compiler: {
     emotion: true,
   },
+
+  pageExtensions: ["tsx"],
 };
 
 module.exports = nextConfig;
