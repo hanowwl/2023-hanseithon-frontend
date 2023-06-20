@@ -18,6 +18,11 @@ export const darkTheme: Theme = {
       },
     },
 
+    input: {
+      background: "#101010",
+    },
+
+    outline: "#1C1C1C",
     background: "#000000",
     foreground: "#171717",
   },
