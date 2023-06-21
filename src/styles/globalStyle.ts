@@ -30,6 +30,15 @@ export const globalStyle = (theme: Theme) => css`
     letter-spacing: -0.04em;
   }
   ::-webkit-scrollbar {
-    display: none;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #a3d2ff 0%, #64a6e2 99.99%); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255); /*스크롤바 뒷 배경 색상*/
   }
 `;
