@@ -15,7 +15,7 @@ export type SelectProps = SelectCustomProps &
   Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "children">;
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, options = [], onChange, ...props }, ref) => {
+  ({ label, options = [], disabled, onChange, ...props }, ref) => {
     const selectRef = useRef<HTMLSelectElement | null>(null);
     useImperativeHandle(ref, () => selectRef.current as HTMLSelectElement, [selectRef]);
 
@@ -48,8 +48,8 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         <S.SelectLabel>{label}</S.SelectLabel>
 
         <S.SelectInnerContainer>
-          <S.SelectElementContainer onClick={() => setExpand((prev) => !prev)}>
-            <S.SelectButton onBlur={() => setExpand(false)}>
+          <S.SelectElementContainer onClick={() => setExpand((prev) => !prev && !disabled)}>
+            <S.SelectButton disabled={disabled} onBlur={() => setExpand(false)}>
               <span>{selected?.label}</span>
             </S.SelectButton>
 

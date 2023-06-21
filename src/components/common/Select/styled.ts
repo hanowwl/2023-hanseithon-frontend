@@ -25,8 +25,8 @@ export const SelectElementContainer = styled.div`
   box-shadow: inset 0 0 0 1px ${(props) => props.theme.color.outline};
   transition: box-shadow 200ms;
 
-  &:has(select:disabled),
-  select:disabled {
+  &:has(button:disabled),
+  button:disabled {
     cursor: not-allowed;
     color: ${(props) => props.theme.color.text.secondary.default};
   }
@@ -61,6 +61,7 @@ export const SelectOptionListContainer = styled(motion.div)`
   margin-top: 1.2rem;
   overflow: hidden;
   box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.1);
+  z-index: 1;
 `;
 
 export const SelectOptionList = styled.ul`
