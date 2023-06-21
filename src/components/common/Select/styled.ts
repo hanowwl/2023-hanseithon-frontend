@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const SelectContainer = styled.div``;
 
@@ -54,10 +55,12 @@ export const SelectButton = styled.button`
   transition: color 150ms;
 `;
 
-export const SelectOptionListContainer = styled.div`
+export const SelectOptionListContainer = styled(motion.div)`
   position: absolute;
   width: 100%;
   margin-top: 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.1);
 `;
 
 export const SelectOptionList = styled.ul`

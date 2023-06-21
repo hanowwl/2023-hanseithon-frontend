@@ -2,6 +2,7 @@ import React, { useImperativeHandle, useMemo, useRef, useState } from "react";
 
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AnimatePresence } from "framer-motion";
 
 import * as S from "./styled";
 
@@ -55,23 +56,30 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             <FontAwesomeIcon icon={faChevronDown} />
           </S.SelectElementContainer>
 
-          {expand && (
-            <S.SelectOptionListContainer>
-              <S.SelectOptionList>
-                {options.map(({ value, label }, i) => {
-                  return (
-                    <S.SelectOptionItem
-                      key={i}
-                      onMouseDown={() => handleOnClickOption(value)}
-                      selected={value === selected?.value}
-                    >
-                      {label}
-                    </S.SelectOptionItem>
-                  );
-                })}
-              </S.SelectOptionList>
-            </S.SelectOptionListContainer>
-          )}
+          <AnimatePresence>
+            {expand && (
+              <S.SelectOptionListContainer
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
+                exit={{ height: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <S.SelectOptionList>
+                  {options.map(({ value, label }, i) => {
+                    return (
+                      <S.SelectOptionItem
+                        key={i}
+                        onMouseDown={() => handleOnClickOption(value)}
+                        selected={value === selected?.value}
+                      >
+                        {label}
+                      </S.SelectOptionItem>
+                    );
+                  })}
+                </S.SelectOptionList>
+              </S.SelectOptionListContainer>
+            )}
+          </AnimatePresence>
         </S.SelectInnerContainer>
 
         <S.HiddenSelectContainer>
