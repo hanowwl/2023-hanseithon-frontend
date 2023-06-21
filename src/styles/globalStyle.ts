@@ -10,6 +10,10 @@ export const globalStyle = (theme: Theme) => css`
   #__next {
     width: 100%;
     height: 100%;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   html {
