@@ -15,11 +15,11 @@ export const FooterContainer = styled.div`
 export const asdf = styled.div`
   display: flex;
   align-items: flex-start;
-  column-gap: 10rem;
+  column-gap: 8rem;
 `;
 
 export const FooterInnerContainer = styled.div`
-  width: 70rem;
+  width: 50rem;
   height: 100% auto;
   display: flex;
   padding: 0.8rem;
