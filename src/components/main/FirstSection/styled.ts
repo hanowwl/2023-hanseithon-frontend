@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MainSection = styled.section`
+export const FirstSection = styled.section`
   width: 100%;
   height: 100vh;
 
@@ -26,10 +26,9 @@ export const Period = styled.h2`
   font-size: 3.2rem;
   font-weight: 200;
   text-align: center;
+
   letter-spacing: 0.315em;
   line-height: 38px;
-
-  font-family: "Pretendard";
 `;
 
 export const MainTitleContainer = styled.div`
@@ -37,7 +36,7 @@ export const MainTitleContainer = styled.div`
 `;
 export const MainTitle = styled.h1`
   font-size: 12rem;
-  font-weight: bold;
+  font-weight: 900;
   text-align: center;
   line-height: 14.3rem;
   letter-spacing: 0.315em;
@@ -49,7 +48,6 @@ export const Periodkr = styled.h3`
   text-align: center;
 
   line-height: 3.3rem;
-  letter-spacing: -0.04em;
 
   margin-top: 6rem;
 `;

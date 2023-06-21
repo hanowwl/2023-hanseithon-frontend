@@ -4,22 +4,20 @@ import * as S from "./styled";
 
 export interface FirstProps {
   operatingPeriod: string;
-  season: string;
-  title: string;
   receiptPeriod: string;
 }
 
-const FirstSection: React.FC<FirstProps> = ({ operatingPeriod, season, title, receiptPeriod }) => {
+const FirstSection: React.FC<FirstProps> = ({ operatingPeriod, receiptPeriod }) => {
   return (
-    <S.MainSection>
+    <S.FirstSection>
       <S.PeriodContainer>
         <S.Period>{operatingPeriod}</S.Period>
       </S.PeriodContainer>
       <S.MainTitleContainer>
         <S.MainTitle>
-          {season}
+          6TH
           <br />
-          {title}
+          HANSEITHON
         </S.MainTitle>
       </S.MainTitleContainer>
       <S.Periodkr>{receiptPeriod}</S.Periodkr>
@@ -29,7 +27,7 @@ const FirstSection: React.FC<FirstProps> = ({ operatingPeriod, season, title, re
           <S.ChevronDown></S.ChevronDown>
         </S.Chevrons>
       </S.ScrollDown>
-    </S.MainSection>
+    </S.FirstSection>
   );
 };
 
