@@ -1,4 +1,5 @@
 import React from "react";
+
 import { STAFFS_LIST } from "src/constants";
 
 import * as S from "./styled";
@@ -22,10 +23,8 @@ export const Footer: React.FC = () => {
               <S.TeamText>{contents}</S.TeamText>
 
               <div style={{ display: "flex", flexWrap: "wrap" }}>
-                {staffs.map((item) => (
-                  <>
-                    <S.TeamText>{item}</S.TeamText>
-                  </>
+                {staffs.map((item, i) => (
+                  <S.TeamText key={i}>{item}</S.TeamText>
                 ))}
               </div>
             </div>

@@ -16,7 +16,6 @@ export const asdf = styled.div`
   display: flex;
   align-items: flex-start;
   column-gap: 10rem;
-  border: 1px solid #9a9a9a;
 `;
 
 export const FooterInnerContainer = styled.div`
