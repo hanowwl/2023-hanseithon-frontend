@@ -20,11 +20,11 @@ const components: MDXComponents = {
   table: (props) => <S.Table {...props} />,
 };
 
-export type MDXLayoutProps = MDXRemoteSerializeResult;
+export type MDXLayoutProps = MDXRemoteSerializeResult & { style?: React.CSSProperties };
 
-export const MDXLayout: React.FC<MDXLayoutProps> = ({ ...source }) => {
+export const MDXLayout: React.FC<MDXLayoutProps> = ({ style, ...source }) => {
   return (
-    <S.MDXLayoutContainer>
+    <S.MDXLayoutContainer style={style}>
       <MDXRemote components={components} {...source} />
     </S.MDXLayoutContainer>
   );

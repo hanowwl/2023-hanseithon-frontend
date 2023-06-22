@@ -11,7 +11,7 @@ import remarkGfm from "remark-gfm";
 import { MDXLayout } from "src/components/layouts";
 
 interface DocumentPageProps {
-  meta: { title: string; description: string };
+  meta: { title: string; description: string; style?: React.CSSProperties };
   source: MDXRemoteSerializeResult;
 }
 
@@ -23,7 +23,7 @@ export default function DocumentPage({ meta, source }: DocumentPageProps) {
         <meta name="description" content={meta.description} />
       </Head>
 
-      <MDXLayout {...source} />
+      <MDXLayout style={meta.style} {...source} />
     </>
   );
 }
