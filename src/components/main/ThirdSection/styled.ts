@@ -65,8 +65,6 @@ export const ContentEmoji = styled.div`
   margin: auto;
 `;
 export const ContentTitle = styled.h2`
-  color: #fff;
-
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 2.9rem;
@@ -74,8 +72,6 @@ export const ContentTitle = styled.h2`
   margin-top: 2.4rem;
 `;
 export const ContentCount = styled.h1`
-  color: #fff;
-
   font-size: 4.8rem;
   font-weight: 700;
 
