@@ -11,22 +11,20 @@ export const Footer: React.FC<FooterProps> = ({ staffs }) => {
     <S.FooterContainer>
       <S.FooterInnerContainer>
         <S.FooterSection>
-          <div>
-            <S.FooterSchoolName>한세사이버보안고등학교 총학생회 한울</S.FooterSchoolName>
-            <S.FooterSchoolAddress>
-              04129 서울특별시 마포구 마포대로 11길 44-89 (아현동, 한세사이버보안고등학교)
-            </S.FooterSchoolAddress>
-            <S.FooterSchoolContact>
-              <S.FooterSchoolContactLink href="mailto:hansei.hanowl@gmail.com">
-                hansei.hanowl@gmail.com
-              </S.FooterSchoolContactLink>{" "}
-              (문의) |{" "}
-              <S.FooterSchoolContactLink href="mailto:hansei.stucon@gmail.com">
-                hansei.stucon@gmail.com
-              </S.FooterSchoolContactLink>{" "}
-              (후원관련)
-            </S.FooterSchoolContact>
-          </div>
+          <S.FooterSchoolName>한세사이버보안고등학교 총학생회 한울</S.FooterSchoolName>
+          <S.FooterSchoolAddress>
+            04129 서울특별시 마포구 마포대로 11길 44-89 (아현동, 한세사이버보안고등학교)
+          </S.FooterSchoolAddress>
+          <S.FooterSchoolContact>
+            <S.FooterSchoolContactLink href="mailto:hansei.hanowl@gmail.com">
+              hansei.hanowl@gmail.com
+            </S.FooterSchoolContactLink>{" "}
+            (문의) |{" "}
+            <S.FooterSchoolContactLink href="mailto:hansei.stucon@gmail.com">
+              hansei.stucon@gmail.com
+            </S.FooterSchoolContactLink>{" "}
+            (후원관련)
+          </S.FooterSchoolContact>
         </S.FooterSection>
 
         <S.FooterSection>
@@ -58,6 +56,21 @@ export const Footer: React.FC<FooterProps> = ({ staffs }) => {
             })}
           </S.FooterStaffGroupList>
         </S.FooterSection>
+      </S.FooterInnerContainer>
+
+      <S.FooterInnerContainer>
+        <S.FooterDocumentList>
+          <li>
+            <S.FooterLink href="/docs/privacy" target="_blank">
+              개인정보처리방침
+            </S.FooterLink>
+          </li>
+          <li>
+            <S.FooterLink href="/docs/rules" target="_blank">
+              한세톤 운영 규칙
+            </S.FooterLink>
+          </li>
+        </S.FooterDocumentList>
       </S.FooterInnerContainer>
     </S.FooterContainer>
   );

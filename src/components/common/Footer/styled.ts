@@ -85,3 +85,12 @@ export const FooterStaffItem = styled.li`
     user-select: none;
   }
 `;
+
+export const FooterDocumentList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+
+  font-size: 1.4rem;
+  font-weight: 500;
+`;
