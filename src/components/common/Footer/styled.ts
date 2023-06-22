@@ -1,60 +1,87 @@
+import Link from "next/link";
+
 import styled from "@emotion/styled";
 
-export const FooterContainer = styled.div`
-  position: absolute;
-  bottom: 0;
+import { Container } from "src/components/layouts";
+
+export const FooterContainer = styled.footer`
   width: 100%;
-  height: 27rem;
-  background-color: #141414;
-  display: flex;
+  padding: 4rem 0;
   color: #9a9a9a;
-  justify-content: center;
-  align-items: center;
+  background-color: #141414;
 `;
 
-export const FooterBox = styled.div`
+export const FooterInnerContainer = styled(Container)`
   display: flex;
   align-items: flex-start;
-  column-gap: 8rem;
+  justify-content: space-between;
 `;
 
-export const FooterInnerContainer = styled.div`
-  width: 60rem;
-  height: 100% auto;
-  display: flex;
-  padding: 0.8rem;
-  flex-direction: column;
+export const FooterSection = styled.div``;
+
+export const FooterText = styled.p`
+  font-size: 1.4rem;
 `;
 
-export const SchoolName = styled.div`
-  font-size: 2rem;
+export const FooterLink = styled(Link)`
+  color: unset;
+  user-select: all;
+  text-decoration: none;
+  transition: color 150ms;
+
+  &:hover {
+    color: ${(props) => props.theme.color.primary.lighter};
+  }
+`;
+
+export const FooterSchoolName = styled.p`
+  font-size: 1.8rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.6rem;
 `;
 
-export const SchoolAdress = styled.div`
-  font-size: 1.6rem;
+export const FooterSchoolAddress = styled(FooterText)`
+  font-size: 1.4rem;
+  margin-bottom: 1.6rem;
+`;
+
+export const FooterSchoolContact = styled(FooterText)`
+  font-size: 1.4rem;
+  user-select: none;
+`;
+
+export const FooterSchoolContactLink = styled(FooterLink)`
   letter-spacing: -0.01em;
 `;
 
-export const SchoolContact = styled.div`
-  font-size: 1.4rem;
-  margin-top: 3rem;
-`;
-
-export const TeamContainer = styled.div`
-  display: grid;
-  grid-template-columns: 0.2fr 1fr;
-`;
-
-export const MemberContainer = styled.div`
+export const FooterStaffGroupList = styled.ul`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.6rem;
+  font-size: 1.4rem;
+  user-select: none;
 `;
 
-export const TeamText = styled.div`
-  font-size: 1.4rem;
-  padding: 0.8rem;
-  text-align: center;
+export const FooterStaffGroupItem = styled.li`
+  display: flex;
+  gap: 2rem;
+`;
+
+export const FooterStaffGroupName = styled.p`
+  font-weight: 600;
+`;
+
+export const FooterStaffList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-column-gap: 2.4rem;
+  gap: 1.2rem;
+`;
+
+export const FooterStaffItem = styled.li`
+  font-weight: 300;
+
+  a {
+    user-select: none;
+  }
 `;

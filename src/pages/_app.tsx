@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         actions={[{ size: "small", text: "한세톤 참여하기", href: "/auth/register" }]}
       />
       <Component {...pageProps} />
-      <Footer staffList={STAFF_LIST} />
+      <Footer staffs={STAFF_LIST} />
     </ThemeProvider>
   );
 }
