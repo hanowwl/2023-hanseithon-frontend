@@ -10,7 +10,6 @@ export const InputLabel = styled.label`
 `;
 
 export const InputElementContainer = styled.div`
-  width: 100%;
   height: 4.8rem;
   display: flex;
   align-items: center;
