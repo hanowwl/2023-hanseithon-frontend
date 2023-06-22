@@ -40,7 +40,6 @@ export const NavbarBrandText = styled.h1`
 export const NavbarBrandSubText = styled.h2`
   font-weight: 400;
   font-size: 1.2rem;
-  letter-spacing: -0.01em;
 `;
 
 export const NavbarMenuList = styled.ul`
