@@ -3,7 +3,7 @@ export interface StaffsItems {
   staffs: string[];
 }
 
-export const STAFFS_LIST: StaffsItems[] = [
+export const STAFF_LIST: StaffsItems[] = [
   {
     contents: "총괄",
     staffs: ["김준석"],

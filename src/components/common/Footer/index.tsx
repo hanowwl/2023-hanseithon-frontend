@@ -1,36 +1,39 @@
 import React from "react";
 
-import { STAFFS_LIST } from "src/constants";
+import { StaffsItems } from "src/constants";
 
 import * as S from "./styled";
 
-export const Footer: React.FC = () => {
+export interface FooterProps {
+  staffList: StaffsItems[];
+}
+
+export const Footer: React.FC<FooterProps> = ({ staffList }) => {
   return (
     <S.FooterContainer>
-      <S.asdf>
+      <S.FooterBox>
         <S.FooterInnerContainer>
-          <S.SchoolText>한세사이버보안고등학교 총학생회 한울</S.SchoolText>
-          <S.SchoolSubText>
+          <S.SchoolName>한세사이버보안고등학교 총학생회 한울</S.SchoolName>
+          <S.SchoolAdress>
             04129 서울특별시 마포구 마포대로 11길 44-80 (아현동, 한세사이버보안고등학교)
-          </S.SchoolSubText>
-          <S.SchoolThirdText>
+          </S.SchoolAdress>
+          <S.SchoolContact>
             hansei.hanowl@gmail.com (문의) | hansei.stucon@gmail.com (후원관련)
-          </S.SchoolThirdText>
+          </S.SchoolContact>
         </S.FooterInnerContainer>
         <S.FooterInnerContainer>
-          {STAFFS_LIST.map(({ contents, staffs }, i) => (
-            <div style={{ display: "grid", gridTemplateColumns: "0.2fr 1fr" }} key={i}>
+          {staffList.map(({ contents, staffs }, i) => (
+            <S.TeamContainer key={i}>
               <S.TeamText>{contents}</S.TeamText>
-
-              <div style={{ display: "flex", flexWrap: "wrap" }}>
+              <S.MemberContainer>
                 {staffs.map((item, i) => (
                   <S.TeamText key={i}>{item}</S.TeamText>
                 ))}
-              </div>
-            </div>
+              </S.MemberContainer>
+            </S.TeamContainer>
           ))}
         </S.FooterInnerContainer>
-      </S.asdf>
+      </S.FooterBox>
     </S.FooterContainer>
   );
 };

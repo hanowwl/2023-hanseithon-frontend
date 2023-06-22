@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import { Global, Theme, ThemeProvider } from "@emotion/react";
 
 import { Footer, Navbar } from "src/components/common";
-import { NAVBAR_MENU } from "src/constants";
+import { NAVBAR_MENU, STAFF_LIST } from "src/constants";
 import { darkTheme, globalStyle } from "src/styles";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         actions={[{ size: "small", text: "한세톤 참여하기", href: "/auth/register" }]}
       />
       <Component {...pageProps} />
-      <Footer />
+      <Footer staffList={STAFF_LIST} />
     </ThemeProvider>
   );
 }
