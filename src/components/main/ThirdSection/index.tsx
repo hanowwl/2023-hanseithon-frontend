@@ -2,7 +2,7 @@ import React from "react";
 
 import * as S from "./styled";
 
-interface ArrItem {
+export interface ArrItem {
   emoji: string;
   title: string;
   count: string;
