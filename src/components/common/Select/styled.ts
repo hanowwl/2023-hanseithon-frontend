@@ -2,8 +2,20 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div<{ error: boolean }>`
   width: 100%;
+
+  ${(props) =>
+    props.error &&
+    css`
+      & > div:has(button) > div:first-child {
+        box-shadow: inset 0 0 0 1px #f53434 !important;
+      }
+
+      & > p {
+        color: #f53434 !important;
+      }
+    `}
 `;
 
 export const SelectLabel = styled.label`

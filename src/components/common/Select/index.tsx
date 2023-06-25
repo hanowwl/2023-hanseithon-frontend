@@ -9,13 +9,14 @@ import * as S from "./styled";
 export interface SelectCustomProps {
   label: string;
   options: { value: string; label: string }[];
+  error?: boolean;
 }
 
 export type SelectProps = SelectCustomProps &
   Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "children">;
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, options = [], disabled, onChange, ...props }, ref) => {
+  ({ label, options = [], disabled, error = false, onChange, ...props }, ref) => {
     const selectRef = useRef<HTMLSelectElement | null>(null);
     useImperativeHandle(ref, () => selectRef.current as HTMLSelectElement, [selectRef]);
 
@@ -44,7 +45,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     };
 
     return (
-      <S.SelectContainer>
+      <S.SelectContainer error={error}>
         <S.SelectLabel>{label}</S.SelectLabel>
 
         <S.SelectInnerContainer>
