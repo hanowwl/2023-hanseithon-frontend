@@ -49,7 +49,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 
         <S.SelectInnerContainer>
           <S.SelectElementContainer onClick={() => setExpand((prev) => !prev && !disabled)}>
-            <S.SelectButton disabled={disabled} onBlur={() => setExpand(false)}>
+            <S.SelectButton type="button" disabled={disabled} onBlur={() => setExpand(false)}>
               <span>{selected?.label}</span>
             </S.SelectButton>
 

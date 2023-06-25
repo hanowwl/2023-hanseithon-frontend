@@ -2,7 +2,9 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
-export const SelectContainer = styled.div``;
+export const SelectContainer = styled.div`
+  width: 100%;
+`;
 
 export const SelectLabel = styled.label`
   display: inline-block;
@@ -57,7 +59,7 @@ export const SelectButton = styled.button`
 
 export const SelectOptionListContainer = styled(motion.div)`
   position: absolute;
-  width: 100%;
+  min-width: 100%;
   margin-top: 1.2rem;
   overflow: hidden;
   box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.1);
