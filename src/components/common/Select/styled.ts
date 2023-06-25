@@ -72,8 +72,9 @@ export const SelectButton = styled.button`
 export const SelectOptionListContainer = styled(motion.div)`
   position: absolute;
   min-width: 100%;
+  max-height: 24rem;
   margin-top: 1.2rem;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0 0 15px 0px rgba(255, 255, 255, 0.1);
   z-index: 1;
 `;
