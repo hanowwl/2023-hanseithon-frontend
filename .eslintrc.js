@@ -10,6 +10,13 @@ module.exports = {
   plugins: ["prettier", "import", "react", "react-hooks", "jsx-a11y"],
 
   rules: {
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: { attributes: false },
+      },
+    ],
+
     "global-require": "off",
     "linebreak-style": "off",
     "no-unused-vars": "off",
