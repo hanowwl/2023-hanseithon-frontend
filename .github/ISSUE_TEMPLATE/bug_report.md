@@ -1,8 +1,8 @@
 ---
 name: Bug Report
-about: '🐞 - 버그가 생겼나요? 버그를 등록하고, 관리해보세요!'
-title: '[BUG] '
-assignees: ''
+about: "🐞 - 버그가 생겼나요? 버그를 등록하고, 관리해보세요!"
+title: "[BUG] "
+assignees: ""
 ---
 
 ## 🤷 버그 내용
