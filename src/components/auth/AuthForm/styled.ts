@@ -30,7 +30,7 @@ export const AuthLink = styled(Link)`
   color: unset;
   text-decoration: none;
   transition: color 150ms;
-  font-weight: 500;
+  font-weight: 600;
   color: ${(props) => props.theme.color.primary.default};
 
   &:hover {
