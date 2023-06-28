@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { Button, Input, Select, SelectProps } from "src/components/common";
 import {
@@ -32,7 +33,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
     register,
     handleSubmit,
     watch,
-    getValues,
+    resetField,
     formState: { errors },
   } = useForm<RegisterStep2Form>({ defaultValues: values });
   const [grade, department] = watch(["grade", "department"]);
@@ -54,6 +55,8 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
     const defaultOptions = [{ value: "", label: "학과를 선택해주세요" }];
     if (!grade) return defaultOptions;
 
+    resetField("department");
+    resetField("classroom");
     return Object.keys(STUDENT_CLASSES[grade]).reduce(
       (prev, curr) => [
         ...prev,
@@ -61,17 +64,18 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
       ],
       defaultOptions
     );
-  }, [grade]);
+  }, [grade, resetField]);
 
   const classroomOptions = useMemo(() => {
     const defaultOptions = [{ value: "", label: "반을 선택해주세요" }] as SelectProps["options"];
     if (!grade || !department) return defaultOptions;
 
+    resetField("classroom");
     return (STUDENT_CLASSES[grade][department] || []).reduce(
       (prev, curr) => [...prev, { value: curr.toString(), label: `${curr}반` }],
       defaultOptions
     );
-  }, [grade, department]);
+  }, [grade, department, resetField]);
 
   const numberOptions = useMemo(() => {
     return Array.from({ length: 25 }).reduce<SelectProps["options"]>(
@@ -84,10 +88,12 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
     <AuthForm
       onSubmit={handleSubmit(
         (values) => onNext?.(values),
-        (errors) => {
-          Object.values(errors).forEach((error) => {
-            console.log(errors, getValues());
-          });
+        (formErrors) => {
+          const errors = Object.keys(formErrors)
+            .filter((key) => key !== "name" && formErrors[key as keyof typeof formErrors]?.message)
+            .map((key) => formErrors[key as keyof typeof formErrors]?.message);
+
+          if (errors[0]) toast.warn(errors[0]);
         }
       )}
     >
