@@ -1,7 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
 
+import { useRouter } from "next/router";
+
 import { Funnel, FunnelProps, Step, StepProps } from "./Funnel";
 import { ConsistentTuple } from "./types";
+import { useQueryParams } from "../useQueryParams";
 
 export type RootFunnelProps<Steps extends ConsistentTuple<string>> = Omit<
   FunnelProps<Steps>,
@@ -17,22 +20,30 @@ export type FunnelComponent<Steps extends ConsistentTuple<string>> = ((
 export const useFunnel = <Steps extends ConsistentTuple<string>>(
   steps: Steps
 ): [FunnelComponent<Steps>, (step: Steps[number]) => void] => {
-  const [step, _setStep] = useState<Steps[number]>(steps[0]);
+  const router = useRouter();
 
   const FunnelComponent = useMemo(
     () =>
       Object.assign(
         function RootFunnel(props: RootFunnelProps<Steps>) {
+          const query = useQueryParams<{ step: Steps[number] }>();
+          const step = query.step ?? steps[0];
+
           return <Funnel steps={steps} step={step} {...props} />;
         },
         { Step }
       ),
-    [step, steps]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
-  const setStep = useCallback((step: Steps[number]) => {
-    _setStep(step);
-  }, []);
+  const setStep = useCallback(
+    (step: Steps[number]) => {
+      const url = "?" + new URLSearchParams({ ...router.query, step }).toString();
+      router.replace(url, undefined, { shallow: true });
+    },
+    [router]
+  );
 
   return [FunnelComponent, setStep];
 };
