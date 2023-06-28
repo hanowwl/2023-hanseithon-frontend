@@ -6,7 +6,9 @@ export type RegisterForms = RegisterStep1Form & RegisterStep2Form & RegisterStep
 export type { RegisterStep1Form, RegisterStep2Form, RegisterStep3Form };
 
 export interface RegisterStepProps<T> {
+  values?: T;
   onNext?: (formValues: T) => void;
+  onPrev?: () => void;
 }
 
 export const RegisterForm = Object.assign(

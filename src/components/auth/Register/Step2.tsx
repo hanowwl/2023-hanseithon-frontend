@@ -10,6 +10,7 @@ import {
   StudentGrade,
 } from "src/constants";
 
+import * as S from "./styled";
 import { AuthForm } from "../AuthForm";
 
 import { RegisterStepProps } from ".";
@@ -22,13 +23,18 @@ export type RegisterStep2Form = {
   number: number;
 };
 
-export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ onNext }) => {
+export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
+  values,
+  onNext,
+  onPrev,
+}) => {
   const {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
-  } = useForm<RegisterStep2Form>();
+  } = useForm<RegisterStep2Form>({ defaultValues: values });
   const [grade, department] = watch(["grade", "department"]);
 
   const gradeOptions = useMemo(
@@ -73,9 +79,19 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
       [{ value: "", label: "번호를 선택해주세요" }]
     );
   }, []);
+  console.log(register("grade", { required: "올바른 학년을 선택해주세요", valueAsNumber: true }));
 
   return (
-    <AuthForm onSubmit={handleSubmit((values) => onNext?.(values))}>
+    <AuthForm
+      onSubmit={handleSubmit(
+        (values) => onNext?.(values),
+        (errors) => {
+          Object.values(errors).forEach((error) => {
+            console.log(errors, getValues());
+          });
+        }
+      )}
+    >
       <AuthForm.Row>
         <Input
           label="이름"
@@ -94,6 +110,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="학년"
             options={gradeOptions}
             error={Boolean(errors.grade?.message)}
+            defaultValue={values?.grade}
             {...register("grade", { required: "올바른 학년을 선택해주세요", valueAsNumber: true })}
           />
         </AuthForm.Col>
@@ -102,6 +119,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="학과"
             options={departmentOptions}
             error={Boolean(errors.department?.message)}
+            defaultValue={values?.department}
             {...register("department", { required: "올바른 학과를 선택해주세요" })}
           />
         </AuthForm.Col>
@@ -112,6 +130,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="반"
             options={classroomOptions}
             error={Boolean(errors.classroom?.message)}
+            defaultValue={values?.classroom}
             {...register("classroom", {
               required: "올바른 반을 선택해주세요",
               valueAsNumber: true,
@@ -123,15 +142,19 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="번호"
             options={numberOptions}
             error={Boolean(errors.number?.message)}
+            defaultValue={values?.number}
             {...register("number", { required: "올바른 번호를 선택해주세요", valueAsNumber: true })}
           />
         </AuthForm.Col>
       </AuthForm.Row>
 
-      <AuthForm.Row style={{ marginTop: "auto" }}>
+      <AuthForm.Row style={{ flexDirection: "column", marginTop: "auto", gap: "0.8rem" }}>
         <Button type="submit" size="large" fillWidth>
           다음
         </Button>
+        <S.RegisterPrevButton type="button" size="large" fillWidth onClick={onPrev}>
+          뒤로가기
+        </S.RegisterPrevButton>
       </AuthForm.Row>
     </AuthForm>
   );

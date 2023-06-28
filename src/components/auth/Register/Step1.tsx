@@ -1,9 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
+import Link from "next/link";
+
 import { Button, Input } from "src/components/common";
 import { PASSWORD_REGEX } from "src/constants";
 
+import * as S from "./styled";
 import { AuthForm } from "../AuthForm";
 
 import { RegisterStepProps } from ".";
@@ -14,13 +17,16 @@ export type RegisterStep1Form = {
   passwordVerify: string;
 };
 
-export const RegisterStep1: React.FC<RegisterStepProps<RegisterStep1Form>> = ({ onNext }) => {
+export const RegisterStep1: React.FC<RegisterStepProps<RegisterStep1Form>> = ({
+  values,
+  onNext,
+}) => {
   const {
     watch,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<RegisterStep1Form>();
+  } = useForm<RegisterStep1Form>({ defaultValues: values });
   const [password] = watch(["password"]);
 
   return (
@@ -62,10 +68,16 @@ export const RegisterStep1: React.FC<RegisterStepProps<RegisterStep1Form>> = ({ 
         />
       </AuthForm.Row>
 
-      <AuthForm.Row style={{ marginTop: "auto" }}>
+      <AuthForm.Row style={{ marginTop: "auto", flexDirection: "column", gap: "0.8rem" }}>
         <Button type="submit" size="large" fillWidth>
           다음
         </Button>
+
+        <Link href="/auth/login" style={{ textDecoration: "none" }}>
+          <S.RegisterPrevButton type="button" size="large" fillWidth>
+            또는 계정 만들기
+          </S.RegisterPrevButton>
+        </Link>
       </AuthForm.Row>
     </AuthForm>
   );

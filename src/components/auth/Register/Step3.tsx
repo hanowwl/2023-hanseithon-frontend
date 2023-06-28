@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { Button, Checkbox } from "src/components/common";
 
+import * as S from "./styled";
 import { AuthForm } from "../AuthForm";
 
 import { RegisterStepProps } from ".";
@@ -13,8 +14,12 @@ export type RegisterStep3Form = {
   agreeRules: boolean;
 };
 
-export const RegisterStep3: React.FC<RegisterStepProps<RegisterStep3Form>> = ({ onNext }) => {
-  const { register, handleSubmit, resetField } = useForm<RegisterStep3Form>();
+export const RegisterStep3: React.FC<
+  RegisterStepProps<RegisterStep3Form> & { loading?: boolean }
+> = ({ loading = false, values, onNext, onPrev }) => {
+  const { register, handleSubmit, resetField, watch } = useForm<RegisterStep3Form>({
+    defaultValues: values,
+  });
   const [isCheckedRules, setIsCheckedRules] = useState<boolean>(false);
 
   return (
@@ -66,10 +71,13 @@ export const RegisterStep3: React.FC<RegisterStepProps<RegisterStep3Form>> = ({ 
         </Checkbox>
       </AuthForm.Row>
 
-      <AuthForm.Row style={{ marginTop: "auto" }}>
-        <Button type="submit" size="large" fillWidth>
-          회원가입
+      <AuthForm.Row style={{ flexDirection: "column", marginTop: "auto", gap: "0.8rem" }}>
+        <Button type="submit" size="large" fillWidth disabled={loading}>
+          {loading ? "처리 중이에요" : "회원가입"}
         </Button>
+        <S.RegisterPrevButton type="button" size="large" fillWidth onClick={onPrev}>
+          뒤로가기
+        </S.RegisterPrevButton>
       </AuthForm.Row>
     </AuthForm>
   );

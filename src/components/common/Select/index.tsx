@@ -16,12 +16,12 @@ export type SelectProps = SelectCustomProps &
   Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "children">;
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, options = [], disabled, error = false, onChange, ...props }, ref) => {
+  ({ label, options = [], disabled, error = false, defaultValue, onChange, ...props }, ref) => {
     const selectRef = useRef<HTMLSelectElement | null>(null);
     useImperativeHandle(ref, () => selectRef.current as HTMLSelectElement, [selectRef]);
 
     const [expand, setExpand] = useState<boolean>(false);
-    const [value, setValue] = useState<string>("");
+    const [value, setValue] = useState<string>(defaultValue?.toString() || "");
     const selected = useMemo(() => options.find((v) => v.value === value), [options, value]);
 
     const handleOnClickOption = (value: string) => {
