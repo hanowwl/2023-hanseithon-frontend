@@ -79,7 +79,6 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({
       [{ value: "", label: "번호를 선택해주세요" }]
     );
   }, []);
-  console.log(register("grade", { required: "올바른 학년을 선택해주세요", valueAsNumber: true }));
 
   return (
     <AuthForm

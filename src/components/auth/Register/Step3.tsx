@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -17,7 +17,7 @@ export type RegisterStep3Form = {
 export const RegisterStep3: React.FC<
   RegisterStepProps<RegisterStep3Form> & { loading?: boolean }
 > = ({ loading = false, values, onNext, onPrev }) => {
-  const { register, handleSubmit, resetField, watch } = useForm<RegisterStep3Form>({
+  const { register, handleSubmit, resetField } = useForm<RegisterStep3Form>({
     defaultValues: values,
   });
   const [isCheckedRules, setIsCheckedRules] = useState<boolean>(false);
