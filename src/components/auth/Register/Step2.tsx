@@ -94,7 +94,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="학년"
             options={gradeOptions}
             error={Boolean(errors.grade?.message)}
-            {...register("grade", { required: "올바른 학년을 선택해주세요" })}
+            {...register("grade", { required: "올바른 학년을 선택해주세요", valueAsNumber: true })}
           />
         </AuthForm.Col>
         <AuthForm.Col>
@@ -112,7 +112,10 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="반"
             options={classroomOptions}
             error={Boolean(errors.classroom?.message)}
-            {...register("classroom", { required: "올바른 반을 선택해주세요" })}
+            {...register("classroom", {
+              required: "올바른 반을 선택해주세요",
+              valueAsNumber: true,
+            })}
           />
         </AuthForm.Col>
         <AuthForm.Col>
@@ -120,7 +123,7 @@ export const RegisterStep2: React.FC<RegisterStepProps<RegisterStep2Form>> = ({ 
             label="번호"
             options={numberOptions}
             error={Boolean(errors.number?.message)}
-            {...register("number", { required: "올바른 번호를 선택해주세요" })}
+            {...register("number", { required: "올바른 번호를 선택해주세요", valueAsNumber: true })}
           />
         </AuthForm.Col>
       </AuthForm.Row>
