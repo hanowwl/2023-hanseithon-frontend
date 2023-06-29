@@ -1,7 +1,17 @@
-import { FirstSection, SecondSection, ThirdSection } from "src/components/main";
+import {
+  ArrItem,
+  FirstSection,
+  FiveSection,
+  FourthSection,
+  SecondSection,
+  SeventhSection,
+  SixthSection,
+  ThirdSection,
+} from "src/components/main";
+import { companyLogo, faq } from "src/constants";
 
 export default function HomePage() {
-  const ThirdDataArr = [
+  const ThirdDataArr: ArrItem[] = [
     {
       emoji: "😎",
       title: "누적 참여 학생",
@@ -29,6 +39,10 @@ export default function HomePage() {
       />
       <SecondSection />
       <ThirdSection ThirdArr={ThirdDataArr} />
+      <FourthSection />
+      <FiveSection companyArr={companyLogo} />
+      <SixthSection />
+      <SeventhSection faqArr={faq} />
     </div>
   );
 }
