@@ -23,6 +23,7 @@ export const AuthForm = Object.assign(S.AuthForm, {
   Row: S.AuthFormRow,
   Col: S.AuthFormCol,
   Link: S.AuthLink,
+  PrevButton: S.AuthPrevButton,
 
   Layout: AuthFormLayout,
 });

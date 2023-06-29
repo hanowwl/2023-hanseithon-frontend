@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import styled from "@emotion/styled";
 
+import { Button } from "src/components/common";
 import { Container } from "src/components/layouts";
 
 export const AuthForm = styled.form`
@@ -35,6 +36,18 @@ export const AuthLink = styled(Link)`
 
   &:hover {
     color: ${(props) => props.theme.color.primary.lighter};
+  }
+`;
+
+export const AuthPrevButton = styled(Button)`
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #8f8f8f;
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.07);
   }
 `;
 
