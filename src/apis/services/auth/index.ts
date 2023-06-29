@@ -20,3 +20,18 @@ export const register = async (parameters: RegisterParameters) => {
     .post<APIResponse<void>>("/auth/register", parameters)
     .then((res) => res.data);
 };
+
+export interface LoginParameters {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+}
+
+export const login = async (parameters: LoginParameters) => {
+  return await instance
+    .post<APIResponse<LoginResponse>>("/auth/login", parameters)
+    .then((res) => res.data);
+};
