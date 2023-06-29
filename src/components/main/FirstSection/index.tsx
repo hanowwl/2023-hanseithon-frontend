@@ -14,11 +14,8 @@ const FirstSection: React.FC<FirstProps> = ({ operatingPeriod, receiptPeriod }) 
         <S.Period>{operatingPeriod}</S.Period>
       </S.PeriodContainer>
       <S.MainTitleContainer>
-        <S.MainTitle>
-          6TH
-          <br />
-          HANSEITHON
-        </S.MainTitle>
+        <S.MainSeason>6TH</S.MainSeason>
+        <S.MainTitle>HANSEITHON</S.MainTitle>
       </S.MainTitleContainer>
       <S.Periodkr>{receiptPeriod}</S.Periodkr>
       <S.ScrollDown>

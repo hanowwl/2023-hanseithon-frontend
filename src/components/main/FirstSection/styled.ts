@@ -32,9 +32,16 @@ export const Period = styled.h2`
 `;
 
 export const MainTitleContainer = styled.div`
-  margin: 5rem 19rem 0 19rem;
+  margin: 5rem auto 0 auto;
 `;
 export const MainTitle = styled.h1`
+  font-size: 12rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 14.3rem;
+  letter-spacing: 0.315em;
+`;
+export const MainSeason = styled.h1`
   font-size: 12rem;
   font-weight: 900;
   text-align: center;
