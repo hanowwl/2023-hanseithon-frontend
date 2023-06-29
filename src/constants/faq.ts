@@ -13,10 +13,11 @@ export const faq: SeventhFAQ[] = [
   },
   {
     question: "Q. 외부 라이브러리 사용이 가능한가요?",
-    answer: "네 됩니다.",
+    answer: "A. 프로젝트 완성에 있어서 큰 영향을 주는것이 아닌 이상 사용 가능합니다.",
   },
   {
     question: "Q. Chat GPT와 Bard 같은 AI 사용이 가능한가요?",
-    answer: "되겠냐",
+    answer:
+      "A. 밤새 진행하며 자신만의 힘으로 완성한다는 해커톤의 본질로써 Chat GPT와 Bard 같은 코드를 제공해주는 서비스는 사용이 불가능합니다.",
   },
 ];
