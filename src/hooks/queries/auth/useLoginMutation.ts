@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 
 import { api } from "src/apis";
 import { APIResponse } from "src/apis/core/types";
-import { LoginParameters, LoginResponse } from "src/apis/services/auth";
+import { LoginParameters, LoginResponse } from "src/apis/services";
 
 export const useLoginMutation = () =>
   useMutation<APIResponse<LoginResponse>, AxiosError<APIResponse<void>>, LoginParameters>({
