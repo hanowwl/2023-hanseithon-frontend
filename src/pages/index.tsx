@@ -1,5 +1,5 @@
+import { EmojiCardProps } from "src/components/common";
 import {
-  RecordItem,
   FirstSection,
   FiveSection,
   FourthSection,
@@ -11,28 +11,22 @@ import {
 import { companyLogo, faq } from "src/constants";
 
 export default function HomePage() {
-  const RECORDS: RecordItem[] = [
+  const RECORDS: EmojiCardProps[] = [
     {
       emoji: "😎",
-      title: "누적 참여 학생",
-      value: "230명 +",
+      name: "누적 참여 학생",
+      value: { from: 0, to: 230, suffix: "명 +" },
       description: "",
     },
     {
       emoji: "🌈",
-      title: "운영 기간",
-      value: "6회차",
+      name: "운영 기간",
+      value: { from: 0, to: 6, suffix: "회차" },
       description: "2018년부터",
-    },
-    {
-      emoji: "😵",
-      title: "갈려나간 노예들",
-      value: "120명 +",
-      description: "자랑스럽다! 무!급!노!예!",
     },
   ];
   return (
-    <div>
+    <>
       <FirstSection
         operationPeriod="JULY 20 - JULY 21"
         applicationPeriod="접수 기간 : 7. 10 ~ 7. 19"
@@ -43,6 +37,6 @@ export default function HomePage() {
       <FiveSection companyArr={companyLogo} />
       <SixthSection />
       <SeventhSection faqArr={faq} />
-    </div>
+    </>
   );
 }

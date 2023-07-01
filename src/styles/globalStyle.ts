@@ -5,6 +5,10 @@ import { reset } from "./reset";
 export const globalStyle = (theme: Theme) => css`
   ${reset}
 
+  * {
+    box-sizing: border-box;
+  }
+
   html,
   body,
   #__next {
