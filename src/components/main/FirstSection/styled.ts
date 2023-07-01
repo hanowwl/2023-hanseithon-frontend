@@ -1,114 +1,115 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
+
+const pulse = keyframes`
+  0% {
+    opacity: 0;
+  }
+    
+  100% {
+    opacity: 0.5;
+  }
+`;
 
 export const FirstSection = styled.section`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-
+  overflow: hidden;
+  position: relative;
   margin-top: -9rem;
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    #3f86cb 0deg,
-    #6da4da 71.25deg,
-    #cae5fb 172.5deg,
-    #82bff5 249.37deg,
-    #3f86cb 360deg
-  );
 `;
 
-export const PeriodContainer = styled.div`
+export const FirstSectionLayer = styled.div`
+  position: absolute;
+  top: 0;
   width: 100%;
-  padding-top: 15rem;
+  height: 100%;
 `;
-export const Period = styled.h2`
+
+export const FirstSectionVideo = styled.video`
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  object-fit: cover;
+  z-index: -2;
+`;
+
+export const FirstSectionContentContainer = styled.div`
+  position: absolute;
+  top: 44.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const FirstSectionTitle = styled(motion.h1)`
+  font-size: 12rem;
+  font-weight: 900;
+  text-align: center;
+  user-select: none;
+  letter-spacing: 3.8rem;
+`;
+
+export const OperationPeriod = styled(motion.p)`
   font-size: 3.2rem;
   font-weight: 200;
   text-align: center;
 
-  letter-spacing: 0.315em;
-  line-height: 38px;
+  margin-bottom: 5.8rem;
+  letter-spacing: 1rem;
 `;
 
-export const MainTitleContainer = styled.div`
-  margin: 5rem 19rem 0 19rem;
-`;
-export const MainTitle = styled.h1`
-  font-size: 12rem;
-  font-weight: 900;
-  text-align: center;
-  line-height: 14.3rem;
-  letter-spacing: 0.315em;
-`;
-
-export const Periodkr = styled.h3`
+export const ApplicationPeriod = styled(motion.p)`
   font-size: 2.8rem;
   font-weight: 500;
   text-align: center;
 
-  line-height: 3.3rem;
-
-  margin-top: 6rem;
+  margin-top: 5.6rem;
+  letter-spacing: 0.01rem;
 `;
 
-export const ScrollDown = styled.div`
-  margin: auto auto 6rem auto;
-  --color: #fff;
-  --sizeX: 30px;
-  --sizeY: 50px;
-  position: relative;
-  width: var(--sizeX);
-  height: var(--sizeY);
-  @keyframes scrolldown-anim {
-    0% {
-      opacity: 0;
-      height: 6px;
-    }
-    40% {
-      opacity: 1;
-      height: 10px;
-    }
-    80% {
-      transform: translate(0, 20px);
-      height: 10px;
-      opacity: 0;
-    }
-    100% {
-      height: 3px;
-      opacity: 0;
-    }
-  }
-`;
-export const Chevrons = styled.div`
-  width: 30px;
+export const DownArrowButton = styled(motion.button)`
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: none;
+  outline: none;
+  background: none;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
+
+  & > svg:not(:last-child) {
+    margin-bottom: -0.5rem;
+  }
+
+  & > svg:nth-of-type(1) {
+    /* opacity: 0.2; */
+    animation: ${pulse} 500ms ease infinite alternate;
+  }
+
+  & > svg:nth-of-type(2) {
+    /* opacity: 0.6; */
+    animation: ${pulse} 500ms ease infinite alternate 250ms;
+  }
+
+  & > svg:nth-of-type(3) {
+    /* opacity: 0.9; */
+    animation: ${pulse} 500ms ease infinite alternate 500ms;
+  }
 `;
 
-export const ChevronDown = styled.div`
-  margin-top: -13.6px;
-  position: relative;
-  border: solid var(--color);
-  border-radius: 3px;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  width: 21px;
-  height: 21px;
-  transform: rotate(40deg) skew(350deg);
-  :nth-of-type(odd) {
-    animation: pulse 500ms ease infinite alternate;
-  }
-  :nth-of-type(even) {
-    animation: pulse 500ms ease infinite alternate 250ms;
-  }
-  @keyframes pulse {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 0.5;
-    }
-  }
+export const GradientCircle = styled(motion.div)<{ size: string; degree: number }>`
+  position: absolute;
+
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
+  border-radius: 50%;
+  user-select: none;
+
+  background: ${(props) =>
+    `linear-gradient(${props.degree}deg, #5871b2 0%, #458bcd 50%, #cfe6fc 100%);`};
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
 `;
