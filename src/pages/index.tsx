@@ -1,5 +1,5 @@
 import {
-  ArrItem,
+  RecordItem,
   FirstSection,
   FiveSection,
   FourthSection,
@@ -11,24 +11,24 @@ import {
 import { companyLogo, faq } from "src/constants";
 
 export default function HomePage() {
-  const ThirdDataArr: ArrItem[] = [
+  const RECORDS: RecordItem[] = [
     {
       emoji: "😎",
       title: "누적 참여 학생",
-      count: "230명 +",
-      desc: "",
+      value: "230명 +",
+      description: "",
     },
     {
       emoji: "🌈",
       title: "운영 기간",
-      count: "6회차",
-      desc: "2018년부터",
+      value: "6회차",
+      description: "2018년부터",
     },
     {
       emoji: "😵",
       title: "갈려나간 노예들",
-      count: "120명 +",
-      desc: "자랑스럽다! 무!급!노!예!",
+      value: "120명 +",
+      description: "자랑스럽다! 무!급!노!예!",
     },
   ];
   return (
@@ -38,7 +38,7 @@ export default function HomePage() {
         applicationPeriod="접수 기간 : 7. 10 ~ 7. 19"
       />
       <SecondSection />
-      <ThirdSection ThirdArr={ThirdDataArr} />
+      <ThirdSection records={RECORDS} />
       <FourthSection />
       <FiveSection companyArr={companyLogo} />
       <SixthSection />
