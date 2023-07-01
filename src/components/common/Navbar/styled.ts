@@ -15,6 +15,7 @@ export const NavbarContainer = styled.nav`
 
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
+  z-index: 1;
 `;
 
 export const NavbarInnerContainer = styled(Container)`
