@@ -1,19 +1,33 @@
-import { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import type { AppProps } from "next/app";
 
 import { Global, Theme, ThemeProvider } from "@emotion/react";
 
-import { Footer, Navbar } from "src/components/common";
-import { NAVBAR_MENU, STAFF_LIST } from "src/constants";
-import { QueryClientProvider } from "src/hooks";
+import { setInstanceAccessToken } from "src/apis";
+import { AppLayout } from "src/components/layouts";
+import { QueryClientProvider, useQueryParams } from "src/hooks";
+import { useAuthStore } from "src/stores";
 import { darkTheme, globalStyle } from "src/styles";
 
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme] = useState<Theme>(darkTheme);
+  const { message, messageType } = useQueryParams<{
+    message: string;
+    messageType: "success" | "warn" | "error" | "info";
+  }>();
+  const { accessToken } = useAuthStore();
+
+  useEffect(() => {
+    if (message) toast[messageType ?? "info"](message);
+  }, [message, messageType]);
+
+  useEffect(() => {
+    setInstanceAccessToken(accessToken);
+  }, [accessToken]);
 
   return (
     <QueryClientProvider>
@@ -22,12 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <ToastContainer position="top-right" theme="dark" autoClose={3000} closeButton={false} />
 
-        <Navbar
-          menu={NAVBAR_MENU}
-          actions={[{ size: "small", text: "한세톤 참여하기", href: "/auth/register" }]}
-        />
-        <Component {...pageProps} />
-        <Footer staffs={STAFF_LIST} />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </ThemeProvider>
     </QueryClientProvider>
   );
