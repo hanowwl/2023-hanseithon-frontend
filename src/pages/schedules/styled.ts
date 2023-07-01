@@ -7,9 +7,13 @@ export const ScheduleSection = styled.section`
   flex-direction: column;
 `;
 
-export const FirstContainer = styled.div``;
+export const ScheduleContainer = styled.div`
+  display: flex;
+`;
 export const ScheduleUl = styled.ul<{ marginTop?: string; marginBottom?: string }>`
   margin-top: ${(props) => props.marginTop};
   margin-bottom: ${(props) => props.marginBottom};
+  margin-right: auto;
+  margin-left: auto;
 `;
 export const ScheduleLi = styled.li``;
