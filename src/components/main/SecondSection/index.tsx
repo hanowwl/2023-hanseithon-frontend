@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useCallback } from "react";
+
+import { MotionProps } from "framer-motion";
 
 import * as S from "./styled";
 
 const SecondSection: React.FC = () => {
+  const fadeInScroll = useCallback(
+    ({ delay }: { delay: number }) =>
+      ({
+        initial: { opacity: 0, transform: "translate3d(0, 50%, 0)" },
+        whileInView: { opacity: 1, transform: "translate3d(0, 0, 0)" },
+        transition: { ease: [0, 0, 0.2, 1], duration: 0.7, delay },
+        viewport: { once: true },
+      } as MotionProps),
+    []
+  );
+
   return (
     <S.SecondSection>
       <S.SecondSectionInnerContainer>
-        <S.SecondSectionTitle>해커톤이 뭔가요?</S.SecondSectionTitle>
+        <S.SecondSectionTitle {...fadeInScroll({ delay: 0 })}>
+          해커톤이 뭔가요?
+        </S.SecondSectionTitle>
 
-        <S.EmojiText style={{ margin: "5.8rem 0 11.8rem 0" }}>
+        <S.EmojiText style={{ margin: "5.8rem 0 11.8rem 0" }} {...fadeInScroll({ delay: 0.4 })}>
           <S.Emoji>🧑‍💻</S.Emoji>+<S.Emoji>🏃</S.Emoji>
         </S.EmojiText>
 
-        <S.HackathonDescription>
+        <S.HackathonDescription {...fadeInScroll({ delay: 0.4 })}>
           해커톤은 해킹과 마라톤의 합성어로
           <br />
           <br />

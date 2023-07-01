@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 import { Container } from "src/components/layouts";
 
 export const SecondSection = styled.section`
   width: 100vw;
   height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,12 +16,12 @@ export const SecondSectionInnerContainer = styled(Container)`
   text-align: center;
 `;
 
-export const SecondSectionTitle = styled.h2`
+export const SecondSectionTitle = styled(motion.h2)`
   font-size: 4.4rem;
   font-weight: 800;
 `;
 
-export const EmojiText = styled.p`
+export const EmojiText = styled(motion.p)`
   width: 100%;
   display: flex;
   align-items: center;
@@ -33,7 +35,7 @@ export const Emoji = styled.span`
   font-weight: 600;
 `;
 
-export const HackathonDescription = styled.p`
+export const HackathonDescription = styled(motion.p)`
   font-size: 2.4rem;
   font-weight: 500;
   line-height: 2.9rem;
