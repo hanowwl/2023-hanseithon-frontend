@@ -10,13 +10,6 @@ module.exports = {
   plugins: ["prettier", "import", "react", "react-hooks", "jsx-a11y"],
 
   rules: {
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        checksVoidReturn: { attributes: false },
-      },
-    ],
-
     "global-require": "off",
     "linebreak-style": "off",
     "no-unused-vars": "off",
@@ -80,6 +73,12 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-use-before-define": ["error", { variables: false }],
         "@typescript-eslint/no-useless-constructor": "error",
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            checksVoidReturn: { attributes: false },
+          },
+        ],
       },
       parserOptions: {
         project: ["./tsconfig.json"],
