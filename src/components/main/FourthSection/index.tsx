@@ -1,52 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
+import Image, { StaticImageData } from "next/image";
 
 import Ticker from "framer-motion-ticker";
 
-import onePNG from "src/assets/png/Rectangle 36.png";
-import twoPNG from "src/assets/png/Rectangle 37.png";
-import threePNG from "src/assets/png/Rectangle 38.png";
-import fourPNG from "src/assets/png/Rectangle 39.png";
-
 import * as S from "./styled";
 
-const FourthSection: React.FC = () => {
-  const photos = [onePNG, twoPNG, threePNG, fourPNG];
-  const [isPlayingFirst, setIsPlayingFirst] = useState(true);
-  const [isPlayingSecond, setIsPlayingSecond] = useState(true);
+export interface MainFourthSectionProps {
+  imageGroups: StaticImageData[][];
+}
+
+const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
+  const [isHover, setIsHover] = useState<boolean[]>(imageGroups.map(() => true));
+
+  const handleOnMouseEvent = (index: number, value: boolean) => {
+    const newHoverList = [...isHover];
+    newHoverList[index] = value;
+    setIsHover(newHoverList);
+  };
+
   return (
     <S.FourthSection>
-      <S.ImgContentContainer>
-        <Ticker
-          onMouseEnter={() => setIsPlayingFirst(false)}
-          onMouseLeave={() => setIsPlayingFirst(true)}
-          direction={1}
-          duration={20}
-          isPlaying={isPlayingFirst}
-        >
-          {photos.map((item, idx) => {
-            return (
-              <S.ImgContent key={idx}>
-                <S.Img src={item.src} />
-              </S.ImgContent>
-            );
-          })}
-        </Ticker>
-        <Ticker
-          onMouseEnter={() => setIsPlayingSecond(false)}
-          onMouseLeave={() => setIsPlayingSecond(true)}
-          direction={-1}
-          duration={20}
-          isPlaying={isPlayingSecond}
-        >
-          {photos.map((item, idx) => {
-            return (
-              <S.ImgContent key={idx}>
-                <S.Img src={item.src} />
-              </S.ImgContent>
-            );
-          })}
-        </Ticker>
-      </S.ImgContentContainer>
+      {imageGroups.map((images, i) => {
+        return (
+          <Ticker
+            key={i}
+            direction={i % 2 === 0 ? -1 : 1}
+            duration={28}
+            onMouseEnter={() => handleOnMouseEvent(i, false)}
+            onMouseLeave={() => handleOnMouseEvent(i, true)}
+            isPlaying={isHover[i]}
+          >
+            {images.map((image, j) => {
+              return (
+                <Image
+                  key={j}
+                  src={image}
+                  alt=""
+                  width={480}
+                  height={240}
+                  style={{
+                    margin: "0 1.5rem 0 1.5rem",
+                    borderRadius: "2rem",
+                    border: "2px solid rgba(255, 255, 255, 0.15)",
+                  }}
+                />
+              );
+            })}
+          </Ticker>
+        );
+      })}
     </S.FourthSection>
   );
 };

@@ -1,3 +1,4 @@
+import { HANSEITHON_IMAGES } from "src/assets";
 import { EmojiCardProps } from "src/components/common";
 import {
   FirstSection,
@@ -33,7 +34,7 @@ export default function HomePage() {
       />
       <SecondSection />
       <ThirdSection records={RECORDS} />
-      <FourthSection />
+      <FourthSection imageGroups={[HANSEITHON_IMAGES, HANSEITHON_IMAGES.reverse()]} />
       <FiveSection companyArr={companyLogo} />
       <SixthSection />
       <SeventhSection faqArr={faq} />
