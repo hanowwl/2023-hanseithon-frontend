@@ -28,15 +28,15 @@ function isTimeInRange(timeRange: string, currentTime: string) {
 
   return false;
 }
-export interface ScheduleData {
-  elementArr: ScheduleElementProps[];
+export interface ScheduleTimeData {
+  elementArray: ScheduleElementProps[];
 }
 
 export default function SchedulesPage() {
   const now = new Date();
-  const [hours, setHours] = useState<number>(now.getHours());
-  const [minutes, setMinutes] = useState<number>(now.getMinutes());
-  const [day, setDay] = useState<number>(now.getDate());
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const day = now.getDate();
   const [nowDate, setNowDate] = useState<string>("");
   /**
    * 테스트 하려면 hours를 현재 시간으로 더하거나 빼고
