@@ -2,11 +2,22 @@ import React from "react";
 
 import * as S from "./styled";
 
-const Element: React.FC = () => {
+export interface ScheduleElementProps {
+  time: string;
+  nowSchedule: string;
+  nowCurrent: boolean;
+}
+
+export interface ScheduleData {
+  time: string;
+  nowSchedule: string;
+}
+
+const Element: React.FC<ScheduleElementProps> = ({ time, nowSchedule, nowCurrent }) => {
   return (
     <S.ScheduleElement>
-      <S.ScheduleTime>15:00 ~ 15:30</S.ScheduleTime>
-      <S.ScheduleNow>참가자 입장 및 등록</S.ScheduleNow>
+      <S.ScheduleTime>{time}</S.ScheduleTime>
+      <S.ScheduleNow current={nowCurrent}>{nowSchedule}</S.ScheduleNow>
     </S.ScheduleElement>
   );
 };
