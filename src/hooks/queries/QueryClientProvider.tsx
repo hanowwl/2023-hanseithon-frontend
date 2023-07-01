@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   QueryClient,
@@ -11,7 +11,9 @@ export interface QueryClientProviderProps {
 }
 
 export const QueryClientProvider: React.FC<QueryClientProviderProps> = ({ children }) => {
-  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 0 } } });
+  const [queryClient] = useState(
+    () => new QueryClient({ defaultOptions: { queries: { retry: 0 } } })
+  );
 
   return (
     <TanStackQueryClientProvider client={queryClient}>
