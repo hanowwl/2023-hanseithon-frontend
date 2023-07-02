@@ -2,7 +2,7 @@ import React from "react";
 
 import * as S from "./styled";
 
-export interface ArrItem {
+export interface ArrayItem {
   emoji: string;
   title: string;
   count: string;
@@ -10,7 +10,7 @@ export interface ArrItem {
 }
 
 export interface ThirdProps {
-  ThirdArr: ArrItem[];
+  ThirdArr: ArrayItem[];
 }
 
 const ThirdSection: React.FC<ThirdProps> = ({ ThirdArr }) => {
