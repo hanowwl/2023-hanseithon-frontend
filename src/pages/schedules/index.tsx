@@ -33,11 +33,21 @@ export interface ScheduleTimeData {
 }
 
 export default function SchedulesPage() {
+  //현재 시간을 불러오는 데이트를 저장하는 now
   const now = new Date();
+
+  //현재 시간을 담고 있는 hours
   const hours = now.getHours();
+
+  //현재 몇분인지 담고 있는 minutes
   const minutes = now.getMinutes();
+
+  //몇일인지를 담고 있는 day
   const day = now.getDate();
+
+  //현재 시간과 분을 저장하는 string형 state
   const [nowDate, setNowDate] = useState<string>("");
+
   /**
    * 테스트 하려면 hours를 현재 시간으로 더하거나 빼고
    * constants에 scheduleData에 day를 현재 날짜로 바꾸면 됩니다.
