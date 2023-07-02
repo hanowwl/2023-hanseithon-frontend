@@ -16,6 +16,7 @@ const nextConfig = {
   },
 
   pageExtensions: ["tsx"],
+  output: "standalone",
 };
 
 module.exports = nextConfig;
