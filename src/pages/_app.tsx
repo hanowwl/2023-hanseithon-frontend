@@ -1,11 +1,12 @@
 import { useState } from "react";
 
 import type { AppProps } from "next/app";
+import { DefaultSeo } from "next-seo";
 
 import { Global, Theme, ThemeProvider } from "@emotion/react";
 
 import { Footer, Navbar } from "src/components/common";
-import { NAVBAR_MENU, STAFF_LIST } from "src/constants";
+import { DEFAULT_SEO, NAVBAR_MENU, STAFF_LIST } from "src/constants";
 import { darkTheme, globalStyle } from "src/styles";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Global styles={globalStyle(theme)} />
+      <DefaultSeo {...DEFAULT_SEO} />
 
       <Navbar
         menu={NAVBAR_MENU}

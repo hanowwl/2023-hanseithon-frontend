@@ -1,9 +1,9 @@
 import * as fs from "fs";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
-import Head from "next/head";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import { NextSeo } from "next-seo";
 
 import matter from "gray-matter";
 import remarkGfm from "remark-gfm";
@@ -18,11 +18,7 @@ interface DocumentPageProps {
 export default function DocumentPage({ meta, source }: DocumentPageProps) {
   return (
     <>
-      <Head>
-        <title>{`${meta.title} | 한울`}</title>
-        <meta name="description" content={meta.description} />
-      </Head>
-
+      <NextSeo title={`${meta.title} | 한울`} description={meta.description} />
       <MDXLayout style={meta.style} {...source} />
     </>
   );
