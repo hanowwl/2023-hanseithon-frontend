@@ -10,17 +10,17 @@ export interface ArrayItem {
 }
 
 export interface ThirdProps {
-  ThirdArr: ArrayItem[];
+  ThirdArray: ArrayItem[];
 }
 
-const ThirdSection: React.FC<ThirdProps> = ({ ThirdArr }) => {
+const ThirdSection: React.FC<ThirdProps> = ({ ThirdArray }) => {
   return (
     <S.ThirdSection>
       <S.ThirdContent>
         <S.ThirdTitle>드디어 6년째을 맞이한, 한세톤</S.ThirdTitle>
         <S.ThirdDescription>이젠 없어선 안될 한세의 전통으로</S.ThirdDescription>
         <S.ContentBoxContainer>
-          {ThirdArr.map((content, idx) => {
+          {ThirdArray.map((content, idx) => {
             return (
               <S.ContentBox key={idx}>
                 <S.ContainerInContentBox>
