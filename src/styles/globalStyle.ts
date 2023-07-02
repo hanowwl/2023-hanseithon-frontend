@@ -38,7 +38,7 @@ export const globalStyle = (theme: Theme) => css`
     display: none;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     html {
       font-size: 9px;
     }
