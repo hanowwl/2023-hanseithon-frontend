@@ -33,4 +33,21 @@ export const globalStyle = (theme: Theme) => css`
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     letter-spacing: -0.04em;
   }
+
+  br.mobile-only {
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    html {
+      font-size: 9px;
+    }
+    br.mobile-only {
+      display: block;
+    }
+
+    br.desktop-only {
+      display: none;
+    }
+  }
 `;

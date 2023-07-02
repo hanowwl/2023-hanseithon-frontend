@@ -13,6 +13,7 @@ export const QuestionText = styled.h3`
   color: ${(props) => props.theme.color.text.primary.default};
   user-select: none;
   cursor: pointer;
+  line-height: 2.6rem;
 `;
 
 export const AnswerContainer = styled.div`
@@ -24,5 +25,6 @@ export const AnswerContainer = styled.div`
 export const AnswerText = styled.p`
   font-size: 1.8rem;
   font-weight: 500;
+  line-height: 2.6rem;
   margin: 1.6rem 0 0 0;
 `;

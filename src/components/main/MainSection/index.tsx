@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { ArrowDownSVG } from "src/assets";
 
@@ -16,6 +16,8 @@ export const MainSection: React.FC<MainSectionProps> = ({
   applicationPeriod,
   onClickDownArrow,
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
   return (
     <S.MainSection>
       <S.MainSectionContentContainer>
@@ -77,7 +79,7 @@ export const MainSection: React.FC<MainSectionProps> = ({
       </S.DownArrowButton>
 
       <S.MainSectionLayer>
-        <S.MainSectionVideo muted autoPlay>
+        <S.MainSectionVideo ref={videoRef} muted autoPlay playsInline webkit-playsinline="true">
           <source src="/static/main_animation.mp4" type="video/mp4" />
           <source src="/static/main_animation.webm" type="video/webm" />
         </S.MainSectionVideo>

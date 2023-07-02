@@ -17,7 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Navbar
         menu={NAVBAR_MENU}
-        actions={[{ size: "small", text: "한세톤 참여하기", href: "/auth/register" }]}
+        actions={[
+          {
+            size: "small",
+            text: "한세톤 참여하기",
+            href: "/",
+            onClick: () => alert("참가 신청은 7월 10일에 오픈됩니다!"),
+          },
+        ]}
       />
       <Component {...pageProps} />
       <Footer staffs={STAFF_LIST} />

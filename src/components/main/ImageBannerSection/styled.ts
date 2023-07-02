@@ -7,4 +7,13 @@ export const ImageBannerSection = styled.section`
   gap: 2.8rem;
 
   padding: 24rem 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 12rem 0;
+
+    img {
+      width: 36rem;
+      height: 18rem;
+    }
+  }
 `;

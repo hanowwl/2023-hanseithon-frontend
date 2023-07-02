@@ -22,6 +22,13 @@ export const NavbarInnerContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  // TODO: Navbar 모바일 지원 필요
+  @media screen and (max-width: 768px) {
+    & > *:not(a) {
+      display: none;
+    }
+  }
 `;
 
 export const NavbarBrandLink = styled(Link)`

@@ -15,6 +15,16 @@ export const FooterInnerContainer = styled(Container)`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+
+  @media screen and (max-width: 992px) {
+    & > div:nth-of-type(1) {
+      margin-bottom: 3.6rem;
+    }
+
+    & > div:nth-of-type(2) {
+      display: none;
+    }
+  }
 `;
 
 export const FooterSection = styled.div``;

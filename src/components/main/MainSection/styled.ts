@@ -18,6 +18,17 @@ export const MainSection = styled.section`
   overflow: hidden;
   position: relative;
   margin-top: -9rem;
+
+  @media screen and (max-width: 768px) {
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      #3f86cb 0deg,
+      #6da4da 71.25deg,
+      #cae5fb 172.5deg,
+      #82bff5 249.37deg,
+      #3f86cb 360deg
+    );
+  }
 `;
 
 export const MainSectionLayer = styled.div`
@@ -25,16 +36,18 @@ export const MainSectionLayer = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
+
+  video {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    object-fit: cover;
+    z-index: -2;
+  }
 `;
 
-export const MainSectionVideo = styled.video`
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  object-fit: cover;
-  z-index: -2;
-`;
+export const MainSectionVideo = styled.video``;
 
 export const MainSectionContentContainer = styled.div`
   position: absolute;
@@ -49,6 +62,16 @@ export const MainSectionTitle = styled(motion.h1)`
   text-align: center;
   user-select: none;
   letter-spacing: 3.8rem;
+
+  @media screen and (max-width: 992px) {
+    font-size: 7.2rem;
+    letter-spacing: 2.28rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 3.9rem;
+    letter-spacing: 1.2rem;
+  }
 `;
 
 export const OperationPeriod = styled(motion.p)`
@@ -58,6 +81,12 @@ export const OperationPeriod = styled(motion.p)`
 
   margin-bottom: 5.8rem;
   letter-spacing: 1rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.4rem;
+    letter-spacing: 0.4rem;
+    margin-bottom: 4.35rem;
+  }
 `;
 
 export const ApplicationPeriod = styled(motion.p)`
@@ -67,6 +96,11 @@ export const ApplicationPeriod = styled(motion.p)`
 
   margin-top: 5.6rem;
   letter-spacing: 0.01rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+    margin-top: 4rem;
+  }
 `;
 
 export const DownArrowButton = styled(motion.button)`

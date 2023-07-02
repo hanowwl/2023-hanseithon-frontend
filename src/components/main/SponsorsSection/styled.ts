@@ -24,17 +24,25 @@ export const SponsorsList = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2.4rem;
+
+  @media screen and (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const SponsorLogoWrapper = styled.div`
-  width: 32rem;
+  max-width: 32rem;
   height: 12rem;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.2rem 4.2rem;
   border-radius: 1.2rem;
-
+  margin: 0 auto;
   transition: background 150ms;
 
   &:hover {
