@@ -16,7 +16,7 @@ export const FooterInnerContainer = styled(Container)`
   align-items: flex-start;
   justify-content: space-between;
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 991px) {
     & > div:nth-of-type(1) {
       margin-bottom: 3.6rem;
     }

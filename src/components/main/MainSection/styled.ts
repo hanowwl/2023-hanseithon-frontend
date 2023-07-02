@@ -19,7 +19,7 @@ export const MainSection = styled.section`
   position: relative;
   margin-top: -9rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     background: conic-gradient(
       from 180deg at 50% 50%,
       #3f86cb 0deg,
@@ -63,12 +63,12 @@ export const MainSectionTitle = styled(motion.h1)`
   user-select: none;
   letter-spacing: 3.8rem;
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 991px) {
     font-size: 7.2rem;
     letter-spacing: 2.28rem;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-size: 3.9rem;
     letter-spacing: 1.2rem;
   }
@@ -82,7 +82,7 @@ export const OperationPeriod = styled(motion.p)`
   margin-bottom: 5.8rem;
   letter-spacing: 1rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-size: 2.4rem;
     letter-spacing: 0.4rem;
     margin-bottom: 4.35rem;
@@ -97,7 +97,7 @@ export const ApplicationPeriod = styled(motion.p)`
   margin-top: 5.6rem;
   letter-spacing: 0.01rem;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     font-size: 2rem;
     margin-top: 4rem;
   }
