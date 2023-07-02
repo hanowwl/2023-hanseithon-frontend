@@ -44,6 +44,7 @@ const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
                     borderRadius: "2rem",
                     border: "2px solid rgba(255, 255, 255, 0.15)",
                   }}
+                  quality={100}
                 />
               );
             })}

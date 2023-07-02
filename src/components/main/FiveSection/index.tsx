@@ -35,6 +35,7 @@ const FiveSection: React.FC<FiveProps> = ({ sponsors }) => {
                       src={logo}
                       alt={name}
                       style={{ width: "100%", height: "auto" }}
+                      quality={100}
                     />
                   </S.SponsorLogoWrapper>
                 </Link>
