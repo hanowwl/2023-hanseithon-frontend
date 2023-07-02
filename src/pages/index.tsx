@@ -1,5 +1,5 @@
 import {
-  ArrItem,
+  ArrayItem,
   FirstSection,
   FiveSection,
   FourthSection,
@@ -11,7 +11,7 @@ import {
 import { companyLogo, faq } from "src/constants";
 
 export default function HomePage() {
-  const ThirdDataArr: ArrItem[] = [
+  const ThirdDataArray: ArrayItem[] = [
     {
       emoji: "😎",
       title: "누적 참여 학생",
@@ -25,17 +25,17 @@ export default function HomePage() {
       desc: "2018년부터",
     },
     {
-      emoji: "😵",
-      title: "갈려나간 노예들",
+      emoji: "😊",
+      title: "열심히 달려온 학생회",
       count: "120명 +",
-      desc: "자랑스럽다! 무!급!노!예!",
+      desc: "",
     },
   ];
   return (
     <div>
       <FirstSection operatingPeriod="JULY 20 - JULY 21" receiptPeriod="접수 기간 : 7. 10 ~ 7. 19" />
       <SecondSection />
-      <ThirdSection ThirdArr={ThirdDataArr} />
+      <ThirdSection ThirdArr={ThirdDataArray} />
       <FourthSection />
       <FiveSection companyArr={companyLogo} />
       <SixthSection />
