@@ -9,7 +9,7 @@ import {
   SixthSection,
   ThirdSection,
 } from "src/components/main";
-import { SPONSOR_LIST, companyLogo, faq } from "src/constants";
+import { SPONSOR_LIST, QUESTION_ANSWER_LIST } from "src/constants";
 
 export default function HomePage() {
   const RECORDS: EmojiCardProps[] = [
@@ -37,7 +37,7 @@ export default function HomePage() {
       <FourthSection imageGroups={[HANSEITHON_IMAGES, HANSEITHON_IMAGES.reverse()]} />
       <FiveSection sponsors={SPONSOR_LIST} />
       <SixthSection />
-      <SeventhSection faqArr={faq} />
+      <SeventhSection questions={QUESTION_ANSWER_LIST} />
     </>
   );
 }

@@ -1,54 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+
+import { QuestionCard, QuestionCardProps } from "src/components/common";
+import { Container } from "src/components/layouts";
 
 import * as S from "./styled";
 
-export interface SeventhFAQ {
-  question: string;
-  answer: string;
+export interface SeventhSectionProps {
+  questions: QuestionCardProps[];
 }
 
-interface SeventhFaqArr {
-  faqArr: SeventhFAQ[];
-}
-
-const SeventhSection: React.FC<SeventhFaqArr> = ({ faqArr }) => {
-  const [openIndexes, setOpenIndexes] = useState<number[]>([]);
-  const faqElementRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    faqElementRefs.current.forEach((faqElementRef, idx) => {
-      if (!faqElementRef) return;
-      faqElementRef.style.paddingBottom = openIndexes.includes(idx) ? "3.4rem" : "0";
-    });
-  }, [openIndexes]);
-
-  const toggleFaq = (index: number) => {
-    setOpenIndexes((prevIndexes) => {
-      if (prevIndexes.includes(index)) {
-        return prevIndexes.filter((idx) => idx !== index);
-      } else {
-        return [...prevIndexes, index];
-      }
-    });
-  };
-
+const SeventhSection: React.FC<SeventhSectionProps> = ({ questions }) => {
   return (
     <S.SeventhSection>
-      <S.SeventhFAQ>
-        <S.faqTitle>자주 묻는 질문</S.faqTitle>
-        <S.faqContainer>
-          {faqArr.map((item, idx) => (
-            <S.faqElement
-              key={idx}
-              onClick={() => toggleFaq(idx)}
-              ref={(ref) => (faqElementRefs.current[idx] = ref)}
-            >
-              <S.questionText>{item.question}</S.questionText>
-              {openIndexes.includes(idx) && <S.answerText>{item.answer}</S.answerText>}
-            </S.faqElement>
+      <Container>
+        <S.SeventhSectionTitle>자주 묻는 질문</S.SeventhSectionTitle>
+        <S.QuestionBoxList>
+          {questions.map((props, i) => (
+            <QuestionCard key={i} {...props} />
           ))}
-        </S.faqContainer>
-      </S.SeventhFAQ>
+        </S.QuestionBoxList>
+      </Container>
     </S.SeventhSection>
   );
 };
