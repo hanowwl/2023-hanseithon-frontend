@@ -24,7 +24,7 @@ const SecondSection: React.FC = () => {
         </S.SecondSectionTitle>
 
         <S.EmojiText style={{ margin: "5.8rem 0 11.8rem 0" }} {...fadeInScroll({ delay: 0.4 })}>
-          <S.Emoji>🧑‍💻</S.Emoji>+<S.Emoji>🏃</S.Emoji>
+          <S.Emoji>💻</S.Emoji>+<S.Emoji>🏃</S.Emoji>
         </S.EmojiText>
 
         <S.HackathonDescription {...fadeInScroll({ delay: 0.4 })}>
