@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { ArrowDownSVG } from "src/assets";
 
 import * as S from "./styled";
 
-export interface FirstProps {
+export interface MainSectionProps {
   operationPeriod: string;
   applicationPeriod: string;
 
   onClickDownArrow?: React.MouseEventHandler;
 }
 
-const FirstSection: React.FC<FirstProps> = ({
+export const MainSection: React.FC<MainSectionProps> = ({
   operationPeriod,
   applicationPeriod,
   onClickDownArrow,
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
   return (
-    <S.FirstSection>
-      <S.FirstSectionContentContainer>
+    <S.MainSection>
+      <S.MainSectionContentContainer>
         <S.OperationPeriod
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -27,7 +29,7 @@ const FirstSection: React.FC<FirstProps> = ({
           {operationPeriod}
         </S.OperationPeriod>
 
-        <S.FirstSectionTitle
+        <S.MainSectionTitle
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
@@ -45,16 +47,16 @@ const FirstSection: React.FC<FirstProps> = ({
           6TH
           <br />
           HANSEITHON
-        </S.FirstSectionTitle>
+        </S.MainSectionTitle>
 
         <S.ApplicationPeriod
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.3 }}
         >
-          {applicationPeriod}
+          접수기간 : {applicationPeriod}
         </S.ApplicationPeriod>
-      </S.FirstSectionContentContainer>
+      </S.MainSectionContentContainer>
 
       <S.DownArrowButton
         onClick={onClickDownArrow}
@@ -76,14 +78,12 @@ const FirstSection: React.FC<FirstProps> = ({
         <ArrowDownSVG />
       </S.DownArrowButton>
 
-      <S.FirstSectionLayer>
-        <S.FirstSectionVideo muted autoPlay>
+      <S.MainSectionLayer>
+        <S.MainSectionVideo ref={videoRef} muted autoPlay playsInline webkit-playsinline="true">
           <source src="/static/main_animation.mp4" type="video/mp4" />
           <source src="/static/main_animation.webm" type="video/webm" />
-        </S.FirstSectionVideo>
-      </S.FirstSectionLayer>
-    </S.FirstSection>
+        </S.MainSectionVideo>
+      </S.MainSectionLayer>
+    </S.MainSection>
   );
 };
-
-export { FirstSection };

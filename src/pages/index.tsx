@@ -1,10 +1,19 @@
-import { FirstSection } from "src/components/main";
+import { Main } from "src/components/main";
+import { MAIN_SECTIONS } from "src/constants";
 
 export default function HomePage() {
   return (
-    <FirstSection
-      operationPeriod="JULY 20 - JULY 21"
-      applicationPeriod="접수 기간 : 7. 10 ~ 7. 19"
-    />
+    <main>
+      <Main.MainSection
+        operationPeriod={MAIN_SECTIONS.OPERATION_PERIOD}
+        applicationPeriod={MAIN_SECTIONS.APPLICATION_PERIOD}
+      />
+      <Main.HackathonSection />
+      <Main.HanseithonSection records={MAIN_SECTIONS.HANSEITHON_RECORDS} />
+      <Main.ImageBannerSection imageGroups={MAIN_SECTIONS.IMAGES} />
+      <Main.SponsorsSection sponsors={MAIN_SECTIONS.SPONSORS} />
+      <Main.ParagraphSection paragraphs={MAIN_SECTIONS.PARAGRAPS} />
+      <Main.FAQSection questions={MAIN_SECTIONS.QUESTIONS} />
+    </main>
   );
 }
