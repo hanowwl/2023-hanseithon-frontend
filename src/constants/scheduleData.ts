@@ -1,5 +1,5 @@
 import { ScheduleData } from "../components/schedule/Element/index";
-export const ThursScheduleArr: ScheduleData[] = [
+export const ThursdayScheduleArray: ScheduleData[] = [
   {
     time: "15:00 ~ 15:30",
     nowSchedule: "참가자 입장 및 등록",
@@ -30,7 +30,7 @@ export const ThursScheduleArr: ScheduleData[] = [
   },
 ];
 
-export const FriScheduleArr: ScheduleData[] = [
+export const FridayScheduleArray: ScheduleData[] = [
   {
     time: "08:00 ~ 09:00",
     nowSchedule: "아침 식사",
@@ -65,11 +65,11 @@ export const dayDate = [
   {
     day: 20,
     detail: "7월 20일(목)",
-    arr: ThursScheduleArr,
+    arr: ThursdayScheduleArray,
   },
   {
     day: 21,
     detail: "7월 21일(금)",
-    arr: FriScheduleArr,
+    arr: FridayScheduleArray,
   },
 ];
