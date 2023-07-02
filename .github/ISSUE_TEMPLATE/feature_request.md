@@ -1,8 +1,8 @@
 ---
 name: Feature Request
-about: '✨ - 개발할 기능이 생겼나요? 작업할 기능을 구체화 시켜보세요!'
-title: '[FEATURE] '
-assignees: ''
+about: "✨ - 개발할 기능이 생겼나요? 작업할 기능을 구체화 시켜보세요!"
+title: "[FEATURE] "
+assignees: ""
 ---
 
 ## 💣 기능 설명
