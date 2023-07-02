@@ -35,7 +35,7 @@ export default function HomePage() {
     <div>
       <FirstSection operatingPeriod="JULY 20 - JULY 21" receiptPeriod="접수 기간 : 7. 10 ~ 7. 19" />
       <SecondSection />
-      <ThirdSection ThirdArr={ThirdDataArray} />
+      <ThirdSection ThirdArray={ThirdDataArray} />
       <FourthSection />
       <FiveSection companyArr={companyLogo} />
       <SixthSection />
