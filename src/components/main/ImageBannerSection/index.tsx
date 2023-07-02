@@ -6,11 +6,11 @@ import Ticker from "framer-motion-ticker";
 
 import * as S from "./styled";
 
-export interface MainFourthSectionProps {
+export interface ImageBannerSection {
   imageGroups: StaticImageData[][];
 }
 
-const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
+export const ImageBannerSection: React.FC<ImageBannerSection> = ({ imageGroups }) => {
   const [isHover, setIsHover] = useState<boolean[]>(imageGroups.map(() => true));
 
   const handleOnMouseEvent = (index: number, value: boolean) => {
@@ -20,7 +20,7 @@ const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
   };
 
   return (
-    <S.FourthSection>
+    <S.ImageBannerSection>
       {imageGroups.map((images, i) => {
         return (
           <Ticker
@@ -51,8 +51,6 @@ const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
           </Ticker>
         );
       })}
-    </S.FourthSection>
+    </S.ImageBannerSection>
   );
 };
-
-export { FourthSection };

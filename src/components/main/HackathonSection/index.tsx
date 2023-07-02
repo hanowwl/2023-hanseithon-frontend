@@ -4,7 +4,7 @@ import { MotionProps } from "framer-motion";
 
 import * as S from "./styled";
 
-const SecondSection: React.FC = () => {
+export const HackathonSection: React.FC = () => {
   const fadeInScroll = useCallback(
     ({ delay }: { delay: number }) =>
       ({
@@ -17,11 +17,11 @@ const SecondSection: React.FC = () => {
   );
 
   return (
-    <S.SecondSection>
-      <S.SecondSectionInnerContainer>
-        <S.SecondSectionTitle {...fadeInScroll({ delay: 0 })}>
+    <S.HackathonSection>
+      <S.HackathonSectionInnerContainer>
+        <S.HackathonSectionTitle {...fadeInScroll({ delay: 0 })}>
           해커톤이 뭔가요?
-        </S.SecondSectionTitle>
+        </S.HackathonSectionTitle>
 
         <S.EmojiText style={{ margin: "5.8rem 0 11.8rem 0" }} {...fadeInScroll({ delay: 0.4 })}>
           <S.Emoji>💻</S.Emoji>+<S.Emoji>🏃</S.Emoji>
@@ -38,9 +38,7 @@ const SecondSection: React.FC = () => {
             이벤트에요
           </strong>
         </S.HackathonDescription>
-      </S.SecondSectionInnerContainer>
-    </S.SecondSection>
+      </S.HackathonSectionInnerContainer>
+    </S.HackathonSection>
   );
 };
-
-export { SecondSection };

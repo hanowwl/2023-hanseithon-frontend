@@ -13,16 +13,18 @@ export interface SponsorInfo {
   url?: string;
 }
 
-export interface FiveProps {
+export interface SponsorsSectionProps {
   sponsors: SponsorInfo[];
 }
 
-const FiveSection: React.FC<FiveProps> = ({ sponsors }) => {
+export const SponsorsSection: React.FC<SponsorsSectionProps> = ({ sponsors }) => {
   return (
-    <S.FiveSection>
+    <S.SponsorsSection>
       <Container>
-        <S.FiveSectionTitle>한세톤 후원사</S.FiveSectionTitle>
-        <S.FiveSectionDescription>한세톤 운영에 도움을 주신 후원사에요</S.FiveSectionDescription>
+        <S.SponsorsSectionTitle>한세톤 후원사</S.SponsorsSectionTitle>
+        <S.SponsorsSectionDescription>
+          한세톤 운영에 도움을 주신 후원사에요
+        </S.SponsorsSectionDescription>
 
         <S.SponsorsList>
           {sponsors.map(({ name, logo, url }, i) => {
@@ -50,8 +52,6 @@ const FiveSection: React.FC<FiveProps> = ({ sponsors }) => {
           })}
         </S.SponsorsList>
       </Container>
-    </S.FiveSection>
+    </S.SponsorsSection>
   );
 };
-
-export { FiveSection };

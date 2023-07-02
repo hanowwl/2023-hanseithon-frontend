@@ -3,13 +3,25 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useScroll, useTransform } from "framer-motion";
 
+import { Container } from "src/components/layouts";
+
 import * as S from "./styled";
 
-export interface SixthSectionProps {
+export interface ParagraphSectionProps {
   paragraphs: React.ReactNode[];
 }
 
-const SixthSectionAnimate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ParagraphSection: React.FC<ParagraphSectionProps> = ({ paragraphs }) => {
+  return (
+    <S.ParagraphSection>
+      {paragraphs.map((component, i) => {
+        return <ParagraphSectionAnimate key={i}>{component}</ParagraphSectionAnimate>;
+      })}
+    </S.ParagraphSection>
+  );
+};
+
+const ParagraphSectionAnimate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef, offset: ["end end", "start start"] });
   const opacity = useTransform(scrollYProgress, [0.2, 0.45, 0.9], [0, 1, 0]);
@@ -28,26 +40,14 @@ const SixthSectionAnimate: React.FC<{ children: React.ReactNode }> = ({ children
   }, [scrollYProgress]);
 
   return (
-    <S.SixthSectionContentContainer>
-      <S.SixthSectionInnerContainer ref={targetRef}>
-        <S.SixthContentText
+    <S.ParagraphSectionContentContainer>
+      <Container ref={targetRef}>
+        <S.ParagraphContentText
           style={{ opacity: scrollFinish ? 1 : opacity, translateY: scrollFinish ? 0 : translateY }}
         >
           {children}
-        </S.SixthContentText>
-      </S.SixthSectionInnerContainer>
-    </S.SixthSectionContentContainer>
+        </S.ParagraphContentText>
+      </Container>
+    </S.ParagraphSectionContentContainer>
   );
 };
-
-const SixthSection: React.FC<SixthSectionProps> = ({ paragraphs }) => {
-  return (
-    <S.SixthSection>
-      {paragraphs.map((component, i) => {
-        return <SixthSectionAnimate key={i}>{component}</SixthSectionAnimate>;
-      })}
-    </S.SixthSection>
-  );
-};
-
-export { SixthSection };

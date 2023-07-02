@@ -1,19 +1,19 @@
 import styled from "@emotion/styled";
 
-export const FiveSection = styled.section`
+export const SponsorsSection = styled.section`
   width: 100%;
   padding: 8.3rem 0;
   background-color: #141414;
   text-align: center;
 `;
 
-export const FiveSectionTitle = styled.h2`
+export const SponsorsSectionTitle = styled.h2`
   font-size: 3.6rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
 `;
 
-export const FiveSectionDescription = styled.h2`
+export const SponsorsSectionDescription = styled.h2`
   font-size: 2.4rem;
   font-weight: 500;
   color: ${(props) => props.theme.color.text.secondary.default};

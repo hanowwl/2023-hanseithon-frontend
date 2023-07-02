@@ -12,7 +12,7 @@ const pulse = keyframes`
   }
 `;
 
-export const FirstSection = styled.section`
+export const MainSection = styled.section`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -20,14 +20,14 @@ export const FirstSection = styled.section`
   margin-top: -9rem;
 `;
 
-export const FirstSectionLayer = styled.div`
+export const MainSectionLayer = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
 `;
 
-export const FirstSectionVideo = styled.video`
+export const MainSectionVideo = styled.video`
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -36,14 +36,14 @@ export const FirstSectionVideo = styled.video`
   z-index: -2;
 `;
 
-export const FirstSectionContentContainer = styled.div`
+export const MainSectionContentContainer = styled.div`
   position: absolute;
   top: 44.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-export const FirstSectionTitle = styled(motion.h1)`
+export const MainSectionTitle = styled(motion.h1)`
   font-size: 12rem;
   font-weight: 900;
   text-align: center;

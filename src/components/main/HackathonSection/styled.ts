@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import { Container } from "src/components/layouts";
 
-export const SecondSection = styled.section`
+export const HackathonSection = styled.section`
   width: 100vw;
   height: 100vh;
 
@@ -12,11 +12,11 @@ export const SecondSection = styled.section`
   justify-content: center;
 `;
 
-export const SecondSectionInnerContainer = styled(Container)`
+export const HackathonSectionInnerContainer = styled(Container)`
   text-align: center;
 `;
 
-export const SecondSectionTitle = styled(motion.h2)`
+export const HackathonSectionTitle = styled(motion.h2)`
   font-size: 4.4rem;
   font-weight: 800;
 `;

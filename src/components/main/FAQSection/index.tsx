@@ -5,23 +5,21 @@ import { Container } from "src/components/layouts";
 
 import * as S from "./styled";
 
-export interface SeventhSectionProps {
+export interface FAQSectionProps {
   questions: QuestionCardProps[];
 }
 
-const SeventhSection: React.FC<SeventhSectionProps> = ({ questions }) => {
+export const FAQSection: React.FC<FAQSectionProps> = ({ questions }) => {
   return (
-    <S.SeventhSection>
+    <S.FAQSection>
       <Container>
-        <S.SeventhSectionTitle>자주 묻는 질문</S.SeventhSectionTitle>
+        <S.FAQSectionTitle>자주 묻는 질문</S.FAQSectionTitle>
         <S.QuestionBoxList>
           {questions.map((props, i) => (
             <QuestionCard key={i} {...props} />
           ))}
         </S.QuestionBoxList>
       </Container>
-    </S.SeventhSection>
+    </S.FAQSection>
   );
 };
-
-export { SeventhSection };

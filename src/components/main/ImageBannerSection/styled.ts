@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const FourthSection = styled.section`
+export const ImageBannerSection = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;

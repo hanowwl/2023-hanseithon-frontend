@@ -1,14 +1,6 @@
 import { HANSEITHON_IMAGES } from "src/assets";
 import { EmojiCardProps } from "src/components/common";
-import {
-  FirstSection,
-  FiveSection,
-  FourthSection,
-  SecondSection,
-  SeventhSection,
-  SixthSection,
-  ThirdSection,
-} from "src/components/main";
+import { Main } from "src/components/main";
 import { SPONSOR_LIST, QUESTION_ANSWER_LIST } from "src/constants";
 
 export default function HomePage() {
@@ -32,17 +24,17 @@ export default function HomePage() {
       description: "자세한 사항은 7/10일 공개됩니다",
     },
   ];
+
   return (
-    <>
-      <FirstSection
-        operationPeriod="JULY 20 - JULY 21"
-        applicationPeriod="접수 기간 : 7. 10 ~ 7. 19"
+    <main>
+      <Main.MainSection operationPeriod="JULY 20 - JULY 21" applicationPeriod="7. 10 ~ 7. 19" />
+      <Main.HackathonSection />
+      <Main.HanseithonSection records={RECORDS} />
+      <Main.ImageBannerSection
+        imageGroups={[HANSEITHON_IMAGES.slice(0, 5), HANSEITHON_IMAGES.slice(6)]}
       />
-      <SecondSection />
-      <ThirdSection records={RECORDS} />
-      <FourthSection imageGroups={[HANSEITHON_IMAGES.slice(0, 5), HANSEITHON_IMAGES.slice(6)]} />
-      <FiveSection sponsors={SPONSOR_LIST} />
-      <SixthSection
+      <Main.SponsorsSection sponsors={SPONSOR_LIST} />
+      <Main.ParagraphSection
         paragraphs={[
           <>
             개발에
@@ -60,7 +52,7 @@ export default function HomePage() {
           </>,
         ]}
       />
-      <SeventhSection questions={QUESTION_ANSWER_LIST} />
-    </>
+      <Main.FAQSection questions={QUESTION_ANSWER_LIST} />
+    </main>
   );
 }
