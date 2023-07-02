@@ -4,3 +4,8 @@ export { default as Hanseithon3PNG } from "./hanseithon_3.png";
 export { default as Hanseithon4PNG } from "./hanseithon_4.png";
 export { default as Hanseithon5PNG } from "./hanseithon_5.png";
 export { default as Hanseithon6PNG } from "./hanseithon_6.png";
+export { default as Hanseithon7PNG } from "./hanseithon_7.png";
+export { default as Hanseithon8PNG } from "./hanseithon_8.png";
+export { default as Hanseithon9PNG } from "./hanseithon_9.png";
+export { default as Hanseithon10PNG } from "./hanseithon_10.png";
+export { default as Hanseithon11PNG } from "./hanseithon_11.png";

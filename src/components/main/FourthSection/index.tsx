@@ -26,7 +26,7 @@ const FourthSection: React.FC<MainFourthSectionProps> = ({ imageGroups }) => {
           <Ticker
             key={i}
             direction={i % 2 === 0 ? -1 : 1}
-            duration={28}
+            duration={34}
             onMouseEnter={() => handleOnMouseEvent(i, false)}
             onMouseLeave={() => handleOnMouseEvent(i, true)}
             isPlaying={isHover[i]}

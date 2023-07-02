@@ -34,7 +34,7 @@ export default function HomePage() {
       />
       <SecondSection />
       <ThirdSection records={RECORDS} />
-      <FourthSection imageGroups={[HANSEITHON_IMAGES, HANSEITHON_IMAGES.reverse()]} />
+      <FourthSection imageGroups={[HANSEITHON_IMAGES.slice(0, 5), HANSEITHON_IMAGES.slice(6)]} />
       <FiveSection sponsors={SPONSOR_LIST} />
       <SixthSection />
       <SeventhSection questions={QUESTION_ANSWER_LIST} />
