@@ -10,7 +10,6 @@ env:
   ECS_CONTAINER_NAME: frontend
   ECS_CLUSTER: hanseithion-cluster
   ECS_SERVICE: hanseithion-frontend-services
-  
 
 jobs:
   push_to_registry:
@@ -72,4 +71,3 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           service: ${{ env.ECS_SERVICE }}
           wait-for-service-stability: true
-  

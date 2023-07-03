@@ -53,6 +53,7 @@ export default function SchedulesPage() {
    * constants에 scheduleData에 day를 현재 날짜로 바꾸면 됩니다.
    * ex) day: 1
    */
+
   useEffect(() => {
     setNowDate(`${hours}:${minutes}`);
   }, [hours, minutes]);
@@ -66,7 +67,7 @@ export default function SchedulesPage() {
             <S.ScheduleUl key={idx}>
               <S.ScheduleLi>
                 <S.ScheduleUl marginTop="5.9rem" marginBottom="3.4rem">
-                  <Day currentDateBool={date.day === day} detailDate={date.detail} />
+                  <Day currentDateBool={true} detailDate={date.detail} />
                 </S.ScheduleUl>
                 {date.arr.map((data, idx) => (
                   <Element
