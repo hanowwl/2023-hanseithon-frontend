@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "src/components/layouts";
 
 export const HackathonSection = styled.section`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
