@@ -6,6 +6,11 @@ on:
 
 env:
   IMAGE_NAME: ${{ github.repository }}
+  ECS_TASK_DEFINITION: task-definition.json
+  ECS_CONTAINER_NAME: frontend
+  ECS_CLUSTER: hanseithion-cluster
+  ECS_SERVICE: hanseithion-frontend-services
+  
 
 jobs:
   push_to_registry:
@@ -51,3 +56,20 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.ECS_CONTAINER_NAME }}
+          image: ${{ steps.ecr.outputs.registry }}/${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          service: ${{ env.ECS_SERVICE }}
+          wait-for-service-stability: true
+  
