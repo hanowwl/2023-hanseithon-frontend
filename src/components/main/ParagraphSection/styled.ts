@@ -7,7 +7,7 @@ export const ParagraphSection = styled.section`
 `;
 
 export const ParagraphSectionContentContainer = styled(motion.div)`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
