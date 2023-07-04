@@ -6,12 +6,12 @@ export const ScheduleElement = styled.div`
   margin-bottom: 1.6rem;
 `;
 
-export const ScheduleTime = styled.h2`
+export const ScheduleTime = styled.h2<{ current: boolean }>`
   padding: 1.6rem 2.2rem;
   margin: auto 0 auto 0;
 
   border-radius: 0.8rem;
-  background-color: #171717;
+  background-color: #0d0d0d;
 
   font-size: 2rem;
   font-weight: 500;
