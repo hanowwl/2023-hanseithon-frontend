@@ -1,2 +1,2 @@
-export * from "./Day";
+export * from "./Button";
 export * from "./Element";
