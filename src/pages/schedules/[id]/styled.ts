@@ -10,6 +10,11 @@ export const ScheduleSection = styled.section`
 export const ScheduleContainer = styled.div`
   display: flex;
 `;
+
+export const ScheduleElementContainer = styled.div<{ current: boolean }>`
+  opacity: ${(props) => (props.current ? "" : "0.5")};
+`;
+
 export const ScheduleUl = styled.ul<{ marginTop?: string; marginBottom?: string }>`
   margin-top: ${(props) => props.marginTop};
   margin-bottom: ${(props) => props.marginBottom};
