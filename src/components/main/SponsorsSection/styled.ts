@@ -25,11 +25,11 @@ export const SponsorsList = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2.4rem;
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 991px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
   }
 `;

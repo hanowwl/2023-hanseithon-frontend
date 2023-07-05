@@ -24,7 +24,7 @@ export const NavbarInnerContainer = styled(Container)`
   justify-content: space-between;
 
   // TODO: Navbar 모바일 지원 필요
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     & > *:not(a) {
       display: none;
     }

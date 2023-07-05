@@ -8,7 +8,7 @@ export const ImageBannerSection = styled.section`
 
   padding: 24rem 0;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     padding: 12rem 0;
 
     img {

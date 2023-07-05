@@ -35,13 +35,13 @@ export const EmojiCardList = styled.div`
     width: 100% !important;
   }
 
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 991px) {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 2.4rem;
     grid-row-gap: 2.4rem;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
     grid-column-gap: 2.4rem;
     grid-row-gap: 2.4rem;
