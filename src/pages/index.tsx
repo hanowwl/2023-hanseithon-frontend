@@ -12,7 +12,7 @@ export default function HomePage() {
       <Main.HanseithonSection records={MAIN_SECTIONS.HANSEITHON_RECORDS} />
       <Main.ImageBannerSection imageGroups={MAIN_SECTIONS.IMAGES} />
       <Main.SponsorsSection sponsors={MAIN_SECTIONS.SPONSORS} />
-      <Main.ParagraphSection paragraphs={MAIN_SECTIONS.PARAGRAPS} />
+      <Main.ParagraphSection paragraphs={MAIN_SECTIONS.PARAGRAPHS} />
       <Main.FAQSection questions={MAIN_SECTIONS.QUESTIONS} />
     </main>
   );

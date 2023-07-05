@@ -70,7 +70,7 @@ export const MAIN_SECTIONS = {
     },
   ] as SponsorsSectionProps["sponsors"],
 
-  PARAGRAPS: [
+  PARAGRAPHS: [
     <>
       개발에
       <br />
@@ -79,7 +79,7 @@ export const MAIN_SECTIONS = {
       없으니까
     </>,
     <>
-      한세톤과
+      한세톤에서
       <br />
       너의 길을
       <br />
