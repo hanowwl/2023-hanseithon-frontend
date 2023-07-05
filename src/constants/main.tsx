@@ -115,5 +115,10 @@ export const MAIN_SECTIONS = {
       question: "한세톤 주제는 언제 공개되나요?",
       answer: "주제는 한세톤 당일 오리엔테이션 시간에 공개될 예정이에요",
     },
+    {
+      question: "3학년도 한세톤 참여가 가능한가요?",
+      answer:
+        "여름방학 중 취업맞춤반 수업을 이수해야 하는 학생이 아니라면 재학생 누구나 참여할 수 있어요",
+    },
   ] as FAQSectionProps["questions"],
 };
