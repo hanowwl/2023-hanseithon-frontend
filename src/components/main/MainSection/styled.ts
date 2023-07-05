@@ -13,7 +13,7 @@ const pulse = keyframes`
 `;
 
 export const MainSection = styled.section`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
