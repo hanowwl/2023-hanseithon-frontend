@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const ScheduleSection = styled.section`
   width: 100%;
@@ -10,6 +11,13 @@ export const ScheduleSection = styled.section`
 export const ScheduleContainer = styled.div`
   display: flex;
 `;
+
+export const ScheduleElementContainer = styled.div<{ current: boolean }>`
+  transition: opacity 0.3s;
+
+  opacity: ${(props) => (props.current ? "" : "0.5")};
+`;
+
 export const ScheduleUl = styled.ul<{ marginTop?: string; marginBottom?: string }>`
   margin-top: ${(props) => props.marginTop};
   margin-bottom: ${(props) => props.marginBottom};

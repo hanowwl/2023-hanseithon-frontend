@@ -64,11 +64,13 @@ export const FridayScheduleArray: ScheduleData[] = [
 export const dayDate = [
   {
     day: 20,
+    dayName: "Thursday",
     detail: "7월 20일(목)",
     arr: ThursdayScheduleArray,
   },
   {
     day: 21,
+    dayName: "Friday",
     detail: "7월 21일(금)",
     arr: FridayScheduleArray,
   },
