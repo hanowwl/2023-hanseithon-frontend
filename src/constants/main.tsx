@@ -4,6 +4,7 @@ import {
   GilbutHorizontalLogoPNG,
   HANSEITHON_IMAGES,
   JpubLogoPNG,
+  KoscomLogoPNG,
 } from "src/assets";
 import { FAQSectionProps } from "src/components/main/FAQSection";
 import { HanseithonSectionProps } from "src/components/main/HanseithonSection";
@@ -61,6 +62,11 @@ export const MAIN_SECTIONS = {
       name: "제이펍",
       logo: JpubLogoPNG,
       url: "https://jpub.tistory.com/",
+    },
+    {
+      name: "(주) 코스콤",
+      logo: KoscomLogoPNG,
+      url: "https://www.koscom.co.kr/",
     },
   ] as SponsorsSectionProps["sponsors"],
 
