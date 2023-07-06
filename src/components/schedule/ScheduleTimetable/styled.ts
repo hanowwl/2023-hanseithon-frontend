@@ -28,5 +28,3 @@ export const ScheduleTimetableList = styled.ul`
   flex-direction: column;
   gap: 1rem;
 `;
-
-export const ScheduleTimetableItem = styled.li``;
