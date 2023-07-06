@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "dayjs": "^1.11.9",
     "framer-motion": "^10.12.16",
     "framer-motion-ticker": "^1.0.19",
     "gray-matter": "^4.0.3",
