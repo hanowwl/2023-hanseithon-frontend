@@ -51,7 +51,7 @@ export default function SchedulesPage() {
     setNowDate(`${hours}:${minutes}`);
     router.replace(`/schedules?date=${day === 21 ? `7/21` : `7/20`}`);
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hours, minutes, day]);
+  }, []);
 
   // 20일 이전인지 여부를 계산하는 변수
   const isBefore20th = day <= 20;
