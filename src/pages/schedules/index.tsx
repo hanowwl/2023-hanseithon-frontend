@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
 
 import { Container, Title } from "src/components/layouts";
 import { Button, Element, ScheduleElementProps } from "src/components/schedule";
