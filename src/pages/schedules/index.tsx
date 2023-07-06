@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 
 import { Container, PageTitleAndDescriptionLayout } from "src/components/layouts";
 import { ScheduleDateElement, ScheduleElementProps } from "src/components/schedule";
-import { dayDate } from "src/constants";
+import { DAY_DATE } from "src/constants";
 
 import * as S from "./styled";
 
@@ -44,9 +44,13 @@ export default function SchedulesPage() {
   const day = now.getDate();
   const [nowDate, setNowDate] = useState<string>(`${hours}:${minutes}`);
 
+  const router = useRouter();
+  const pageDateUrl = router.query.date;
+
   useEffect(() => {
     setNowDate(`${hours}:${minutes}`);
-  }, [hours, minutes]);
+    router.push(`/schedules?date=${day === 21 ? `7/21` : `7/20`}`);
+  }, [hours, minutes, day]);
 
   // 20일 이전인지 여부를 계산하는 변수
   const isBefore20th = day <= 20;
@@ -54,8 +58,6 @@ export default function SchedulesPage() {
   // 20일 이전인 경우 해당 스케줄의 날짜를 저장
   const targetDay = isBefore20th ? 20 : 21;
 
-  const searchParams = useSearchParams();
-  const search = searchParams.get("date");
   return (
     <S.ScheduleSection>
       <Container maxWidth="1140px">
@@ -63,21 +65,21 @@ export default function SchedulesPage() {
           저희 한세톤은 아래와 같이 진행될 예정이에요!
         </PageTitleAndDescriptionLayout>
         <S.ScheduleContainer>
-          {dayDate.map((date, idx) => {
+          {DAY_DATE.map((date, idx) => {
             // 현재 스케줄 날짜와 targetDay(20일 또는 21일)이 같은지 여부를 계산
             const isCurrentDate = date.day === targetDay;
 
             return (
-              <S.ScheduleElementContainer current={search === date.dayName} key={idx}>
+              <S.ScheduleElementContainer current={pageDateUrl === date.dayName} key={idx}>
                 <S.ScheduleUl>
                   <S.ScheduleLi>
-                    <S.ScheduleUl marginTop="5.9rem" marginBottom="3.4rem">
+                    <S.ScheduleUl>
                       {/* Button 컴포넌트에 currentDateBool 전달 */}
                       <Link
                         style={{ textDecoration: "none" }}
                         href={`/schedules?date=${date.dayName}`}
                       >
-                        <S.ShowScheduleButton isCurrentDate={search === date.dayName}>
+                        <S.ShowScheduleButton isCurrentDate={pageDateUrl === date.dayName}>
                           {date.detail}
                         </S.ShowScheduleButton>
                       </Link>
@@ -86,7 +88,7 @@ export default function SchedulesPage() {
                       <ScheduleDateElement
                         key={idx}
                         time={data.time}
-                        nowSchedule={data.nowSchedule}
+                        nowSchedule={data.schedule}
                         isToday={isCurrentDate}
                         isCurrentSchedule={day === date.day && isTimeInRange(data.time, nowDate)}
                       />
