@@ -1,4 +1,8 @@
-import { ScheduleData } from "../components/schedule/Element/index";
+interface ScheduleData {
+  time: string;
+  nowSchedule: string;
+}
+
 export const ThursdayScheduleArray: ScheduleData[] = [
   {
     time: "15:00 ~ 15:30",
@@ -14,7 +18,7 @@ export const ThursdayScheduleArray: ScheduleData[] = [
   },
   {
     time: "18:00 ~ 19:00",
-    nowSchedule: "저녁 식사/멘토링 OT",
+    nowSchedule: "저녁 식사/멘토단 오리엔테이션",
   },
   {
     time: "19:00 ~ 19:30",
@@ -33,23 +37,23 @@ export const ThursdayScheduleArray: ScheduleData[] = [
 export const FridayScheduleArray: ScheduleData[] = [
   {
     time: "08:00 ~ 09:00",
-    nowSchedule: "아침 식사",
+    nowSchedule: "아침 식사 배부",
   },
   {
     time: "09:00 ~ 12:00",
     nowSchedule: "자율 개발 및 멘토링",
   },
   {
-    time: "12:00 ~ 13:00",
-    nowSchedule: "점심 식사",
+    time: "12:00 ~ 14:00",
+    nowSchedule: "점심 식사 및 발표 준비",
   },
   {
-    time: "13:00 ~ 13:30",
-    nowSchedule: "이벤트 타임",
+    time: "14:00 ~ 15:30",
+    nowSchedule: "발표 및 심사",
   },
   {
-    time: "13:30 ~ 15:00",
-    nowSchedule: "파일 제출 및 발표 준비",
+    time: "15:30 ~ 16:00",
+    nowSchedule: "시상",
   },
   {
     time: "15:00 ~ 18:00",
@@ -64,13 +68,13 @@ export const FridayScheduleArray: ScheduleData[] = [
 export const dayDate = [
   {
     day: 20,
-    dayName: "Thursday",
+    dayName: "7/20",
     detail: "7월 20일(목)",
     arr: ThursdayScheduleArray,
   },
   {
     day: 21,
-    dayName: "Friday",
+    dayName: "7/21",
     detail: "7월 21일(금)",
     arr: FridayScheduleArray,
   },
