@@ -2,10 +2,10 @@ import React from "react";
 
 import * as S from "./styled";
 
-export interface TitleProps {
+export type TitleProps = {
   mainText: string;
   descText: string;
-}
+};
 
 const Title: React.FC<TitleProps> = ({ mainText, descText }) => {
   return (
