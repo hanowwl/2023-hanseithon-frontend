@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 
 export const ButtonElement = styled.button<{ current: boolean }>`
   margin-right: 1.2rem;
+
+  border: none;
   border-radius: 0.8rem;
   background-color: ${(props) => (props.current ? "#1774fe" : "#1F1F1F")};
 
