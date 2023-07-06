@@ -24,4 +24,5 @@ export const ScheduleTimeName = styled.div<{ isCurrentSchedule?: boolean }>`
   flex: 1 1 auto;
   font-weight: 700;
   background-color: ${(props) => (props.isCurrentSchedule ? "#1774fe" : "")};
+  transition: background 150ms;
 `;
