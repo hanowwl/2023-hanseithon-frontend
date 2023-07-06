@@ -1,3 +1,3 @@
 export * from "./Container";
 export * from "./MDXLayout";
-export * from "./Title";
+export * from "./PageTitleAndDescriptionLayout";
