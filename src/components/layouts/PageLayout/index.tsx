@@ -7,12 +7,18 @@ export interface PageLayoutProps {
   title: string;
   description: string;
   children?: React.ReactNode;
+  gap?: string;
 }
 
-export const PageLayout: React.FC<PageLayoutProps> = ({ title, description, children }) => {
+export const PageLayout: React.FC<PageLayoutProps> = ({
+  title,
+  description,
+  children,
+  gap = "3.8rem",
+}) => {
   return (
-    <Container>
-      <S.PageLayoutInfoContainer>
+    <Container style={{ padding: "2rem 0 6rem 0", height: "100%" }}>
+      <S.PageLayoutInfoContainer gap={gap}>
         <S.PageLayoutTitle>{title}</S.PageLayoutTitle>
         <S.PageLayoutDescription>{description}</S.PageLayoutDescription>
       </S.PageLayoutInfoContainer>
