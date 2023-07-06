@@ -11,13 +11,13 @@ export interface PageLayoutProps {
 
 export const PageLayout: React.FC<PageLayoutProps> = ({ title, description, children }) => {
   return (
-    <S.PageLayoutContainer>
+    <Container>
       <S.PageLayoutInfoContainer>
         <S.PageLayoutTitle>{title}</S.PageLayoutTitle>
         <S.PageLayoutDescription>{description}</S.PageLayoutDescription>
       </S.PageLayoutInfoContainer>
 
-      <Container>{children}</Container>
-    </S.PageLayoutContainer>
+      <main>{children}</main>
+    </Container>
   );
 };
