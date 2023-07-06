@@ -1,5 +1,13 @@
 import styled from "@emotion/styled";
 
+export const PageLayoutContainer = styled.div``;
+
+export const PageLayoutInfoContainer = styled.div``;
+
+export const PageLayoutTitle = styled.h1``;
+
+export const PageLayoutDescription = styled.p``;
+
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
