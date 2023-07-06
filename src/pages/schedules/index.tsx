@@ -1,19 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import dayjs from "dayjs";
 
 import { PageLayout } from "src/components/layouts";
-import { ScheduleDateElement, ScheduleElementProps } from "src/components/schedule";
+import { ScheduleTimetable } from "src/components/schedule";
 import { DAY_DATE } from "src/constants";
 
 import * as S from "./styled";
-
-export interface ScheduleTimeData {
-  elementArray: ScheduleElementProps[];
-}
 
 export default function SchedulesPage() {
   const NOW_CHECK_INTERVAL_SEC = 10;
@@ -38,44 +33,22 @@ export default function SchedulesPage() {
   }, []);
 
   return (
-    <S.ScheduleSection>
-      <PageLayout title="대회 일정" description="저희 한세톤은 아래와 같이 진행될 예정이에요!">
-        <S.ScheduleContainer>
-          {DAY_DATE.map(({ date, schedules }, i) => {
-            const isToday = date.isToday() || date.format("MM/DD") === activeDate;
+    <PageLayout title="대회 일정" description="저희 한세톤은 아래와 같이 진행될 예정이에요!">
+      <S.ScheduleListContainer>
+        {DAY_DATE.map(({ date, schedules }, i) => {
+          const isToday = date.isToday() || date.format("MM/DD") === activeDate;
 
-            return (
-              <S.ScheduleElementContainer key={i} current={isToday}>
-                <S.ScheduleUl>
-                  <S.ScheduleLi>
-                    <S.ScheduleUl>
-                      <Link
-                        style={{ textDecoration: "none" }}
-                        href={`/schedules?date=${date.format("MM/DD")}`}
-                        replace
-                      >
-                        <S.ShowScheduleButton isCurrentDate={isToday}>
-                          {date.format("M월 DD일 (ddd)")}
-                        </S.ShowScheduleButton>
-                      </Link>
-                    </S.ScheduleUl>
-
-                    {schedules.map(({ startAt, endAt, schedule }, i) => (
-                      <ScheduleDateElement
-                        key={i}
-                        time={`${startAt.format("HH:mm")} ~ ${endAt.format("HH:mm")}`}
-                        nowSchedule={schedule}
-                        isToday={isToday}
-                        isCurrentSchedule={now.isBetween(startAt, endAt, "minute", "[)")}
-                      />
-                    ))}
-                  </S.ScheduleLi>
-                </S.ScheduleUl>
-              </S.ScheduleElementContainer>
-            );
-          })}
-        </S.ScheduleContainer>
-      </PageLayout>
-    </S.ScheduleSection>
+          return (
+            <ScheduleTimetable
+              key={i}
+              date={date}
+              schedules={schedules}
+              isActive={isToday}
+              now={now}
+            />
+          );
+        })}
+      </S.ScheduleListContainer>
+    </PageLayout>
   );
 }
