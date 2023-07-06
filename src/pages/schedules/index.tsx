@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-import { Container, Title } from "src/components/layouts";
-import { Button, Element, ScheduleElementProps } from "src/components/schedule";
+import { Container, PageTitleAndDescriptionLayout } from "src/components/layouts";
+import { ScheduleDateElement, ScheduleElementProps } from "src/components/schedule";
 import { dayDate } from "src/constants";
 
 import * as S from "./styled";
@@ -59,7 +59,9 @@ export default function SchedulesPage() {
   return (
     <S.ScheduleSection>
       <Container maxWidth="1140px">
-        <Title mainText="타임 테이블" descText="저희 한세톤은 아래와 같이 진행될 예정이에요!" />
+        <PageTitleAndDescriptionLayout title={"타임 테이블"}>
+          저희 한세톤은 아래와 같이 진행될 예정이에요!
+        </PageTitleAndDescriptionLayout>
         <S.ScheduleContainer>
           {dayDate.map((date, idx) => {
             // 현재 스케줄 날짜와 targetDay(20일 또는 21일)이 같은지 여부를 계산
@@ -71,20 +73,22 @@ export default function SchedulesPage() {
                   <S.ScheduleLi>
                     <S.ScheduleUl marginTop="5.9rem" marginBottom="3.4rem">
                       {/* Button 컴포넌트에 currentDateBool 전달 */}
-                      <Link href={`/schedules?date=${date.dayName}`}>
-                        <Button
-                          currentDateBool={search === date.dayName}
-                          detailDate={date.detail}
-                        />
+                      <Link
+                        style={{ textDecoration: "none" }}
+                        href={`/schedules?date=${date.dayName}`}
+                      >
+                        <S.ShowScheduleButton isCurrentDate={search === date.dayName}>
+                          {date.detail}
+                        </S.ShowScheduleButton>
                       </Link>
                     </S.ScheduleUl>
                     {date.arr.map((data, idx) => (
-                      <Element
+                      <ScheduleDateElement
                         key={idx}
                         time={data.time}
                         nowSchedule={data.nowSchedule}
-                        dayBoolean={isCurrentDate}
-                        nowCurrent={day === date.day && isTimeInRange(data.time, nowDate)}
+                        isToday={isCurrentDate}
+                        isCurrentSchedule={day === date.day && isTimeInRange(data.time, nowDate)}
                       />
                     ))}
                   </S.ScheduleLi>

@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 
+import { Button } from "src/components/common";
+
 export const ScheduleSection = styled.section`
   width: 100%;
 
@@ -26,3 +28,7 @@ export const ScheduleUl = styled.ul<{ marginTop?: string; marginBottom?: string 
   margin-left: auto;
 `;
 export const ScheduleLi = styled.li``;
+
+export const ShowScheduleButton = styled(Button)<{ isCurrentDate: boolean }>`
+  background-color: ${(props) => (props.isCurrentDate ? "#1774fe" : "#1F1F1F")};
+`;
