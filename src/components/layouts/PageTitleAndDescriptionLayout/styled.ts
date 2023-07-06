@@ -14,7 +14,7 @@ export const TitleText = styled.h1`
   margin-bottom: 0.6rem;
 `;
 
-export const TitleDesc = styled.span`
+export const TitleDesc = styled.p`
   color: #878b92;
   font-size: 1.6rem;
   font-weight: 500;
