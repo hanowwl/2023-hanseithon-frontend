@@ -21,11 +21,8 @@ export const ScheduleElementContainer = styled.div<{ current: boolean }>`
   opacity: ${(props) => (props.current ? "" : "0.5")};
 `;
 
-export const ScheduleUl = styled.ul<{ marginTop?: string; marginBottom?: string }>`
-  margin-top: ${(props) => props.marginTop};
-  margin-bottom: ${(props) => props.marginBottom};
-  margin-right: auto;
-  margin-left: auto;
+export const ScheduleUl = styled.ul`
+  margin: 5.9rem auto 3.4rem auto;
 `;
 export const ScheduleLi = styled.li``;
 
