@@ -9,9 +9,13 @@ export const ScheduleSection = styled.section`
 
 export const ScheduleContainer = styled.div`
   display: flex;
+
+  margin-bottom: 5rem;
 `;
 
 export const ScheduleElementContainer = styled.div<{ current: boolean }>`
+  transition: opacity 0.3s;
+
   opacity: ${(props) => (props.current ? "" : "0.5")};
 `;
 
