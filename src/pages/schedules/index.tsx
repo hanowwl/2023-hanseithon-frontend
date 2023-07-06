@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { Container, PageTitleAndDescriptionLayout } from "src/components/layouts";
+import { PageLayout } from "src/components/layouts";
 import { ScheduleDateElement, ScheduleElementProps } from "src/components/schedule";
 import { DAY_DATE } from "src/constants";
 
@@ -49,7 +49,7 @@ export default function SchedulesPage() {
 
   useEffect(() => {
     setNowDate(`${hours}:${minutes}`);
-    router.push(`/schedules?date=${day === 21 ? `7/21` : `7/20`}`);
+    router.replace(`/schedules?date=${day === 21 ? `7/21` : `7/20`}`);
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hours, minutes, day]);
 
@@ -61,10 +61,7 @@ export default function SchedulesPage() {
 
   return (
     <S.ScheduleSection>
-      <Container maxWidth="1140px">
-        <PageTitleAndDescriptionLayout title={"타임 테이블"}>
-          저희 한세톤은 아래와 같이 진행될 예정이에요!
-        </PageTitleAndDescriptionLayout>
+      <PageLayout title="대회 일정" description="저희 한세톤은 아래와 같이 진행될 예정이에요!">
         <S.ScheduleContainer>
           {DAY_DATE.map((date, idx) => {
             // 현재 스케줄 날짜와 targetDay(20일 또는 21일)이 같은지 여부를 계산
@@ -100,7 +97,7 @@ export default function SchedulesPage() {
             );
           })}
         </S.ScheduleContainer>
-      </Container>
+      </PageLayout>
     </S.ScheduleSection>
   );
 }
