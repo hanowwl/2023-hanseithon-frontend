@@ -3,7 +3,7 @@ interface ScheduleData {
   nowSchedule: string;
 }
 
-export const ThursdayScheduleArray: ScheduleData[] = [
+export const THURSDAY_SCHEDULE_ARRAY: ScheduleData[] = [
   {
     time: "15:00 ~ 15:30",
     nowSchedule: "참가자 입장 및 등록",
@@ -34,7 +34,7 @@ export const ThursdayScheduleArray: ScheduleData[] = [
   },
 ];
 
-export const FridayScheduleArray: ScheduleData[] = [
+export const FRIDAY_SCHEDULE_ARRAY: ScheduleData[] = [
   {
     time: "08:00 ~ 09:00",
     nowSchedule: "아침 식사 배부",
@@ -65,17 +65,17 @@ export const FridayScheduleArray: ScheduleData[] = [
   },
 ];
 
-export const dayDate = [
+export const DAY_DATE = [
   {
     day: 20,
     dayName: "7/20",
     detail: "7월 20일(목)",
-    arr: ThursdayScheduleArray,
+    arr: THURSDAY_SCHEDULE_ARRAY,
   },
   {
     day: 21,
     dayName: "7/21",
     detail: "7월 21일(금)",
-    arr: FridayScheduleArray,
+    arr: FRIDAY_SCHEDULE_ARRAY,
   },
 ];
