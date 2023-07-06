@@ -2,11 +2,6 @@ import React from "react";
 
 import * as S from "./styled";
 
-export interface ScheduleData {
-  time: string;
-  nowSchedule: string;
-}
-
 export interface ScheduleElementProps {
   time: string;
   nowSchedule: string;
