@@ -35,7 +35,7 @@ export const SponsorCardLogoLayer = styled(SponsorCardLayer)`
 
 export const SponsorCardDetailLayer = styled(SponsorCardLayer)`
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(3px);
   cursor: pointer;
 `;
