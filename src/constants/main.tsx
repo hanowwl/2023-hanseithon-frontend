@@ -3,6 +3,7 @@ import {
   EasyspubLogoPNG,
   GilbutHorizontalLogoPNG,
   HANSEITHON_IMAGES,
+  HanbitMediaLogoPNG,
   JpubLogoPNG,
   KoscomLogoPNG,
 } from "src/assets";
@@ -67,6 +68,11 @@ export const MAIN_SECTIONS = {
       name: "(주) 코스콤",
       logo: KoscomLogoPNG,
       url: "https://www.koscom.co.kr/",
+    },
+    {
+      name: "한빛 미디어",
+      logo: HanbitMediaLogoPNG,
+      url: "https://www.hanbit.co.kr",
     },
   ] as SponsorsSectionProps["sponsors"],
 
