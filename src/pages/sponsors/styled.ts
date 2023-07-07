@@ -10,7 +10,7 @@ export const SponsorGridContainer = styled.div`
 
     & > div {
       width: 100%;
-      height: 28rem;
+      height: 16rem;
     }
   }
 `;
