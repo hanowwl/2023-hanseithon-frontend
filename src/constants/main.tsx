@@ -3,7 +3,9 @@ import {
   EasyspubLogoPNG,
   GilbutHorizontalLogoPNG,
   HANSEITHON_IMAGES,
+  HanbitMediaLogoPNG,
   JpubLogoPNG,
+  KoscomLogoPNG,
 } from "src/assets";
 import { FAQSectionProps } from "src/components/main/FAQSection";
 import { HanseithonSectionProps } from "src/components/main/HanseithonSection";
@@ -62,9 +64,19 @@ export const MAIN_SECTIONS = {
       logo: JpubLogoPNG,
       url: "https://jpub.tistory.com/",
     },
+    {
+      name: "(주) 코스콤",
+      logo: KoscomLogoPNG,
+      url: "https://www.koscom.co.kr/",
+    },
+    {
+      name: "한빛 미디어",
+      logo: HanbitMediaLogoPNG,
+      url: "https://www.hanbit.co.kr",
+    },
   ] as SponsorsSectionProps["sponsors"],
 
-  PARAGRAPS: [
+  PARAGRAPHS: [
     <>
       개발에
       <br />
@@ -73,7 +85,7 @@ export const MAIN_SECTIONS = {
       없으니까
     </>,
     <>
-      한세톤과
+      한세톤에서
       <br />
       너의 길을
       <br />
@@ -103,11 +115,17 @@ export const MAIN_SECTIONS = {
     },
     {
       question: "대회 도중 외출이 가능한가요?",
-      answer: "특별한 사유로 인해 운영진 측에 양해를 구하지 않는 한, 외부 외출은 할 수 없어요",
+      answer:
+        "특별한 사유로 인해 운영진 및 선생님께서 허락을 받은 경우를 제외하고, 절대 대회장 밖으로 외출할 수 없어요",
     },
     {
       question: "한세톤 주제는 언제 공개되나요?",
       answer: "주제는 한세톤 당일 오리엔테이션 시간에 공개될 예정이에요",
+    },
+    {
+      question: "3학년도 한세톤 참여가 가능한가요?",
+      answer:
+        "여름방학 중 취업맞춤반 수업을 이수해야 하는 학생이 아니라면 재학생 누구나 참여할 수 있어요",
     },
   ] as FAQSectionProps["questions"],
 };

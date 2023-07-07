@@ -1,7 +1,6 @@
 import React from "react";
 
 import { EmojiCard, EmojiCardProps } from "src/components/common";
-import { Container } from "src/components/layouts";
 
 import * as S from "./styled";
 
@@ -14,7 +13,7 @@ export const HanseithonSection: React.FC<HanseithonSectionProps> = ({ records })
     <section>
       <S.HanseithonSectionInnerContainer>
         <S.HanseithonSectionSectionTitle>
-          이제 6년째를 <br className="mobile-only" />
+          드디어 6주년을 <br className="mobile-only" />
           맞이한, 한세톤
         </S.HanseithonSectionSectionTitle>
         <S.HanseithonSectionSectionDescription>
