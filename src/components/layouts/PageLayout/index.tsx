@@ -17,7 +17,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
   gap = "3.8rem",
 }) => {
   return (
-    <Container style={{ padding: "2rem 0 6rem 0", height: "100%" }}>
+    <Container style={{ padding: "2rem 0 6rem 0", minHeight: "calc(100vh - 9rem)" }}>
       <S.PageLayoutInfoContainer gap={gap}>
         <S.PageLayoutTitle>{title}</S.PageLayoutTitle>
         <S.PageLayoutDescription>{description}</S.PageLayoutDescription>
