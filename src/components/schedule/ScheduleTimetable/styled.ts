@@ -9,6 +9,12 @@ export const ScheduleTimetableContainer = styled.div<{ isActive?: boolean }>`
   transition: opacity 150ms;
 `;
 
+export const ScheduleTimetableDateList = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
 export const ScheduleTimetableDate = styled.h2`
   margin-bottom: 2.8rem;
 `;

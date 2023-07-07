@@ -14,32 +14,53 @@ export interface ScheduleTimetableTime {
 }
 
 export interface ScheduleTimetableProps {
-  date: Dayjs;
+  date: Dayjs | Dayjs[];
   schedules: ScheduleTimetableTime[];
 
   now?: Dayjs;
   isActive?: boolean;
 }
 
+const ScheduleTimetableDate: React.FC<{ date: Dayjs; isActive?: boolean }> = ({
+  date,
+  isActive = false,
+}) => {
+  return (
+    <S.ScheduleTimetableDate>
+      <Link
+        style={{ textDecoration: "none" }}
+        href={`/schedules?date=${date.format("MM/DD")}`}
+        replace
+      >
+        <S.ScheduleTimetableDateButton isActive={isActive}>
+          {date.format("M월 DD일 (ddd)")}
+        </S.ScheduleTimetableDateButton>
+      </Link>
+    </S.ScheduleTimetableDate>
+  );
+};
+
 export const ScheduleTimetable: React.FC<ScheduleTimetableProps> = ({
   date,
   schedules,
   now = dayjs(),
-  isActive = false,
+  isActive = Array.isArray(date),
 }) => {
   return (
     <S.ScheduleTimetableContainer isActive={isActive}>
-      <S.ScheduleTimetableDate>
-        <Link
-          style={{ textDecoration: "none" }}
-          href={`/schedules?date=${date.format("MM/DD")}`}
-          replace
-        >
-          <S.ScheduleTimetableDateButton isActive={isActive}>
-            {date.format("M월 DD일 (ddd)")}
-          </S.ScheduleTimetableDateButton>
-        </Link>
-      </S.ScheduleTimetableDate>
+      {Array.isArray(date) ? (
+        <S.ScheduleTimetableDateList>
+          {date.map((v, i) => {
+            return (
+              <li key={i}>
+                <ScheduleTimetableDate date={v} />
+              </li>
+            );
+          })}
+        </S.ScheduleTimetableDateList>
+      ) : (
+        <ScheduleTimetableDate date={date} isActive={isActive} />
+      )}
 
       <S.ScheduleTimetableList>
         {schedules.map(({ startAt, endAt, schedule }, i) => {
