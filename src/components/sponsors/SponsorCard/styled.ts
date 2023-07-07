@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
@@ -25,6 +27,10 @@ export const SponsorCardLogoLayer = styled(SponsorCardLayer)`
   padding: 0 6rem;
   z-index: -1;
   background-color: ${(props) => props.theme.color.foreground};
+
+  @media screen and (max-width: 991px) {
+    padding: 0 10rem;
+  }
 `;
 
 export const SponsorCardDetailLayer = styled(SponsorCardLayer)`
@@ -45,4 +51,14 @@ export const SponsorDescription = styled.p`
   font-weight: 500;
   line-height: 140%;
   color: #9a9ea4;
+`;
+
+export const SponsorCardLink = styled(Link)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: unset;
 `;

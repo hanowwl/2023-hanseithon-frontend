@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
+
+import { useMediaQuery } from "src/hooks";
 
 import * as S from "./styled";
 
@@ -14,26 +15,28 @@ export interface SponsorCardProps {
 
 export const SponsorCard: React.FC<SponsorCardProps> = ({ name, description, logo, link }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
+  const isMobile = useMediaQuery({ maxWidth: "991px" });
 
   return (
     <S.SponsorCardContainer
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
+      onClick={isMobile ? () => setIsHover((prev) => !prev) : undefined}
+      onMouseEnter={!isMobile ? () => setIsHover(true) : undefined}
+      onMouseLeave={!isMobile ? () => setIsHover(false) : undefined}
     >
       <S.SponsorCardLogoLayer>
         <Image src={logo} alt={`${name} 로고`} style={{ width: "100%", height: "auto" }} />
       </S.SponsorCardLogoLayer>
 
-      <Link href={link} style={{ width: "100%", height: "100%", textDecoration: "none" }}>
-        <S.SponsorCardDetailLayer
-          initial="hide"
-          animate={isHover ? "show" : "hide"}
-          variants={{
-            hide: { opacity: 0 },
-            show: { opacity: 1 },
-          }}
-          transition={{ duration: 0.2 }}
-        >
+      <S.SponsorCardDetailLayer
+        initial="hide"
+        animate={isHover ? "show" : "hide"}
+        variants={{
+          hide: { opacity: 0, display: "none" },
+          show: { opacity: 1, display: "flex" },
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        <S.SponsorCardLink href={link} target="_blank">
           <div>
             <S.SponsorName>{name}</S.SponsorName>
             <S.SponsorDescription>{description}</S.SponsorDescription>
@@ -42,8 +45,8 @@ export const SponsorCard: React.FC<SponsorCardProps> = ({ name, description, log
               ※ 클릭 시, 후원사 홈페이지로 이동해요
             </S.SponsorDescription>
           </div>
-        </S.SponsorCardDetailLayer>
-      </Link>
+        </S.SponsorCardLink>
+      </S.SponsorCardDetailLayer>
     </S.SponsorCardContainer>
   );
 };
