@@ -14,3 +14,7 @@ export const getMyTeamAllLogs = async () => {
 export const leaveTeam = async () => {
   return await instance.delete<APIResponse<void>>("/teams/@me/leave").then((res) => res.data);
 };
+
+export const deleteTeam = async () => {
+  return await instance.delete<APIResponse<void>>("/teams/@me").then((res) => res.data);
+};
