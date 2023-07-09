@@ -12,6 +12,7 @@ import * as S from "./styled";
 export default function TeamsPage() {
   const { data: userState, isLoading: userLoading } = useUsersQuery();
   const { data: teams, isLoading: teamLoading } = useTeamsQuery();
+  if (userLoading || !teams || !userState) return <div />;
   return (
     <TeamsLayout>
       <S.TeamsTitle>새로 참여한 메이커</S.TeamsTitle>
