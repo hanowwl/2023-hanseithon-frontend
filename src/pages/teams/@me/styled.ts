@@ -5,7 +5,7 @@ export const TeamLogSectionsGridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: minmax(32rem, 40rem);
-  margin: 5rem 0;
+  margin-top: 5rem;
 
   @media screen and (max-width: 991px) {
     grid-template-columns: 1fr;
