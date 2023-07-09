@@ -75,7 +75,7 @@ export const RegisterStep1: React.FC<RegisterStepProps<RegisterStep1Form>> = ({
 
         <Link href="/auth/login" style={{ textDecoration: "none" }}>
           <S.RegisterPrevButton type="button" size="large" fillWidth>
-            또는 계정 만들기
+            또는 로그인
           </S.RegisterPrevButton>
         </Link>
       </AuthForm.Row>
