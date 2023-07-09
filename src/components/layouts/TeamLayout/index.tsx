@@ -18,7 +18,7 @@ export const TeamLayout: React.FC<TeamLayoutProps> = ({ children }) => {
         <Image
           src={TeamsBannerPNG}
           alt=""
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "2.2rem" }}
           quality={100}
         />
       </S.TeamLayoutBannerContainer>
