@@ -14,9 +14,8 @@ import isToday from "dayjs/plugin/isToday";
 // FIXME: dayjs SSR client/server Hydration 충돌 이슈
 
 import { setInstanceAccessToken } from "src/apis";
-import { Footer, Navbar } from "src/components/common";
 import { AppLayout } from "src/components/layouts";
-import { DEFAULT_SEO, NAVBAR_MENU, STAFF_LIST } from "src/constants";
+import { DEFAULT_SEO } from "src/constants";
 import { QueryClientProvider, useQueryParams } from "src/hooks";
 import { useAuthStore } from "src/stores";
 import { darkTheme, globalStyle } from "src/styles";
@@ -52,6 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider>
       <ThemeProvider theme={theme}>
+        <DefaultSeo {...DEFAULT_SEO} />
         <Global styles={globalStyle(theme)} />
 
         <ToastContainer position="top-right" theme="dark" autoClose={3000} closeButton={false} />
