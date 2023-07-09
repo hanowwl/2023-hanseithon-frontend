@@ -62,7 +62,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar
-        menu={isTeamRoutes ? NAVBAR_MENU_IN_TEAM_ROUTES : NAVBAR_MENU}
+        menu={isTeamRoutes ? NAVBAR_MENU_IN_TEAM_ROUTES(profile) : NAVBAR_MENU}
         actions={[
           isTeamRoutes
             ? {
