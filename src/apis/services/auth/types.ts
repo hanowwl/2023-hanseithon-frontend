@@ -46,3 +46,28 @@ export interface User {
 }
 
 export type GetProfileResponse = User;
+
+export interface AllUserResponse {
+  name: string;
+  position: string;
+  student: {
+    department: string;
+    grade: number;
+  };
+  profileUrl: null;
+  createdAt: string;
+}
+
+export interface TeamMember {
+  isLeader: boolean;
+  position: string;
+  name: string;
+  profileUrl: string;
+}
+
+export interface GetTeamResponse {
+  type: string;
+  name: string;
+  description: string;
+  members: TeamMember[];
+}
