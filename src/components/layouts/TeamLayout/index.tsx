@@ -13,7 +13,7 @@ export interface TeamLayoutProps {
 
 export const TeamLayout: React.FC<TeamLayoutProps> = ({ children }) => {
   return (
-    <Container>
+    <Container style={{ padding: "2.4rem 0 4.8rem 0", minHeight: "calc(100vh - 9rem)" }}>
       <S.TeamLayoutBannerContainer>
         <Image
           src={TeamsBannerPNG}
@@ -22,7 +22,8 @@ export const TeamLayout: React.FC<TeamLayoutProps> = ({ children }) => {
           quality={100}
         />
       </S.TeamLayoutBannerContainer>
-      <main>{children}</main>
+
+      <S.TeamLayoutChildrenContainer>{children}</S.TeamLayoutChildrenContainer>
     </Container>
   );
 };

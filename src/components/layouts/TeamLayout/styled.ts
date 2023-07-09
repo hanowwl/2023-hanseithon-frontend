@@ -13,5 +13,7 @@ export const TeamLayoutBannerContainer = styled.div`
   position: relative;
   width: 100%;
   height: 36rem;
-  margin: 2.4rem 0 5.2rem 0;
+  margin-bottom: 5.2rem;
 `;
+
+export const TeamLayoutChildrenContainer = styled.main``;
