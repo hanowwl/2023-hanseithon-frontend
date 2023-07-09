@@ -1,3 +1,5 @@
+import { StudentDepartment } from "src/constants";
+
 export const TeamType = {
   LIVING: "생활부문",
   GAME: "게임부분",
@@ -26,6 +28,11 @@ export interface TeamMember {
   position: TeamMemberPosition;
   name: string;
   profileUrl: string;
+  student: {
+    department: StudentDepartment;
+    grade: number;
+  };
+  createdAt?: string;
 }
 
 export interface Team {

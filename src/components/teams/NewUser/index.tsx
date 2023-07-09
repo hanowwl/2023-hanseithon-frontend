@@ -11,7 +11,7 @@ export interface NewUserProps {
     department: string;
     grade: number;
   };
-  profileUrl: null;
+  profileUrl: string | null;
   createdAt?: string;
 }
 

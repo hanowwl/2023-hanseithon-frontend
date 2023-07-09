@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
 import { TeamsLayout } from "src/components/layouts";
-import { TeamLogMessage, TeamSection } from "src/components/teams";
+import { TeamLogMessage, TeamSection, NewUser } from "src/components/teams";
 import { ENV } from "src/constants";
 import { useMyTeamAllLogsQuery, useMyTeamQuery } from "src/hooks";
 
@@ -35,7 +35,22 @@ export default function MyTeamPage() {
           { children: "초대코드 복사", onClick: handleOnClickCopyToClipboard },
           { children: "팀 탈퇴하기", variant: "danger" },
         ]}
-      />
+      >
+        <S.TeamMembersListContainer>
+          {team.members.map((user, i) => {
+            return (
+              <NewUser
+                key={i}
+                username={user.name}
+                position={user.position}
+                student={user.student}
+                profileUrl={user.profileUrl}
+                createdAt={user.createdAt}
+              />
+            );
+          })}
+        </S.TeamMembersListContainer>
+      </TeamSection>
 
       <S.TeamLogSectionsGridContainer>
         <TeamSection title="팀 활동 로그" description="팀 내 활동 로그들을 확인해보세요">
