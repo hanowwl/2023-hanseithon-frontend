@@ -58,3 +58,10 @@ export interface JoinTeamParameters {
   inviteCode: string;
   position: TeamMemberPosition;
 }
+
+export interface CreateTeamParameters {
+  name: string;
+  description: string;
+  type: TeamType;
+  position: TeamMemberPosition;
+}
