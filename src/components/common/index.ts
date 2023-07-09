@@ -7,3 +7,5 @@ export * from "./Input";
 export * from "./QuestionCard";
 export * from "./Navbar";
 export * from "./Select";
+export * from "./Spinner";
+export * from "./SuspenseFallback";
