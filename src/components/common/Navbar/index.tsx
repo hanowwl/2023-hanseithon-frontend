@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import * as S from "./styled";
 import { Button, ButtonProps } from "../Button";
@@ -11,9 +12,12 @@ export interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu, actions }) => {
+  const router = useRouter();
+  const isTeamRoutes = useMemo(() => router.pathname.includes("teams"), [router.pathname]);
+
   return (
     <S.NavbarContainer>
-      <S.NavbarInnerContainer>
+      <S.NavbarInnerContainer showLinkInMobile={isTeamRoutes}>
         <S.NavbarBrandLink href="/">
           <S.NavbarBrandText>HANSEITHON</S.NavbarBrandText>
           <S.NavbarBrandSubText>6TH HANSEI HACKATHON</S.NavbarBrandSubText>
