@@ -17,6 +17,7 @@ import { setInstanceAccessToken } from "src/apis";
 import { AppLayout } from "src/components/layouts";
 import { DEFAULT_SEO } from "src/constants";
 import { QueryClientProvider, useQueryParams } from "src/hooks";
+import { ModalProvider } from "src/providers";
 import { useAuthStore } from "src/stores";
 import { darkTheme, globalStyle } from "src/styles";
 
@@ -56,9 +57,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <ToastContainer position="top-right" theme="dark" autoClose={3000} closeButton={false} />
 
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
+        <ModalProvider>
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        </ModalProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
