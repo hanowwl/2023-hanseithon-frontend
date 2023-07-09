@@ -6,6 +6,12 @@ export const TeamLogSectionsGridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: minmax(32rem, 40rem);
   margin: 5rem 0;
+
+  @media screen and (max-width: 991px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(28rem, 36rem);
+    grid-row-gap: 2.4rem;
+  }
 `;
 
 export const TeamMembersListContainer = styled.div`
@@ -13,4 +19,12 @@ export const TeamMembersListContainer = styled.div`
   align-items: center;
   gap: 0.8rem;
   overflow: auto;
+
+  @media screen and (max-width: 991px) {
+    flex-direction: column;
+
+    & > div {
+      width: 100%;
+    }
+  }
 `;

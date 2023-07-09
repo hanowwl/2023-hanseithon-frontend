@@ -11,6 +11,12 @@ export const TeamSectionHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2.4rem;
+
+  @media screen and (max-width: 991px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
 `;
 
 export const TeamSectionTitle = styled.h2`
@@ -23,6 +29,9 @@ export const TeamSectionDescription = styled.p`
   font-size: 1.4rem;
   font-weight: 400;
   color: ${(props) => props.theme.color.text.secondary.default};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 export const TeamSectionActionsContainer = styled.div`
