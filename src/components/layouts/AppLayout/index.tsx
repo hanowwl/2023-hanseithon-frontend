@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { toast } from "react-toastify";
+
+import { useRouter } from "next/router";
 
 import { setInstanceAccessToken } from "src/apis";
 import { Footer, Navbar } from "src/components/common";
-import { NAVBAR_MENU, STAFF_LIST } from "src/constants";
+import { NAVBAR_MENU, NAVBAR_MENU_IN_TEAM_ROUTES, STAFF_LIST } from "src/constants";
 import { useProfileQuery, useSilentMutation } from "src/hooks";
 import { useAuthStore } from "src/stores";
 
@@ -15,6 +18,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const silentMutation = useSilentMutation();
   const { data: profile, refetch: getProfile } = useProfileQuery({ enabled: false });
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const router = useRouter();
+  const isTeamRoutes = useMemo(() => router.pathname.includes("teams"), [router.pathname]);
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -42,13 +48,19 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar
-        menu={NAVBAR_MENU}
+        menu={isTeamRoutes ? NAVBAR_MENU_IN_TEAM_ROUTES : NAVBAR_MENU}
         actions={[
-          {
-            size: "small",
-            text: "한세톤 참여하기",
-            href: profile ? "/hanseithon" : "/auth/register",
-          },
+          isTeamRoutes
+            ? {
+                size: "small",
+                text: `${profile?.name || ""}님, 환영해요`,
+                onClick: () => toast("🎉 제 6회 한세톤 기대해주세요!"),
+              }
+            : {
+                size: "small",
+                text: "한세톤 참여하기",
+                href: profile ? "/teams" : "/auth/register",
+              },
         ]}
       />
 
