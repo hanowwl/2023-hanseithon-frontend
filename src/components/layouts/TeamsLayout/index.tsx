@@ -2,11 +2,11 @@ import React from "react";
 
 import { Container } from "../Container";
 
-interface FeedsProps {
+interface TeamsProps {
   children: React.ReactNode;
 }
 
-export const FeedsLayout: React.FC<FeedsProps> = ({ children }) => {
+export const TeamsLayout: React.FC<TeamsProps> = ({ children }) => {
   return (
     <Container>
       <main>{children}</main>
