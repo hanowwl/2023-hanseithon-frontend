@@ -16,10 +16,19 @@ export interface AppLayoutProps {
 }
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const { initialize, accessToken, setAccessToken } = useAuthStore();
+  const { accessToken, setAccessToken } = useAuthStore();
   const silentMutation = useSilentMutation();
-  const { data: profile, refetch: getProfile } = useProfileQuery({ enabled: false });
+  const { data: profile, refetch: getProfile } = useProfileQuery({
+    enabled: false,
+    onSuccess: () => {
+      setIsLoading(false);
+    },
+    onError: () => {
+      setIsLoading(false);
+    },
+  });
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [initialize, setInitialize] = useState<boolean>(false);
 
   const router = useRouter();
   const isTeamRoutes = useMemo(() => router.pathname.includes("teams"), [router.pathname]);
@@ -29,17 +38,20 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       if (initialize && accessToken) {
         setInstanceAccessToken(accessToken);
         await getProfile();
+        setIsLoading(false);
       } else {
         silentMutation.mutate(undefined, {
           onSuccess: ({ result: { accessToken } }) => {
             setAccessToken(accessToken);
             setInstanceAccessToken(accessToken);
             getProfile();
+            setInitialize(true);
+          },
+          onError: () => {
+            setIsLoading(false);
           },
         });
       }
-
-      setIsLoading(false);
     };
 
     initializeApp();
