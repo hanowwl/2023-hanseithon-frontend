@@ -1,8 +1,11 @@
+import { toast } from "react-toastify";
+
 import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
 import { TeamsLayout } from "src/components/layouts";
 import { TeamLogMessage, TeamSection } from "src/components/teams";
+import { ENV } from "src/constants";
 import { useMyTeamAllLogsQuery, useMyTeamQuery } from "src/hooks";
 
 import * as S from "./styled";
@@ -13,6 +16,15 @@ export default function MyTeamPage() {
 
   if (isLoading || !team || !logs) return <div />;
 
+  const handleOnClickCopyToClipboard = () => {
+    try {
+      navigator.clipboard.writeText(`${ENV.HOSTNAME}/teams/join/${team.inviteCode}`);
+      toast.success("초대코드가 클립보드에 복사되었어요");
+    } catch (error) {
+      toast.error("초대코드를 클립보드에 복사하는데 실패했어요 ");
+    }
+  };
+
   return (
     <TeamsLayout>
       <TeamSection
@@ -20,7 +32,7 @@ export default function MyTeamPage() {
         description={`한세톤에 참여한 ${team.name} 팀을 환영해요!`}
         actions={[
           { children: "프로필 수정" },
-          { children: "초대코드 복사" },
+          { children: "초대코드 복사", onClick: handleOnClickCopyToClipboard },
           { children: "팀 탈퇴하기", variant: "danger" },
         ]}
       />
