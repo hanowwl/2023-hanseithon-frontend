@@ -22,3 +22,10 @@ export const TeamsGridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1.2rem;
 `;
+
+export const CreateTeamModalInputContainer = styled.div`
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
