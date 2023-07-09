@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 
 export const TeamSection = styled.section`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TeamSectionHeader = styled.div`
@@ -30,4 +32,6 @@ export const TeamSectionActionsContainer = styled.div`
   gap: 0.4rem;
 `;
 
-export const TeamSectionChildrenContainer = styled.div``;
+export const TeamSectionChildrenContainer = styled.div`
+  overflow: auto;
+`;
