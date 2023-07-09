@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 import { setInstanceAccessToken } from "src/apis";
-import { Footer, Navbar } from "src/components/common";
+import { Footer, Navbar, SuspenseFallback } from "src/components/common";
 import { NAVBAR_MENU, NAVBAR_MENU_IN_TEAM_ROUTES, STAFF_LIST } from "src/constants";
 import { useProfileQuery, useSilentMutation } from "src/hooks";
 import { useAuthStore } from "src/stores";
+
+import { Container } from "../Container";
 
 export interface AppLayoutProps {
   children?: React.ReactNode;
@@ -64,7 +66,13 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         ]}
       />
 
-      {!isLoading && children}
+      {isLoading ? (
+        <Container style={{ height: "calc(100vh - 9rem)" }}>
+          <SuspenseFallback />
+        </Container>
+      ) : (
+        children
+      )}
 
       <Footer staffs={STAFF_LIST} />
     </>
