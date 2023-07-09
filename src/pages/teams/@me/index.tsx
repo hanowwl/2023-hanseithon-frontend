@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
 import { TeamsLayout } from "src/components/layouts";
-import { TeamLogMessage, TeamSection, NewUser } from "src/components/teams";
+import { TeamLogMessage, TeamSection, TeamMemberCard } from "src/components/teams";
 import { ENV } from "src/constants";
 import {
   useLeaveTeamMutation,
@@ -85,7 +85,7 @@ export default function MyTeamPage() {
         <S.TeamMembersListContainer>
           {team.members.map((user, i) => {
             return (
-              <NewUser
+              <TeamMemberCard
                 key={i}
                 username={user.name}
                 position={user.position}
