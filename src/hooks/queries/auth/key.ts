@@ -1,3 +1,3 @@
-export const key = {
+export const authKey = {
   profile: ["profile"],
 } as const;
