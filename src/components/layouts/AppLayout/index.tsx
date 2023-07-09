@@ -22,7 +22,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         setInstanceAccessToken(accessToken);
         await getProfile();
       } else {
-        await silentMutation.mutateAsync(undefined, {
+        silentMutation.mutate(undefined, {
           onSuccess: ({ result: { accessToken } }) => {
             setAccessToken(accessToken);
             setInstanceAccessToken(accessToken);
