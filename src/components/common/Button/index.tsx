@@ -3,7 +3,7 @@ import React from "react";
 import * as S from "./styled";
 
 export type ButtonSize = "small" | "medium" | "large";
-export type ButtonVariant = "primary" | "danger";
+export type ButtonVariant = "primary" | "danger" | "transparent";
 
 export interface ButtonCustomProps {
   size?: ButtonSize;
