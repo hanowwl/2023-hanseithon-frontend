@@ -11,14 +11,14 @@ export interface AppLayoutProps {
 }
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const { accessToken, setAccessToken } = useAuthStore();
+  const { initialize, accessToken, setAccessToken } = useAuthStore();
   const silentMutation = useSilentMutation();
   const { data: profile, refetch: getProfile } = useProfileQuery({ enabled: false });
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const initialize = async () => {
-      if (accessToken) {
+    const initializeApp = async () => {
+      if (initialize && accessToken) {
         setInstanceAccessToken(accessToken);
         await getProfile();
       } else {
@@ -26,6 +26,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           onSuccess: ({ result: { accessToken } }) => {
             setAccessToken(accessToken);
             setInstanceAccessToken(accessToken);
+            getProfile();
           },
         });
       }
@@ -33,7 +34,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       setIsLoading(false);
     };
 
-    initialize();
+    initializeApp();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
