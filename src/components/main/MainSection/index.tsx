@@ -81,7 +81,6 @@ export const MainSection: React.FC<MainSectionProps> = ({
       <S.MainSectionLayer>
         <S.MainSectionVideo ref={videoRef} muted autoPlay playsInline webkit-playsinline="true">
           <source src="/static/main_animation.mp4" type="video/mp4" />
-          <source src="/static/main_animation.webm" type="video/webm" />
         </S.MainSectionVideo>
       </S.MainSectionLayer>
     </S.MainSection>

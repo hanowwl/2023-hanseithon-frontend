@@ -19,7 +19,7 @@ export const MainSection = styled.section`
   position: relative;
   margin-top: -9rem;
 
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     background: conic-gradient(
       from 180deg at 50% 50%,
       #3f86cb 0deg,
@@ -28,7 +28,7 @@ export const MainSection = styled.section`
       #82bff5 249.37deg,
       #3f86cb 360deg
     );
-  }
+  } */
 `;
 
 export const MainSectionLayer = styled.div`
