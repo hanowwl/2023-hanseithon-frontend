@@ -10,3 +10,7 @@ export const getMyTeam = async () => {
 export const getMyTeamAllLogs = async () => {
   return await instance.get<APIResponse<TeamLog[]>>("/teams/@me/logs").then((res) => res.data);
 };
+
+export const leaveTeam = async () => {
+  return await instance.delete<APIResponse<void>>("/teams/@me/leave").then((res) => res.data);
+};
