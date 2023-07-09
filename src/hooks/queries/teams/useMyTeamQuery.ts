@@ -7,7 +7,7 @@ import { UseQueryCustomOptions } from "../types";
 
 export const useMyTeamQuery = (options?: UseQueryCustomOptions<Team>) => {
   return useQuery({
-    queryKey: ["teams", "@me"],
+    queryKey: keys.teams.teams("@me"),
     queryFn: () => api.teams.getMyTeam().then((res) => res.result),
     ...options,
   });

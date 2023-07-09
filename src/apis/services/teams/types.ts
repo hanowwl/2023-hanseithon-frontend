@@ -13,6 +13,14 @@ export const TeamMemberPosition = {
 
 export type TeamMemberPosition = keyof typeof TeamMemberPosition;
 
+export const TeamLogType = {
+  TEAM_CREATED: "TEAM_CREATED",
+  TEAM_JOINED: "TEAM_JOINED",
+  TEAM_LEFT: "TEAM_LEFT",
+} as const;
+
+export type TeamLogType = keyof typeof TeamLogType;
+
 export interface TeamMember {
   isLeader: boolean;
   position: TeamMemberPosition;
@@ -29,4 +37,12 @@ export interface Team {
   members: TeamMember[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface TeamLog {
+  id: string;
+  type: TeamLogType;
+  teamId: string;
+  memberName: string;
+  actionedAt: string;
 }
