@@ -1,18 +1,28 @@
 import { toast } from "react-toastify";
 
+import { useRouter } from "next/router";
+
 import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
 import { TeamsLayout } from "src/components/layouts";
 import { TeamLogMessage, TeamSection, NewUser } from "src/components/teams";
 import { ENV } from "src/constants";
-import { useMyTeamAllLogsQuery, useMyTeamQuery } from "src/hooks";
+import {
+  useLeaveTeamMutation,
+  useMyTeamAllLogsQuery,
+  useMyTeamQuery,
+  useProfileQuery,
+} from "src/hooks";
 
 import * as S from "./styled";
 
 export default function MyTeamPage() {
+  const router = useRouter();
+  const { data: profile } = useProfileQuery();
   const { data: team, isLoading } = useMyTeamQuery();
   const { data: logs } = useMyTeamAllLogsQuery();
+  const { mutate: leaveTeam } = useLeaveTeamMutation();
 
   if (isLoading || !team || !logs) return <div />;
 
@@ -25,15 +35,37 @@ export default function MyTeamPage() {
     }
   };
 
+  const handleOnClickLeaveTeam = () => {
+    const willLeaveTeam = confirm("정말 팀을 탈퇴하실건가요?");
+    if (!willLeaveTeam) return toast.info("팀 탈퇴가 취소되었어요");
+
+    leaveTeam(undefined, {
+      onSuccess: () => {
+        toast.success("팀 탈퇴가 완료되었어요");
+        router.push("/teams");
+      },
+      onError: () => {
+        toast.error("팀 탈퇴 중 오류가 발생했어요. 잠시 뒤 다시 시도해주세요");
+      },
+    });
+  };
+
+  const handleOnClickDeleteTeam = () => {
+    const willDeleteTeam = confirm("정말 팀을 삭제하실건가요?");
+    if (!willDeleteTeam) return toast.info("팀 삭제가 취소되었어요");
+  };
+
   return (
     <TeamsLayout>
       <TeamSection
         title={`${team.name} 팀`}
         description={`한세톤에 참여한 ${team.name} 팀을 환영해요!`}
         actions={[
-          { children: "프로필 수정" },
+          // { children: "프로필 수정" },
           { children: "초대코드 복사", onClick: handleOnClickCopyToClipboard },
-          { children: "팀 탈퇴하기", variant: "danger" },
+          profile?.teamMember.isLeader
+            ? { children: "팀 삭제하기", variant: "danger", onClick: handleOnClickDeleteTeam }
+            : { children: "팀 탈퇴하기", variant: "danger", onClick: handleOnClickLeaveTeam },
         ]}
       >
         <S.TeamMembersListContainer>
