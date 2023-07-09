@@ -42,10 +42,10 @@ const TeamMembersSection: React.FC = () => {
     const willLeaveTeam = confirm("정말 팀을 탈퇴하실건가요?");
     if (!willLeaveTeam) return toast.info("팀 탈퇴가 취소되었어요");
 
+    router.push("/teams");
     leaveTeam(undefined, {
       onSuccess: () => {
         toast.success("팀 탈퇴가 완료되었어요");
-        router.push("/teams");
       },
       onError: (error) => {
         if (error.response?.data.message) return toast.error(error.response.data.message);
@@ -58,10 +58,10 @@ const TeamMembersSection: React.FC = () => {
     const willDeleteTeam = confirm("정말 팀을 삭제하실건가요?");
     if (!willDeleteTeam) return toast.info("팀 삭제가 취소되었어요");
 
+    router.push("/teams");
     deleteTeam(undefined, {
       onSuccess: () => {
         toast.success("팀 삭제가 완료되었어요");
-        router.push("/teams");
       },
       onError: (error) => {
         if (error.response?.data.message) return toast.error(error.response.data.message);
@@ -77,7 +77,7 @@ const TeamMembersSection: React.FC = () => {
       actions={[
         // { children: "프로필 수정" },
         { children: "초대코드 복사", onClick: handleOnClickCopyToClipboard },
-        profile?.teamMember.isLeader
+        profile?.teamMember?.isLeader
           ? { children: "팀 삭제하기", variant: "danger", onClick: handleOnClickDeleteTeam }
           : { children: "팀 탈퇴하기", variant: "danger", onClick: handleOnClickLeaveTeam },
       ]}
