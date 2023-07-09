@@ -7,11 +7,15 @@ export const globalStyle = (theme: Theme) => css`
   ${reset}
   ${toastify}
 
+  * {
+    box-sizing: border-box;
+  }
+
   html,
   body,
   #__next {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 
   html {
@@ -26,9 +30,26 @@ export const globalStyle = (theme: Theme) => css`
   #__next {
     font-size: 1.6rem;
     font-weight: 400;
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    font-family: Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
       Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     letter-spacing: -0.04em;
+  }
+
+  br.mobile-only {
+    display: none;
+  }
+
+  @media screen and (max-width: 767px) {
+    html {
+      font-size: 9px;
+    }
+    br.mobile-only {
+      display: block;
+    }
+
+    br.desktop-only {
+      display: none;
+    }
   }
 `;

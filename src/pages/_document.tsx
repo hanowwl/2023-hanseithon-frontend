@@ -8,8 +8,12 @@ export default function Document() {
           rel="stylesheet"
           as="style"
           crossOrigin=""
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.7/dist/web/variable/pretendardvariable-dynamic-subset.css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
         />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png" />
+        <link rel="shortcut icon" href="/static/favicon/favicon.ico" />
       </Head>
 
       <body>

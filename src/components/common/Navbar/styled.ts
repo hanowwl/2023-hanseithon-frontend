@@ -18,12 +18,20 @@ export const NavbarContainer = styled.nav`
 
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
+  z-index: 1;
 `;
 
 export const NavbarInnerContainer = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  // TODO: Navbar 모바일 지원 필요
+  @media screen and (max-width: 767px) {
+    & > *:not(a) {
+      display: none;
+    }
+  }
 `;
 
 export const NavbarBrandLink = styled(Link)`
