@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
-import { TeamsLayout } from "src/components/layouts";
+import { TeamLayout } from "src/components/layouts";
 import { TeamLogMessage, TeamSection, TeamMemberCard } from "src/components/teams";
 import { ENV } from "src/constants";
 import {
@@ -70,7 +70,7 @@ export default function MyTeamPage() {
   };
 
   return (
-    <TeamsLayout>
+    <TeamLayout>
       <TeamSection
         title={`${team.name} 팀`}
         description={`한세톤에 참여한 ${team.name} 팀을 환영해요!`}
@@ -168,6 +168,6 @@ export default function MyTeamPage() {
           description="한세톤 진행 중 운영진 측에 받은 경고를 확인할 수 있어요"
         />
       </S.TeamLogSectionsGridContainer>
-    </TeamsLayout>
+    </TeamLayout>
   );
 }

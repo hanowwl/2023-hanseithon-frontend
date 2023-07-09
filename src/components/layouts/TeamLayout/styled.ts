@@ -8,3 +8,10 @@ export const TeamsBanner = styled.div`
   border-radius: 2.2rem;
   background-color: #d9d9d9;
 `;
+
+export const TeamLayoutBannerContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 36rem;
+  margin: 2.4rem 0 5.2rem 0;
+`;

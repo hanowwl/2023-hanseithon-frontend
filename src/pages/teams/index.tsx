@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect, useState } from "react";
 
-import { TeamsLayout } from "src/components/layouts";
+import { TeamLayout } from "src/components/layouts";
 import { TeamMemberCard, TeamCard } from "src/components/teams";
 import { useUsersQuery, useTeamsQuery } from "src/hooks/queries/teams";
 
@@ -14,7 +14,7 @@ export default function TeamsPage() {
   const { data: teams, isLoading: teamLoading } = useTeamsQuery();
   if (userLoading || !teams || !userState) return <div />;
   return (
-    <TeamsLayout>
+    <TeamLayout>
       <S.TeamsTitle>새로 참여한 메이커</S.TeamsTitle>
       <S.TeamsDescription>한세톤에 참여한 메이커들을 환영해주세요!</S.TeamsDescription>
       <S.NewMakerContainer>
@@ -46,6 +46,6 @@ export default function TeamsPage() {
               />
             ))}
       </S.TeamsContainer>
-    </TeamsLayout>
+    </TeamLayout>
   );
 }
