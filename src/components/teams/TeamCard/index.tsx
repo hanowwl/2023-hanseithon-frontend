@@ -55,9 +55,9 @@ export const TeamCard: React.FC<TeamsProps> = ({ type, name, description, member
   return (
     <S.TeamElement>
       <S.TeamInformation>
-        <S.TEAM_TYPE>
-          <S.TEAM_TYPEText>{TranslateTEAM_TYPE()}</S.TEAM_TYPEText>
-        </S.TEAM_TYPE>
+        <S.TeamType>
+          <S.TeamTypeText>{TranslateTEAM_TYPE()}</S.TeamTypeText>
+        </S.TeamType>
         <S.TeamName>{name}</S.TeamName>
         <S.TeamDescription>{description}</S.TeamDescription>
         <S.TeamPositionContainer>
