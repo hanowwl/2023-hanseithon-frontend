@@ -40,6 +40,21 @@ const variants: Record<ButtonVariant, (theme: Theme) => SerializedStyles> = {
       background-color: ${theme.color.primary.lighter};
     }
   `,
+
+  danger: (theme) => css`
+    color: ${theme.color.text.primary.default};
+    background-color: ${theme.color.danger.default};
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: ${theme.color.danger.darker};
+    }
+
+    &:disabled {
+      background-color: ${theme.color.danger.lighter};
+    }
+  `,
 };
 
 export const ButtonElement = styled.button<Required<ButtonCustomProps>>`

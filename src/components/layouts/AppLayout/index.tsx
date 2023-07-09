@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { setInstanceAccessToken } from "src/apis";
 import { Footer, Navbar } from "src/components/common";
@@ -13,17 +13,27 @@ export interface AppLayoutProps {
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const { accessToken, setAccessToken } = useAuthStore();
   const silentMutation = useSilentMutation();
-  const { data: profile } = useProfileQuery({ enabled: !!accessToken });
+  const { data: profile, refetch: getProfile } = useProfileQuery({ enabled: false });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!accessToken) {
-      silentMutation.mutate(undefined, {
-        onSuccess: ({ result: { accessToken } }) => {
-          setAccessToken(accessToken);
-          setInstanceAccessToken(accessToken);
-        },
-      });
-    }
+    const initialize = async () => {
+      if (accessToken) {
+        setInstanceAccessToken(accessToken);
+        await getProfile();
+      } else {
+        silentMutation.mutate(undefined, {
+          onSuccess: ({ result: { accessToken } }) => {
+            setAccessToken(accessToken);
+            setInstanceAccessToken(accessToken);
+          },
+        });
+      }
+
+      setIsLoading(false);
+    };
+
+    initialize();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken]);
@@ -41,7 +51,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         ]}
       />
 
-      {children}
+      {!isLoading && children}
 
       <Footer staffs={STAFF_LIST} />
     </>
