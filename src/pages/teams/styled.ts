@@ -2,14 +2,13 @@ import styled from "@emotion/styled";
 
 export const NewMakerContainer = styled.div`
   width: 100%;
+  display: flex;
+  gap: 1.2rem;
+
   overflow-x: auto;
   ::-webkit-scrollbar {
     display: none;
   }
-
-  display: flex;
-  gap: 1.2rem;
-  margin-top: 1.7rem;
 `;
 
 export const TeamsTitle = styled.h1`
