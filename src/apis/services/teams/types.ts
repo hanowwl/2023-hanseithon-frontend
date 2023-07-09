@@ -53,3 +53,8 @@ export interface TeamLog {
   memberName: string;
   actionedAt: string;
 }
+
+export interface JoinTeamParameters {
+  inviteCode: string;
+  position: TeamMemberPosition;
+}

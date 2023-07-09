@@ -1,7 +1,7 @@
 import { instance } from "src/apis/core";
 import { APIResponse } from "src/apis/core/types";
 
-import { Team, TeamLog, TeamMember } from "./types";
+import { JoinTeamParameters, Team, TeamLog, TeamMember } from "./types";
 
 export const getAllTeams = async () => {
   return await instance.get<APIResponse<Team[]>>("/teams").then((res) => res.data);
@@ -19,6 +19,16 @@ export const getMyTeam = async () => {
 
 export const getMyTeamAllLogs = async () => {
   return await instance.get<APIResponse<TeamLog[]>>("/teams/@me/logs").then((res) => res.data);
+};
+
+export const getTeamByInviteCode = async (inviteCode: string) => {
+  return await instance.get<APIResponse<Team>>(`/teams/join/${inviteCode}`).then((res) => res.data);
+};
+
+export const joinTeam = async ({ inviteCode, position }: JoinTeamParameters) => {
+  return await instance
+    .post<APIResponse<Team>>(`/teams/join/${inviteCode}`, { position })
+    .then((res) => res.data);
 };
 
 export const leaveTeam = async () => {
