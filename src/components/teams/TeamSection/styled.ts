@@ -10,12 +10,12 @@ export const TeamSectionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.6rem;
 
   @media screen and (max-width: 991px) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.6rem;
+    gap: 0.8rem;
   }
 `;
 
@@ -38,7 +38,7 @@ export const TeamSectionActionsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
 `;
 
 export const TeamSectionChildrenContainer = styled.div`
