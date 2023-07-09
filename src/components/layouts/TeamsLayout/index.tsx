@@ -1,5 +1,6 @@
 import React from "react";
 
+import * as S from "./styled";
 import { Container } from "../Container";
 
 interface TeamsProps {
@@ -9,6 +10,7 @@ interface TeamsProps {
 export const TeamsLayout: React.FC<TeamsProps> = ({ children }) => {
   return (
     <Container>
+      <S.TeamsBanner></S.TeamsBanner>
       <main>{children}</main>
     </Container>
   );
