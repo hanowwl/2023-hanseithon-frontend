@@ -14,6 +14,7 @@ import {
   useMyTeamQuery,
   useProfileQuery,
 } from "src/hooks";
+import { useDeleteMyTeamMutation } from "src/hooks/queries/teams/useDeleteMyTeamMutation";
 
 import * as S from "./styled";
 
@@ -23,6 +24,7 @@ export default function MyTeamPage() {
   const { data: team, isLoading } = useMyTeamQuery();
   const { data: logs } = useMyTeamAllLogsQuery();
   const { mutate: leaveTeam } = useLeaveTeamMutation();
+  const { mutate: deleteTeam } = useDeleteMyTeamMutation();
 
   if (isLoading || !team || !logs) return <div />;
 
@@ -44,8 +46,9 @@ export default function MyTeamPage() {
         toast.success("팀 탈퇴가 완료되었어요");
         router.push("/teams");
       },
-      onError: () => {
-        toast.error("팀 탈퇴 중 오류가 발생했어요. 잠시 뒤 다시 시도해주세요");
+      onError: (error) => {
+        if (error.response?.data.message) return toast.error(error.response.data.message);
+        return toast.error("팀 탈퇴 중 오류가 발생했어요. 잠시 뒤 다시 시도해주세요");
       },
     });
   };
@@ -53,6 +56,17 @@ export default function MyTeamPage() {
   const handleOnClickDeleteTeam = () => {
     const willDeleteTeam = confirm("정말 팀을 삭제하실건가요?");
     if (!willDeleteTeam) return toast.info("팀 삭제가 취소되었어요");
+
+    deleteTeam(undefined, {
+      onSuccess: () => {
+        toast.success("팀 삭제가 완료되었어요");
+        router.push("/teams");
+      },
+      onError: (error) => {
+        if (error.response?.data.message) return toast.error(error.response.data.message);
+        return toast.error("팀 삭제 중 오류가 발생했어요. 잠시 뒤 다시 시도해주세요");
+      },
+    });
   };
 
   return (
