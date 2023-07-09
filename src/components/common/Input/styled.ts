@@ -1,6 +1,19 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const InputContainer = styled.div``;
+export const InputContainer = styled.div<{ error: boolean }>`
+  ${(props) =>
+    props.error &&
+    css`
+      & > div:has(input) {
+        box-shadow: inset 0 0 0 1px #f53434 !important;
+      }
+
+      & > p {
+        color: #f53434 !important;
+      }
+    `}
+`;
 
 export const InputLabel = styled.label`
   display: inline-block;
@@ -67,4 +80,10 @@ export const InputPasswordVisibleButton = styled.button`
   justify-content: center;
 
   color: ${(props) => props.theme.color.text.primary.default};
+`;
+
+export const InputMessage = styled.p`
+  font-size: 1.4rem;
+  margin-top: 0.8rem;
+  color: ${(props) => props.theme.color.text.secondary.default};
 `;

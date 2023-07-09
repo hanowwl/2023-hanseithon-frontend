@@ -15,7 +15,7 @@ const nextConfig = {
     emotion: true,
   },
 
-  pageExtensions: ["tsx"],
+  pageExtensions: ["tsx", "api.ts"],
   output: "standalone",
 };
 

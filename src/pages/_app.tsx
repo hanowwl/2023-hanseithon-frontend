@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
@@ -12,9 +13,15 @@ import isToday from "dayjs/plugin/isToday";
 // import "dayjs/locale/ko";
 // FIXME: dayjs SSR client/server Hydration 충돌 이슈
 
+import { setInstanceAccessToken } from "src/apis";
 import { Footer, Navbar } from "src/components/common";
+import { AppLayout } from "src/components/layouts";
 import { DEFAULT_SEO, NAVBAR_MENU, STAFF_LIST } from "src/constants";
+import { QueryClientProvider, useQueryParams } from "src/hooks";
+import { useAuthStore } from "src/stores";
 import { darkTheme, globalStyle } from "src/styles";
+
+import "react-toastify/dist/ReactToastify.css";
 
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isBetween);
@@ -28,25 +35,31 @@ dayjs.locale("en", {
 export default function App({ Component, pageProps }: AppProps) {
   // import "dayjs/locale/ko";
   const [theme] = useState<Theme>(darkTheme);
+  const { message, messageType } = useQueryParams<{
+    message: string;
+    messageType: "success" | "warn" | "error" | "info";
+  }>();
+  const { accessToken } = useAuthStore();
+
+  useEffect(() => {
+    if (message) toast[messageType ?? "info"](message);
+  }, [message, messageType]);
+
+  useEffect(() => {
+    setInstanceAccessToken(accessToken);
+  }, [accessToken]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Global styles={globalStyle(theme)} />
-      <DefaultSeo {...DEFAULT_SEO} />
+    <QueryClientProvider>
+      <ThemeProvider theme={theme}>
+        <Global styles={globalStyle(theme)} />
 
-      <Navbar
-        menu={NAVBAR_MENU}
-        actions={[
-          {
-            size: "small",
-            text: "한세톤 참여하기",
-            href: "/",
-            onClick: () => alert("참가 신청은 7월 10일에 오픈됩니다!"),
-          },
-        ]}
-      />
-      <Component {...pageProps} />
-      <Footer staffs={STAFF_LIST} />
-    </ThemeProvider>
+        <ToastContainer position="top-right" theme="dark" autoClose={3000} closeButton={false} />
+
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

@@ -2,7 +2,10 @@ import Link from "next/link";
 
 import styled from "@emotion/styled";
 
-import { Container } from "src/components/layouts";
+// FIXME: 절대 경로로 컴포넌트 호출 시, Dependency Circle 이슈 발생
+// 해당 이슈로 인해 Container가 undefined로 리턴됨)
+
+import { Container } from "../../layouts/Container";
 
 export const NavbarContainer = styled.nav`
   position: sticky;

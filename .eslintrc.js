@@ -73,6 +73,12 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-use-before-define": ["error", { variables: false }],
         "@typescript-eslint/no-useless-constructor": "error",
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            checksVoidReturn: { attributes: false },
+          },
+        ],
       },
       parserOptions: {
         project: ["./tsconfig.json"],
