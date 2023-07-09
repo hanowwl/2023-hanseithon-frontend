@@ -16,7 +16,7 @@ export interface TeamsProps {
   }[];
 }
 
-export const NewTeam: React.FC<TeamsProps> = ({ type, name, description, members }) => {
+export const TeamCard: React.FC<TeamsProps> = ({ type, name, description, members }) => {
   //영문으로 되어있는 데이터를 한글로
   const TranslateTeamType = () => {
     return `${TeamType[type]}`;

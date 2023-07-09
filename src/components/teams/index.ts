@@ -1,2 +1,2 @@
-export * from "./NewUser";
-export * from "./NewTeam";
+export * from "./TeamMemberCard";
+export * from "./TeamCard";

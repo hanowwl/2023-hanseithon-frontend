@@ -15,7 +15,7 @@ export interface NewUserProps {
   createdAt?: string;
 }
 
-export const NewUser: React.FC<NewUserProps> = ({ username, student, position }) => {
+export const TeamMemberCard: React.FC<NewUserProps> = ({ username, student, position }) => {
   const gradeDecide = () => {
     const { grade } = student;
     return `${gradeIcons[grade]}${grade}학년`;
