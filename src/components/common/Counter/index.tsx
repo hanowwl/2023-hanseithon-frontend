@@ -14,22 +14,22 @@ export const Counter: React.FC<CountProps> = ({ from, to, duration = 1, suffix =
   const [isInView, setIsInView] = useState<boolean>(false);
 
   useEffect(() => {
-    if (ref.current) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) setIsInView(true);
-          });
-        },
-        { threshold: 0.1 }
-      );
+    if (!ref.current) return;
 
-      observer.observe(ref.current);
-      return () => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(ref.current as Element);
-      };
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setIsInView(true);
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
