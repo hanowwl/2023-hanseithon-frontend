@@ -1,6 +1,6 @@
 import React from "react";
 
-import { TeamType } from "src/constants/teams";
+import { TEAM_TYPE } from "src/constants/teams";
 
 import * as S from "./styled";
 
@@ -18,8 +18,8 @@ export interface TeamsProps {
 
 export const TeamCard: React.FC<TeamsProps> = ({ type, name, description, members }) => {
   //영문으로 되어있는 데이터를 한글로
-  const TranslateTeamType = () => {
-    return `${TeamType[type]}`;
+  const TranslateTEAM_TYPE = () => {
+    return `${TEAM_TYPE[type]}`;
   };
 
   //팀장 이름 렌더링
@@ -55,9 +55,9 @@ export const TeamCard: React.FC<TeamsProps> = ({ type, name, description, member
   return (
     <S.TeamElement>
       <S.TeamInformation>
-        <S.TeamType>
-          <S.TeamTypeText>{TranslateTeamType()}</S.TeamTypeText>
-        </S.TeamType>
+        <S.TEAM_TYPE>
+          <S.TEAM_TYPEText>{TranslateTEAM_TYPE()}</S.TEAM_TYPEText>
+        </S.TEAM_TYPE>
         <S.TeamName>{name}</S.TeamName>
         <S.TeamDescription>{description}</S.TeamDescription>
         <S.TeamPositionContainer>

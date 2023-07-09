@@ -1,6 +1,6 @@
 import React from "react";
 
-import { departmentTranslations, gradeIcons, positionTranslations } from "src/constants/teams";
+import { DEPARTMENT_TRANSLATIONS, GRADE_ICON, POSITION_TRANSLATIONS } from "src/constants/teams";
 
 import * as S from "./styled";
 
@@ -18,16 +18,16 @@ export interface NewUserProps {
 export const TeamMemberCard: React.FC<NewUserProps> = ({ username, student, position }) => {
   const gradeDecide = () => {
     const { grade } = student;
-    return `${gradeIcons[grade]}${grade}학년`;
+    return `${GRADE_ICON[grade]}${grade}학년`;
   };
 
   const translateDepartment = () => {
     const { department } = student;
-    return departmentTranslations[department] || department;
+    return DEPARTMENT_TRANSLATIONS[department] || department;
   };
 
   const translatePosition = () => {
-    return positionTranslations[position] || position;
+    return POSITION_TRANSLATIONS[position] || position;
   };
 
   const renderGradeIcon = () => {
