@@ -8,6 +8,12 @@ export const darkTheme: Theme = {
       darker: "#0E69F1",
     },
 
+    danger: {
+      lighter: "#FF8282",
+      default: "#F84A4A",
+      darker: "#DC3D3D",
+    },
+
     text: {
       primary: {
         default: "#FFFFFF",
