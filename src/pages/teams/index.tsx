@@ -55,7 +55,7 @@ export default function TeamsPage() {
           title="현재까지 참여한 팀"
           description="현재까치 한세톤에 참여 신청한 전체 팀 리스트에요"
         >
-          <Suspense>
+          <Suspense fallback={<SuspenseFallback />}>
             <AllTeamsSectionContent />
           </Suspense>
         </TeamSection>
