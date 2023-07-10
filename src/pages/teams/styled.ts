@@ -8,7 +8,8 @@ export const TeamSectionsContainer = styled.div`
 
 export const NewMakerListContainer = styled.div`
   width: 100%;
-  display: flex;
+
+  display: -webkit-inline-box;
   gap: 1.2rem;
   overflow-x: auto;
   ::-webkit-scrollbar {
