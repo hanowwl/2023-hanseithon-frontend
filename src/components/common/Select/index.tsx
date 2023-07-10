@@ -53,8 +53,9 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             <S.SelectButton type="button" disabled={disabled} onBlur={() => setExpand(false)}>
               <span>{selected?.label}</span>
             </S.SelectButton>
-
-            <FontAwesomeIcon icon={faChevronDown} />
+            <S.SelectArrowIcon>
+              <FontAwesomeIcon icon={faChevronDown} />
+            </S.SelectArrowIcon>
           </S.SelectElementContainer>
 
           <AnimatePresence>
