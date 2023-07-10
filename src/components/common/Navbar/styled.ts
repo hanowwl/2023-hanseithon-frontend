@@ -21,7 +21,7 @@ export const NavbarContainer = styled.nav`
   z-index: 1;
 `;
 
-export const NavbarInnerContainer = styled(Container)`
+export const NavbarInnerContainer = styled(Container)<{ showLinkInMobile?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@ export const NavbarInnerContainer = styled(Container)`
   // TODO: Navbar 모바일 지원 필요
   @media screen and (max-width: 767px) {
     & > *:not(a) {
-      display: none;
+      display: ${(props) => (props.showLinkInMobile ? "flex" : "none")};
     }
   }
 `;

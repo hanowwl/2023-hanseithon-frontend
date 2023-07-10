@@ -14,8 +14,7 @@ export const globalStyle = (theme: Theme) => css`
   html,
   body,
   #__next {
-    width: 100%;
-    min-height: 100%;
+    height: 100%;
   }
 
   html {

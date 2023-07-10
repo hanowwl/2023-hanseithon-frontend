@@ -61,12 +61,18 @@ export const SelectButton = styled.button`
   width: 100%;
   height: 100%;
 
+  font-family: Pretendard Variable;
   font-size: 1.6rem;
   font-weight: 400;
   text-align: left;
   letter-spacing: -0.03em;
   color: ${(props) => props.theme.color.text.primary.default};
   transition: color 150ms;
+`;
+
+export const SelectArrowIcon = styled.div`
+  width: 1.6rem;
+  height: 1.6rem;
 `;
 
 export const SelectOptionListContainer = styled(motion.div)`

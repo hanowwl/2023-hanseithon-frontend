@@ -9,6 +9,12 @@ declare module "@emotion/react" {
         darker: string;
       };
 
+      danger: {
+        lighter: string;
+        default: string;
+        darker: string;
+      };
+
       text: {
         primary: {
           default: string;

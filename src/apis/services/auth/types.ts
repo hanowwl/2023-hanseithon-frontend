@@ -1,5 +1,7 @@
 import { StudentDepartment, StudentGrade } from "src/constants";
 
+import { TeamMember } from "../teams/types";
+
 export interface RegisterParameters {
   email: string;
   password: string;
@@ -36,6 +38,7 @@ export interface User {
     classroom: number;
     number: number;
   };
+  teamMember: TeamMember;
   lastLoginIp: string;
   lastLoginAt: string;
   createdAt: string;
