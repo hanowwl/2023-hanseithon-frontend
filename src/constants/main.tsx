@@ -15,7 +15,7 @@ import { SponsorsSectionProps } from "src/components/main/SponsorsSection";
 
 export const MAIN_SECTIONS = {
   OPERATION_PERIOD: "JULY 20 - JULY 21",
-  APPLICATION_PERIOD: "7. 10 ~ 7. 19",
+  APPLICATION_PERIOD: "7. 10 ~ 7. 17",
 
   HANSEITHON_RECORDS: [
     {
