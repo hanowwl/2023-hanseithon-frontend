@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const ModalOverlay = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
