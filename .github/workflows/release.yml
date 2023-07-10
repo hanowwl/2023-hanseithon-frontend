@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: Release
 
 on:
   release:
@@ -39,3 +39,12 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy_to_amplify:
+    name: Request Amplify Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Send request to Amplify deploy webhook
+        run: curl -X POST -d {} ${{ secrets.AMPLIFY_DEPLOY_WEBHOOK }} -H "Content-Type:application/json"
