@@ -15,11 +15,9 @@ export const TeamLogSectionsGridContainer = styled.div`
 `;
 
 export const TeamMembersListContainer = styled.div`
-  display: flex;
+  display: -webkit-inline-box;
   align-items: center;
   gap: 0.8rem;
-  overflow: auto;
-
   @media screen and (max-width: 991px) {
     flex-direction: column;
 
