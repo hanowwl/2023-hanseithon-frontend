@@ -1,8 +1,8 @@
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useState } from "react";
 
 import { SuspenseFallback } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
-import { SubmitLog, SubmitTrack } from "src/components/submit";
+import { SubmitLog, UploadTrack } from "src/components/upload";
 
 import * as S from "./styled";
 
@@ -50,7 +50,7 @@ export default function UploadPage() {
           </Suspense>
         </SubmitLog>
         <S.UploadInputContainer>
-          <SubmitTrack onUploadFile={onTrackFile} />
+          <UploadTrack onUploadFile={onTrackFile} />
         </S.UploadInputContainer>
       </S.FileUploadContainer>
     </TeamLayout>
