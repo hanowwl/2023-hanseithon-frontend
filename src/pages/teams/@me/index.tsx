@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useRouter } from "next/router";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import dayjs from "dayjs";
 
 import { TeamLogType } from "src/apis";
-import { SuspenseFallback } from "src/components/common";
+import { Button, SuspenseFallback } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
 import { TeamLogMessage, TeamSection, TeamMemberCard } from "src/components/teams";
 import { ENV } from "src/constants";
@@ -18,8 +18,17 @@ import {
   useProfileQuery,
 } from "src/hooks";
 import { useDeleteMyTeamMutation } from "src/hooks/queries/teams/useDeleteMyTeamMutation";
+import { useDownloadFile } from "src/hooks/queries/teams/useDownloadFile";
+import { useGetFiles } from "src/hooks/queries/teams/useGetFiles";
 
 import * as S from "./styled";
+import {
+  FileDetailContainer,
+  FileName,
+  FileNameAndSize,
+  FilePathname,
+  FileSize,
+} from "./upload/styled";
 
 const TeamMembersSection: React.FC = () => {
   const router = useRouter();
@@ -28,7 +37,6 @@ const TeamMembersSection: React.FC = () => {
   const { data: team } = useMyTeamQuery({ suspense: true });
   const { mutate: leaveTeam } = useLeaveTeamMutation();
   const { mutate: deleteTeam } = useDeleteMyTeamMutation();
-
   const handleOnClickCopyToClipboard = () => {
     try {
       navigator.clipboard.writeText(`${ENV.HOSTNAME}/teams/join/${team?.inviteCode}`);
@@ -166,7 +174,31 @@ const TeamLogSectionContent: React.FC = () => {
   );
 };
 
+const getByteSize = (size: number) => {
+  const byteUnits = ["KB", "MB", "GB", "TB"];
+
+  for (let i = 0; i < byteUnits.length; i++) {
+    size = Math.floor(size / 1024);
+
+    if (size < 1024) return size.toFixed(1) + byteUnits[i];
+  }
+};
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+
+  return `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+};
+
 export default function MyTeamPage() {
+  const { data: files } = useGetFiles();
+
   return (
     <TeamLayout>
       <Suspense fallback={<SuspenseFallback />}>
@@ -183,7 +215,20 @@ export default function MyTeamPage() {
         <TeamSection
           title="파일 제출 내역"
           description="한세톤 진행 중 제출한 파일을 확인할 수 있어요"
-        />
+        >
+          {files?.map((data, i) => (
+            <div key={i} style={{ display: "flex" }}>
+              <FileDetailContainer style={{ marginBottom: "2.4rem" }}>
+                <FileNameAndSize>
+                  <FileName>{data.name}</FileName>
+                  <FileSize>({getByteSize(data.size)})</FileSize>
+                </FileNameAndSize>
+                <FilePathname>{formatDate(data.uploadedAt)}</FilePathname>
+              </FileDetailContainer>
+              <Button style={{ margin: "0 0 auto auto" }}>파일 다운로드</Button>
+            </div>
+          ))}
+        </TeamSection>
 
         <TeamSection
           title="경고 내역"
