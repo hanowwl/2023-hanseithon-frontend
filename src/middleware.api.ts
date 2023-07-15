@@ -9,6 +9,8 @@ type RouteRole = UserRole | "PUBLIC" | "ANONYMOUS";
 
 const ROUTE_PERMISSIONS: Record<string, RouteRole[]> = {
   "/auth/(.*)": ["ANONYMOUS"],
+  "/teams": ["GUEST", "STUDENT", "ADMIN"],
+  "/teams/(.*)": ["GUEST", "STUDENT", "ADMIN"],
 };
 
 const AUTH_USER_REDIRECT_URL = "/";
