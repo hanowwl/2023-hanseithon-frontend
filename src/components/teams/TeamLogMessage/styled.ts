@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const TeamLogContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.6rem;
 `;
 
 export const TeamLogActionsContainer = styled.div`
