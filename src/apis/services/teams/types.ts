@@ -65,3 +65,12 @@ export interface CreateTeamParameters {
   type: TeamType;
   position: TeamMemberPosition;
 }
+
+export interface TeamFile {
+  id: string;
+  size: number;
+  name: string;
+  location: string;
+  uploader: string;
+  uploadedAt: string;
+}
