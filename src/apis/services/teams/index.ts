@@ -1,7 +1,16 @@
 import { instance } from "src/apis/core";
 import { APIResponse } from "src/apis/core/types";
+import { FileSubmitProps } from "src/pages/teams/@me/upload";
 
-import { CreateTeamParameters, JoinTeamParameters, Team, TeamLog, TeamMember } from "./types";
+import {
+  CreateTeamParameters,
+  FileDownloadUrl,
+  GetFiles,
+  JoinTeamParameters,
+  Team,
+  TeamLog,
+  TeamMember,
+} from "./types";
 
 export const getAllTeams = async () => {
   return await instance.get<APIResponse<Team[]>>("/teams").then((res) => res.data);
@@ -41,4 +50,29 @@ export const leaveTeam = async () => {
 
 export const deleteTeam = async () => {
   return await instance.delete<APIResponse<void>>("/teams/@me").then((res) => res.data);
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const fileUpload = async (uploadData: FileSubmitProps) => {
+  const blobUploadData = uploadData as Blob;
+  const formData = new FormData();
+  formData.append("file", blobUploadData);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { data } = await instance.post("/teams/@me/upload", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return data;
+};
+
+export const getFiles = async () => {
+  return await instance.get<APIResponse<GetFiles[]>>("/teams/@me/files").then((res) => res.data);
+};
+
+export const downloadFile = async (urlParam: string) => {
+  return await instance
+    .get<APIResponse<FileDownloadUrl>>(`/teams/@me/files/${urlParam}`)
+    .then((res) => res.data);
 };
