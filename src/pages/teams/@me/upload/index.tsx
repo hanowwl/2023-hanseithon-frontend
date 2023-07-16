@@ -18,6 +18,17 @@ export interface FileSubmitProps {
   webkitRelativePath?: string;
 }
 
+const getByteSize = (size?: number) => {
+  const byteUnits = ["KB", "MB", "GB", "TB"];
+  if (size) {
+    for (let i = 0; i < byteUnits.length; i++) {
+      size = Math.floor(size / 1024);
+
+      if (size < 1024) return size.toFixed(1) + byteUnits[i];
+    }
+  }
+};
+
 export default function UploadPage() {
   //업로드할 예비 공간이 있고 그 공간에 있는 파일을
   //리스트로 가지고 온다.
@@ -44,6 +55,11 @@ export default function UploadPage() {
         autoClose: 3000,
       });
     }
+    if (fileInfo.type !== "application/x-zip-compressed") {
+      return toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
+        autoClose: 3000,
+      });
+    }
     fileUpload(fileInfo)
       .then(() => {
         toast.success("파일 제출에 성공하셨습니다 😎", {
@@ -63,22 +79,22 @@ export default function UploadPage() {
   return (
     <TeamLayout>
       <S.FileUploadContainer>
-        <SubmitLog
-          ButtonNode={
-            <Button fillWidth={true} onClick={handleOnUpload}>
-              파일 업로드
-            </Button>
-          }
-          fileCount={5}
-        >
+        <SubmitLog uploadOnClick={handleOnUpload}>
           <Suspense fallback={<SuspenseFallback />}>
             <S.FileList>
               <S.FileDetailContainer>
                 <S.FileNameAndSize>
-                  <S.FileName>{fileInfo.name}</S.FileName>
-                  <S.FileSize>({fileInfo.size})</S.FileSize>
+                  <S.FileName>{fileInfo?.name}</S.FileName>
+                  <S.FileSize>
+                    {fileInfo.name !== undefined
+                      ? `(${
+                          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                          getByteSize(fileInfo?.size)
+                        })`
+                      : null}
+                  </S.FileSize>
                 </S.FileNameAndSize>
-                <S.FilePathname>{fileInfo.type}</S.FilePathname>
+                <S.FilePathname>{fileInfo?.type}</S.FilePathname>
               </S.FileDetailContainer>
             </S.FileList>
           </Suspense>
