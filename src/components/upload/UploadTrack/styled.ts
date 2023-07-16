@@ -27,5 +27,6 @@ export const UploadTrack = styled.div`
   }
 `;
 export const UploadText = styled.p`
+  text-align: center;
   margin: 35.3rem auto;
 `;
