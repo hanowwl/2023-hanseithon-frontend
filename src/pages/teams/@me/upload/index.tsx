@@ -1,4 +1,5 @@
 import React, { Suspense, useCallback, useMemo, useRef, useState } from "react";
+import { FileDrop } from "react-file-drop";
 import { toast } from "react-toastify";
 
 import { fileUpload } from "src/apis/services/teams";
@@ -33,7 +34,8 @@ export default function UploadPage() {
   //업로드할 예비 공간이 있고 그 공간에 있는 파일을
   //리스트로 가지고 온다.
   //리스트에 있는 파일들을 버튼을 클릭했을 때 backend로 보낸다?
-  const [fileInfo, setFileInfo] = useState<FileSubmitProps>({});
+  const [fileInfo, setFileInfo] = useState<FileSubmitProps[]>([]);
+
   const { data: user } = useProfileQuery();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const isUserHasTeam = useMemo(() => user?.teamMember, [user]);
@@ -41,7 +43,14 @@ export default function UploadPage() {
     if (!e.target.files) {
       return;
     }
-    setFileInfo(e.target.files[0]);
+    const uploadFile = e.target.files[0];
+    if (uploadFile && uploadFile.type === "application/x-zip-compressed") {
+      setFileInfo([uploadFile]);
+    } else {
+      toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
+        autoClose: 3000,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleOnUpload = () => {
@@ -50,17 +59,17 @@ export default function UploadPage() {
         autoClose: 3000,
       });
     }
-    if (fileInfo.name === undefined) {
+    if (fileInfo[0].name === undefined) {
       return toast.error("파일을 등록해주세요 😞", {
         autoClose: 3000,
       });
     }
-    if (fileInfo.type !== "application/x-zip-compressed") {
+    if (fileInfo[0].type !== "application/x-zip-compressed") {
       return toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
         autoClose: 3000,
       });
     }
-    fileUpload(fileInfo)
+    fileUpload(fileInfo[0])
       .then(() => {
         toast.success("파일 제출에 성공하셨습니다 😎", {
           autoClose: 3000,
@@ -73,7 +82,25 @@ export default function UploadPage() {
       });
     if (inputRef.current) {
       inputRef.current.value = "";
-      setFileInfo({});
+      setFileInfo([]);
+    }
+  };
+  const fileHandler = (files: FileList | null): void => {
+    if (files === null) {
+      return;
+    }
+    const uploadFiles = Array.from(files);
+    const supportedFiles = uploadFiles.filter(
+      (file) => file.type === "application/x-zip-compressed"
+    );
+
+    if (supportedFiles.length > 0) {
+      console.log(supportedFiles[0].type);
+      setFileInfo(supportedFiles);
+    } else {
+      toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
+        autoClose: 3000,
+      });
     }
   };
   return (
@@ -84,23 +111,25 @@ export default function UploadPage() {
             <S.FileList>
               <S.FileDetailContainer>
                 <S.FileNameAndSize>
-                  <S.FileName>{fileInfo?.name}</S.FileName>
+                  <S.FileName>{fileInfo[0]?.name}</S.FileName>
                   <S.FileSize>
-                    {fileInfo.name !== undefined
+                    {fileInfo[0].name !== undefined
                       ? `(${
                           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                          getByteSize(fileInfo?.size)
+                          getByteSize(fileInfo[0]?.size)
                         })`
                       : null}
                   </S.FileSize>
                 </S.FileNameAndSize>
-                <S.FilePathname>{fileInfo?.type}</S.FilePathname>
+                <S.FilePathname>{fileInfo[0]?.type}</S.FilePathname>
               </S.FileDetailContainer>
             </S.FileList>
           </Suspense>
         </SubmitLog>
         <S.UploadInputContainer>
-          <UploadTrack ref={inputRef} onUploadFile={onTrackFile} />
+          <FileDrop onDrop={(f) => fileHandler(f)}>
+            <UploadTrack ref={inputRef} onUploadFile={onTrackFile} />
+          </FileDrop>
         </S.UploadInputContainer>
       </S.FileUploadContainer>
     </TeamLayout>
