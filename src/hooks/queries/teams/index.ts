@@ -10,3 +10,4 @@ export * from "./useCreateTeamMutation";
 export * from "./useDeleteMyTeamMutation";
 export * from "./useJoinTeamMutation";
 export * from "./useLeaveTeamMutation";
+export * from "./useFileUploadMutation";
