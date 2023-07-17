@@ -4,12 +4,11 @@ import { FileSubmitProps } from "src/pages/teams/@me/upload";
 
 import {
   CreateTeamParameters,
-  FileDownloadUrl,
-  GetFiles,
   JoinTeamParameters,
   Team,
   TeamLog,
   TeamMember,
+  UploadFileParameters,
 } from "./types";
 
 export const getAllTeams = async () => {
@@ -53,26 +52,12 @@ export const deleteTeam = async () => {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const fileUpload = async (uploadData: FileSubmitProps) => {
-  const blobUploadData = uploadData as Blob;
-  const formData = new FormData();
-  formData.append("file", blobUploadData);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data } = await instance.post("/teams/@me/upload", formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return data;
-};
-
-export const getFiles = async () => {
-  return await instance.get<APIResponse<GetFiles[]>>("/teams/@me/files").then((res) => res.data);
-};
-
-export const downloadFile = async (urlParam: string) => {
+export const fileUpload = async (parameters: UploadFileParameters) => {
   return await instance
-    .get<APIResponse<FileDownloadUrl>>(`/teams/@me/files/${urlParam}`)
+    .post<APIResponse<UploadFileParameters>>("/teams/@me/upload", parameters, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((res) => res.data);
 };

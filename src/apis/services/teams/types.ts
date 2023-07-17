@@ -66,15 +66,11 @@ export interface CreateTeamParameters {
   position: TeamMemberPosition;
 }
 
-export interface GetFiles {
-  id: string;
-  name: string;
-  location: string;
-  size: number;
-  uploaderId: string;
-  uploadedAt: string;
-}
-
-export interface FileDownloadUrl {
-  result: string;
+export interface UploadFileParameters {
+  lastModified?: number;
+  lastModifiedDate?: Date;
+  name?: string;
+  size?: number;
+  type?: string;
+  webkitRelativePath?: string;
 }
