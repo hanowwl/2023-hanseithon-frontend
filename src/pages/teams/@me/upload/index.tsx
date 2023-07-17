@@ -1,12 +1,13 @@
 import React, { Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { FileDrop } from "react-file-drop";
+import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { fileUpload } from "src/apis/services/teams";
 import { SuspenseFallback, Button } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
 import { SubmitLog, UploadTrack } from "src/components/upload";
-import { useProfileQuery } from "src/hooks";
+import { useFileUploadMutation, useProfileQuery } from "src/hooks";
 
 import * as S from "./styled";
 
@@ -37,49 +38,39 @@ export default function UploadPage() {
   const [fileInfo, setFileInfo] = useState<FileSubmitProps[]>([]);
 
   const { data: user } = useProfileQuery();
+  const uploadMutation = useFileUploadMutation();
+
   const inputRef = useRef<HTMLInputElement | null>(null);
   const isUserHasTeam = useMemo(() => user?.teamMember, [user]);
-  const onTrackFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    const uploadFile = e.target.files[0];
+
+  const onTrackFile = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return;
+    const uploadFile = event.target.files[0];
     if (uploadFile && uploadFile.type === "application/x-zip-compressed") {
       setFileInfo([uploadFile]);
     } else {
-      toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
-        autoClose: 3000,
-      });
+      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const handleOnUpload = () => {
+  const handleOnUpload: SubmitHandler<FileSubmitProps> = (formValue) => {
     if (!isUserHasTeam) {
-      return toast.error("유저 정보 또는 소속된 팀이 없어요 😞", {
-        autoClose: 3000,
-      });
+      return toast.error("유저 정보 또는 소속된 팀이 없어요 😞");
     }
     if (fileInfo[0].name === undefined) {
-      return toast.error("파일을 등록해주세요 😞", {
-        autoClose: 3000,
-      });
+      return toast.error("파일을 등록해주세요 😞");
     }
     if (fileInfo[0].type !== "application/x-zip-compressed") {
-      return toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
-        autoClose: 3000,
-      });
+      return toast.error("업로드 하지 못하는 파일 유형이에요 😞");
     }
-    fileUpload(fileInfo[0])
-      .then(() => {
-        toast.success("파일 제출에 성공하셨습니다 😎", {
-          autoClose: 3000,
-        });
-      })
-      .catch(() => {
-        toast.error("파일 제출에 실패했어요 😞", {
-          autoClose: 3000,
-        });
-      });
+    uploadMutation.mutate(formValue, {
+      onSuccess: () => {
+        toast.success("파일 제출에 성공하셨습니다 😎");
+      },
+      onError: () => {
+        toast.error("파일 제출에 실패했어요 😞");
+      },
+    });
     if (inputRef.current) {
       inputRef.current.value = "";
       setFileInfo([]);
@@ -95,25 +86,28 @@ export default function UploadPage() {
     );
 
     if (supportedFiles.length > 0) {
-      console.log(supportedFiles[0].type);
       setFileInfo(supportedFiles);
     } else {
-      toast.error("업로드 하지 못하는 파일 유형이에요 😞", {
-        autoClose: 3000,
-      });
+      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
     }
   };
   return (
     <TeamLayout>
       <S.FileUploadContainer>
-        <SubmitLog uploadOnClick={handleOnUpload}>
+        <SubmitLog
+          ButtonNode={
+            <Button fillWidth={true} onClick={() => handleOnUpload(fileInfo[0])}>
+              파일 업로드
+            </Button>
+          }
+        >
           <Suspense fallback={<SuspenseFallback />}>
             <S.FileList>
               <S.FileDetailContainer>
                 <S.FileNameAndSize>
                   <S.FileName>{fileInfo[0]?.name}</S.FileName>
                   <S.FileSize>
-                    {fileInfo[0].name !== undefined
+                    {fileInfo[0]?.name !== undefined
                       ? `(${
                           // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                           getByteSize(fileInfo[0]?.size)
