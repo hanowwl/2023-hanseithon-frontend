@@ -3,11 +3,11 @@ import { FileDrop } from "react-file-drop";
 import { SubmitHandler } from "react-hook-form";
 import { toast } from "react-toastify";
 
-import { fileUpload } from "src/apis/services/teams";
 import { SuspenseFallback, Button } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
 import { SubmitLog, UploadTrack } from "src/components/upload";
 import { useFileUploadMutation, useProfileQuery } from "src/hooks";
+import { getByteSize } from "src/utils";
 
 import * as S from "./styled";
 
@@ -19,17 +19,6 @@ export interface FileSubmitProps {
   type?: string;
   webkitRelativePath?: string;
 }
-
-const getByteSize = (size?: number) => {
-  const byteUnits = ["KB", "MB", "GB", "TB"];
-  if (size) {
-    for (let i = 0; i < byteUnits.length; i++) {
-      size = Math.floor(size / 1024);
-
-      if (size < 1024) return size.toFixed(1) + byteUnits[i];
-    }
-  }
-};
 
 export default function UploadPage() {
   //업로드할 예비 공간이 있고 그 공간에 있는 파일을
