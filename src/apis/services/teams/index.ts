@@ -52,11 +52,10 @@ export const deleteTeam = async () => {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const fileUpload = async (parameters: UploadFileParameters) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return await instance
-    .post<APIResponse<UploadFileParameters>>("/teams/@me/upload", parameters, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then((res) => res.data);
+    .post<APIResponse<UploadFileParameters>>("/teams/@me/upload", parameters)
+    .then((res) => res.data)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    .catch((error: any) => error);
 };
