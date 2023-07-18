@@ -37,21 +37,18 @@ export default function UploadPage() {
     const uploadFile = event.target.files[0];
     if (uploadFile && uploadFile.type === "application/x-zip-compressed") {
       setFileInfo([uploadFile]);
-    } else {
-      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-    }
+    } else toast.error("업로드 하지 못하는 파일 유형이에요 😞");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleOnUpload: SubmitHandler<FileSubmitProps> = (formValue) => {
-    if (!isUserHasTeam) {
-      return toast.error("유저 정보 또는 소속된 팀이 없어요 😞");
-    }
-    if (fileInfo[0].name === undefined) {
-      return toast.error("파일을 등록해주세요 😞");
-    }
-    if (fileInfo[0].type !== "application/x-zip-compressed") {
-      return toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-    }
+    if (!isUserHasTeam) toast.error("유저 정보 또는 소속된 팀이 없어요 😞");
+
+    if (fileInfo[0].name === undefined) toast.error("파일을 등록해주세요 😞");
+
+    if (fileInfo[0].type !== "application/x-zip-compressed")
+      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
+
     uploadMutation.mutate(formValue, {
       onSuccess: () => {
         toast.success("파일 제출에 성공하셨습니다 😎");
@@ -66,9 +63,7 @@ export default function UploadPage() {
     }
   };
   const fileHandler = (files: FileList | null): void => {
-    if (files === null) {
-      return;
-    }
+    if (files === null) return;
     const uploadFiles = Array.from(files);
     const supportedFiles = uploadFiles.filter(
       (file) => file.type === "application/x-zip-compressed"
@@ -83,37 +78,39 @@ export default function UploadPage() {
   return (
     <TeamLayout>
       <S.FileUploadContainer>
-        <SubmitLog
-          ButtonNode={
-            <Button fillWidth={true} onClick={() => handleOnUpload(fileInfo[0])}>
-              파일 업로드
-            </Button>
-          }
-        >
-          <Suspense fallback={<SuspenseFallback />}>
-            <S.FileList>
-              <S.FileDetailContainer>
-                <S.FileNameAndSize>
-                  <S.FileName>{fileInfo[0]?.name}</S.FileName>
-                  <S.FileSize>
-                    {fileInfo[0]?.name !== undefined
-                      ? `(${
-                          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                          getByteSize(fileInfo[0]?.size)
-                        })`
-                      : null}
-                  </S.FileSize>
-                </S.FileNameAndSize>
-                <S.FilePathname>{fileInfo[0]?.type}</S.FilePathname>
-              </S.FileDetailContainer>
-            </S.FileList>
-          </Suspense>
-        </SubmitLog>
-        <S.UploadInputContainer>
-          <FileDrop onDrop={(f) => fileHandler(f)}>
-            <UploadTrack ref={inputRef} onUploadFile={onTrackFile} />
-          </FileDrop>
-        </S.UploadInputContainer>
+        <form style={{ width: "100%", display: "flex" }} encType="multipart/form-data">
+          <SubmitLog
+            ButtonNode={
+              <Button type="button" fillWidth={true} onClick={() => handleOnUpload(fileInfo[0])}>
+                파일 업로드
+              </Button>
+            }
+          >
+            <Suspense fallback={<SuspenseFallback />}>
+              <S.FileList>
+                <S.FileDetailContainer>
+                  <S.FileNameAndSize>
+                    <S.FileName>{fileInfo[0]?.name}</S.FileName>
+                    <S.FileSize>
+                      {fileInfo[0]?.name !== undefined
+                        ? `(${
+                            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                            getByteSize(fileInfo[0]?.size)
+                          })`
+                        : null}
+                    </S.FileSize>
+                  </S.FileNameAndSize>
+                  <S.FilePathname>{fileInfo[0]?.type}</S.FilePathname>
+                </S.FileDetailContainer>
+              </S.FileList>
+            </Suspense>
+          </SubmitLog>
+          <S.UploadInputContainer>
+            <FileDrop onDrop={(f) => fileHandler(f)}>
+              <UploadTrack ref={inputRef} id="ex_file" type="file" onChange={onTrackFile} />
+            </FileDrop>
+          </S.UploadInputContainer>
+        </form>
       </S.FileUploadContainer>
     </TeamLayout>
   );
