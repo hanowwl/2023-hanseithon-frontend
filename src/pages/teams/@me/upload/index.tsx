@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { SuspenseFallback, Button } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
 import { SubmitLog, UploadTrack } from "src/components/upload";
+import { MAC_FILE_TYPE, WINDOW_FILE_TYPE } from "src/constants";
 import { useFileUploadMutation, useProfileQuery } from "src/hooks";
 import { getByteSize } from "src/utils";
 
@@ -35,7 +36,7 @@ export default function UploadPage() {
   const onTrackFile = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     const uploadFile = event.target.files[0];
-    if (uploadFile && uploadFile.type === "application/x-zip-compressed") {
+    if ((uploadFile && uploadFile.type === MAC_FILE_TYPE) || WINDOW_FILE_TYPE) {
       setFileInfo([uploadFile]);
     } else toast.error("업로드 하지 못하는 파일 유형이에요 😞");
 
@@ -46,9 +47,8 @@ export default function UploadPage() {
 
     if (fileInfo[0].name === undefined) toast.error("파일을 등록해주세요 😞");
 
-    if (fileInfo[0].type !== "application/x-zip-compressed")
+    if (fileInfo[0].type !== MAC_FILE_TYPE || WINDOW_FILE_TYPE)
       toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-
     uploadMutation.mutate(formValue, {
       onSuccess: () => {
         toast.success("파일 제출에 성공하셨습니다 😎");
