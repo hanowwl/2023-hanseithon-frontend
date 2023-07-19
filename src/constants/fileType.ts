@@ -1,2 +1,1 @@
-export const MAC_FILE_TYPE = "application/zip";
-export const WINDOW_FILE_TYPE = "application/x-zip-compressed";
+export const ALLOW_UPLOAD_FILE_TYPES = ["application/zip", "application/x-zip-compressed"];
