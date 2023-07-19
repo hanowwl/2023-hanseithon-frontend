@@ -1,5 +1,3 @@
-import { AxiosRequestConfig } from "axios";
-
 import { instance } from "src/apis/core";
 import { APIResponse } from "src/apis/core/types";
 
