@@ -1,13 +1,15 @@
+import { AxiosRequestConfig } from "axios";
+
 import { instance } from "src/apis/core";
 import { APIResponse } from "src/apis/core/types";
 
 import {
   CreateTeamParameters,
+  FileUploadParameters,
   JoinTeamParameters,
   Team,
   TeamLog,
   TeamMember,
-  UploadFileParameters,
 } from "./types";
 
 export const getAllTeams = async () => {
@@ -50,12 +52,14 @@ export const deleteTeam = async () => {
   return await instance.delete<APIResponse<void>>("/teams/@me").then((res) => res.data);
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export const fileUpload = async (parameters: UploadFileParameters) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+export const fileUpload = async ({ file, onUploadProgress }: FileUploadParameters) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
   return await instance
-    .post<APIResponse<UploadFileParameters>>("/teams/@me/upload", parameters)
-    .then((res) => res.data)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    .catch((error: any) => error);
+    .post<APIResponse<void>>("/teams/@me/upload", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      onUploadProgress,
+    })
+    .then((res) => res.data);
 };
