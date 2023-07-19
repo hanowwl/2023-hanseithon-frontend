@@ -1,113 +1,132 @@
-import React, { Suspense, useCallback, useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FileDrop } from "react-file-drop";
-import { SubmitHandler } from "react-hook-form";
-import { toast } from "react-toastify";
+import { Id, toast } from "react-toastify";
 
-import { SuspenseFallback, Button } from "src/components/common";
+import { useRouter } from "next/router";
+
+import { Button, Spinner } from "src/components/common";
 import { TeamLayout } from "src/components/layouts";
 import { SubmitLog, UploadTrack } from "src/components/upload";
-import { MAC_FILE_TYPE, WINDOW_FILE_TYPE } from "src/constants";
-import { useFileUploadMutation, useProfileQuery } from "src/hooks";
+import { ALLOW_UPLOAD_FILE_TYPES } from "src/constants";
+import { useFileUploadMutation } from "src/hooks";
 import { getByteSize } from "src/utils";
 
 import * as S from "./styled";
 
-export interface FileSubmitProps {
-  lastModified?: number;
-  lastModifiedDate?: Date;
-  name?: string;
-  size?: number;
-  type?: string;
-  webkitRelativePath?: string;
-}
+const FileUploadProgressToast: React.FC<{ progress: number; message?: string }> = ({
+  progress,
+  message = "파일 업로드 중이에요",
+}) => (
+  <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+    <Spinner size="1.6rem" /> {message} ({progress.toFixed(0)}%)
+  </div>
+);
 
 export default function UploadPage() {
-  //업로드할 예비 공간이 있고 그 공간에 있는 파일을
-  //리스트로 가지고 온다.
-  //리스트에 있는 파일들을 버튼을 클릭했을 때 backend로 보낸다?
-  const [fileInfo, setFileInfo] = useState<FileSubmitProps[]>([]);
+  const router = useRouter();
+  const toastId = useRef<Id | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
 
-  const { data: user } = useProfileQuery();
-  const uploadMutation = useFileUploadMutation();
+  const { mutate: fileUploadMutate } = useFileUploadMutation();
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const isUserHasTeam = useMemo(() => user?.teamMember, [user]);
-
-  const onTrackFile = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files) return;
-    const uploadFile = event.target.files[0];
-    if ((uploadFile && uploadFile.type === MAC_FILE_TYPE) || WINDOW_FILE_TYPE) {
-      setFileInfo([uploadFile]);
-    } else toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const handleOnUpload: SubmitHandler<FileSubmitProps> = (formValue) => {
-    if (!isUserHasTeam) toast.error("유저 정보 또는 소속된 팀이 없어요 😞");
-
-    if (fileInfo[0].name === undefined) toast.error("파일을 등록해주세요 😞");
-
-    if (fileInfo[0].type !== MAC_FILE_TYPE || WINDOW_FILE_TYPE)
-      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-    uploadMutation.mutate(formValue, {
-      onSuccess: () => {
-        toast.success("파일 제출에 성공하셨습니다 😎");
-      },
-      onError: () => {
-        toast.error("파일 제출에 실패했어요 😞");
-      },
-    });
-    if (inputRef.current) {
-      inputRef.current.value = "";
-      setFileInfo([]);
-    }
+  const handleOnTargetClick = () => {
+    if (!fileInputRef.current) return;
+    fileInputRef.current.click();
   };
-  const fileHandler = (files: FileList | null): void => {
-    if (files === null) return;
-    const uploadFiles = Array.from(files);
-    const supportedFiles = uploadFiles.filter(
-      (file) => file.type === "application/x-zip-compressed"
+
+  const handleOnChangeFile = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    if (files.length > 1) return toast.warn("한 번에 1개의 .zip 확장자 파일만 업로드할 수 있어요");
+    if (!ALLOW_UPLOAD_FILE_TYPES.includes(files[0].type))
+      return toast.warn(".zip 확장자 파일만 업로드할 수 있어요");
+
+    setUploadFile(files[0]);
+  };
+
+  const handleOnClickUpload = () => {
+    if (!uploadFile) return toast.warn("업로드할 파일을 선택해주세요");
+
+    toastId.current = toast(<FileUploadProgressToast progress={0} />, { autoClose: false });
+    fileUploadMutate(
+      {
+        file: uploadFile,
+        onUploadProgress: ({ loaded, total }) => {
+          if (!toastId.current) return;
+          const progress = (loaded * 100) / (total ?? 0);
+
+          toast.update(toastId.current, {
+            render: (
+              <FileUploadProgressToast
+                progress={progress}
+                message={progress >= 100 ? "파일 처리 중이에요" : undefined}
+              />
+            ),
+          });
+        },
+      },
+      {
+        onSuccess: () => {
+          if (!toastId.current) return;
+          toast.update(toastId.current, {
+            render: "파일 업로드가 완료되었어요",
+            autoClose: 3000,
+            type: toast.TYPE.SUCCESS,
+          });
+          router.push("/teams/@me");
+        },
+        onError: (error) => {
+          if (!toastId.current) return;
+          toast.update(toastId.current, {
+            render:
+              error.response?.data.message ||
+              "파일 업로드 중 오류가 발생했어요. 잠시 뒤 다시 시도해주세요",
+            autoClose: 3000,
+            type: toast.TYPE.ERROR,
+          });
+        },
+      }
     );
-
-    if (supportedFiles.length > 0) {
-      setFileInfo(supportedFiles);
-    } else {
-      toast.error("업로드 하지 못하는 파일 유형이에요 😞");
-    }
   };
+
   return (
     <TeamLayout>
       <S.FileUploadContainer>
         <form style={{ width: "100%", display: "flex" }} encType="multipart/form-data">
           <SubmitLog
             ButtonNode={
-              <Button type="button" fillWidth={true} onClick={() => handleOnUpload(fileInfo[0])}>
-                파일 업로드
+              <Button
+                type="button"
+                fillWidth={true}
+                disabled={!uploadFile}
+                onClick={handleOnClickUpload}
+              >
+                {uploadFile ? "파일 업로드" : "파일을 선택해주세요"}
               </Button>
             }
           >
-            <Suspense fallback={<SuspenseFallback />}>
-              <S.FileList>
+            <S.FileList>
+              {uploadFile && (
                 <S.FileDetailContainer>
                   <S.FileNameAndSize>
-                    <S.FileName>{fileInfo[0]?.name}</S.FileName>
-                    <S.FileSize>
-                      {fileInfo[0]?.name !== undefined
-                        ? `(${
-                            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                            getByteSize(fileInfo[0]?.size)
-                          })`
-                        : null}
-                    </S.FileSize>
+                    <S.FileName>{uploadFile.name}</S.FileName>
+                    <S.FileSize>({getByteSize(uploadFile?.size)})</S.FileSize>
                   </S.FileNameAndSize>
-                  <S.FilePathname>{fileInfo[0]?.type}</S.FilePathname>
+                  <S.FilePathname>{uploadFile.type}</S.FilePathname>
                 </S.FileDetailContainer>
-              </S.FileList>
-            </Suspense>
+              )}
+            </S.FileList>
           </SubmitLog>
+
           <S.UploadInputContainer>
-            <FileDrop onDrop={(f) => fileHandler(f)}>
-              <UploadTrack ref={inputRef} id="ex_file" type="file" onChange={onTrackFile} />
+            <FileDrop onDrop={handleOnChangeFile} onTargetClick={handleOnTargetClick}>
+              <UploadTrack
+                ref={fileInputRef}
+                type="file"
+                onChange={({ target: { files } }) => handleOnChangeFile(files)}
+                multiple={false}
+                accept=".zip"
+              />
             </FileDrop>
           </S.UploadInputContainer>
         </form>
