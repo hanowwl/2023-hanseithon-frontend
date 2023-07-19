@@ -40,13 +40,18 @@ export const THURSDAY_SCHEDULE_ARRAY: ScheduleData[] = [
   {
     startAt: dayjs("2023-07-20 23:00:00"),
     endAt: dayjs("2023-07-21 00:00:00"),
-    schedule: "야식 시간 및 자율 개발",
+    schedule: "야식 시간",
   },
 ];
 
 export const FRIDAY_SCHEDULE_ARRAY: ScheduleData[] = [
   {
-    startAt: dayjs("2023-07-21 08:00:00"),
+    startAt: dayjs("2023-07-21 00:00:00"),
+    endAt: dayjs("2023-07-21 08:30:00"),
+    schedule: "자율 개발",
+  },
+  {
+    startAt: dayjs("2023-07-21 08:30:00"),
     endAt: dayjs("2023-07-21 09:00:00"),
     schedule: "아침 식사 배부",
   },
@@ -68,16 +73,6 @@ export const FRIDAY_SCHEDULE_ARRAY: ScheduleData[] = [
   {
     startAt: dayjs("2023-07-21 15:30:00"),
     endAt: dayjs("2023-07-21 16:00:00"),
-    schedule: "시상",
-  },
-  {
-    startAt: dayjs("2023-07-21 15:00:00"),
-    endAt: dayjs("2023-07-21 18:00:00"),
-    schedule: "발표 및 심사",
-  },
-  {
-    startAt: dayjs("2023-07-21 18:00:00"),
-    endAt: dayjs("2023-07-21 18:30:00"),
     schedule: "시상",
   },
 ];
