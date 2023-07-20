@@ -20,7 +20,7 @@ const nextConfig = {
   },
 
   pageExtensions: ["tsx", "api.ts"],
-  output: "standalone",
+  // output: "standalone",
 };
 
 module.exports = withSentryConfig(
