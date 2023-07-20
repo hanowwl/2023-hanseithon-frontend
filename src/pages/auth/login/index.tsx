@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import { setInstanceAccessToken } from "src/apis";
 import { AuthForm } from "src/components/auth";
 import { Button, Input } from "src/components/common";
-import { useLoginMutation } from "src/hooks";
+import { keys, useLoginMutation } from "src/hooks";
 
 type LoginForm = {
   email: string;
@@ -16,6 +18,7 @@ type LoginForm = {
 
 export default function AuthLoginPage() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -27,6 +30,7 @@ export default function AuthLoginPage() {
     loginMutation.mutate(formValues, {
       onSuccess: ({ result: { accessToken } }) => {
         setInstanceAccessToken(accessToken);
+        queryClient.fetchQuery(keys.auth.profile);
         router.push("/");
       },
       onError: ({ response }) => {
