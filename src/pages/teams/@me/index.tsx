@@ -12,7 +12,9 @@ import { TeamLayout } from "src/components/layouts";
 import { TeamLogMessage, TeamSection, TeamMemberCard } from "src/components/teams";
 import { ENV } from "src/constants";
 import {
+  useGetFileDownloadLinkMutation,
   useLeaveTeamMutation,
+  useMyTeamAllFilesQuery,
   useMyTeamAllLogsQuery,
   useMyTeamQuery,
   useProfileQuery,
@@ -166,6 +168,51 @@ const TeamLogSectionContent: React.FC = () => {
   );
 };
 
+const TeamFileSectionContent: React.FC = () => {
+  const { data: files } = useMyTeamAllFilesQuery({ suspense: true });
+  const { mutate, isLoading } = useGetFileDownloadLinkMutation();
+
+  const handleOnClickButton = (id: string) => {
+    mutate(
+      { id },
+      {
+        onSuccess: ({ result: link }) => {
+          window.open(link, "_blank")?.focus();
+        },
+        onError: (error) => {
+          if (error.response?.data.message) return toast.error(error.response.data.message);
+          return toast.error("파일 다운로드 URL 발급 중 오류가 발생했어요");
+        },
+      }
+    );
+  };
+
+  return (
+    <TeamLogMessage.List>
+      {files?.map(({ id, name, uploader, uploadedAt }) => {
+        const actionAt = dayjs(uploadedAt);
+
+        return (
+          <ul key={id}>
+            <TeamLogMessage
+              message={<S.TeamFileNameWrapper>{name}</S.TeamFileNameWrapper>}
+              member={uploader}
+              actionAt={actionAt}
+              actions={[
+                {
+                  children: "다운로드",
+                  onClick: () => handleOnClickButton(id),
+                  disabled: isLoading,
+                },
+              ]}
+            />
+          </ul>
+        );
+      })}
+    </TeamLogMessage.List>
+  );
+};
+
 export default function MyTeamPage() {
   return (
     <TeamLayout>
@@ -183,7 +230,11 @@ export default function MyTeamPage() {
         <TeamSection
           title="파일 제출 내역"
           description="한세톤 진행 중 제출한 파일을 확인할 수 있어요"
-        />
+        >
+          <Suspense fallback={<SuspenseFallback />}>
+            <TeamFileSectionContent />
+          </Suspense>
+        </TeamSection>
 
         <TeamSection
           title="경고 내역"
