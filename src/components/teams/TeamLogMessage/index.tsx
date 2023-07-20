@@ -22,7 +22,7 @@ const TeamLogMessageComponent: React.FC<TeamLogMessageProps> = ({
 }) => {
   return (
     <S.TeamLogContainer>
-      <div>
+      <div style={{ flex: "1 1 auto" }}>
         <S.TeamLogMessage>{message}</S.TeamLogMessage>
         <S.TeamLogDateText>
           {actionAt.format("YYYY/MM/DD HH:mm:ss")}
