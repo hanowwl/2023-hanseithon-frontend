@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from "axios";
+
 import { StudentDepartment } from "src/constants";
 
 export const TeamType = {
@@ -64,6 +66,11 @@ export interface CreateTeamParameters {
   description: string;
   type: TeamType;
   position: TeamMemberPosition;
+}
+
+export interface FileUploadParameters {
+  file: File;
+  onUploadProgress?: AxiosRequestConfig<any>["onUploadProgress"];
 }
 
 export interface TeamFile {

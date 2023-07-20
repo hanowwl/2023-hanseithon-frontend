@@ -3,6 +3,7 @@ import { APIResponse } from "src/apis/core/types";
 
 import {
   CreateTeamParameters,
+  FileUploadParameters,
   JoinTeamParameters,
   Team,
   TeamFile,
@@ -56,4 +57,16 @@ export const leaveTeam = async () => {
 
 export const deleteTeam = async () => {
   return await instance.delete<APIResponse<void>>("/teams/@me").then((res) => res.data);
+};
+
+export const fileUpload = async ({ file, onUploadProgress }: FileUploadParameters) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  return await instance
+    .post<APIResponse<void>>("/teams/@me/upload", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+      onUploadProgress,
+    })
+    .then((res) => res.data);
 };

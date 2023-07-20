@@ -12,3 +12,4 @@ export * from "./useDeleteMyTeamMutation";
 export * from "./useGetFileDownloadLinkMutation";
 export * from "./useJoinTeamMutation";
 export * from "./useLeaveTeamMutation";
+export * from "./useFileUploadMutation";

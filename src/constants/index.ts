@@ -7,3 +7,4 @@ export * from "./schedules";
 export * from "./seo";
 export * from "./sponsors";
 export * from "./student";
+export * from "./fileType";
