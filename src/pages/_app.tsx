@@ -6,6 +6,7 @@ import { DefaultSeo } from "next-seo";
 
 import { Global, Theme, ThemeProvider } from "@emotion/react";
 import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
 import isBetween from "dayjs/plugin/isBetween";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isToday from "dayjs/plugin/isToday";
@@ -26,6 +27,7 @@ import "react-toastify/dist/ReactToastify.css";
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isBetween);
 dayjs.extend(isToday);
+dayjs.extend(duration);
 dayjs.locale("en", {
   weekdays: "일요일_월요일_화요일_수요일_목요일_금요일_토요일".split("_"),
   weekdaysShort: "일_월_화_수_목_금_토".split("_"),
