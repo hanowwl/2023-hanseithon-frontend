@@ -9,16 +9,25 @@ import * as S from "./styled";
 export interface TeamLogMessageProps {
   message: string | React.ReactNode;
   actionAt: Dayjs;
+  member?: string;
 
   actions?: Omit<ButtonProps, "size">[];
 }
 
-const TeamLogMessageComponent: React.FC<TeamLogMessageProps> = ({ message, actionAt, actions }) => {
+const TeamLogMessageComponent: React.FC<TeamLogMessageProps> = ({
+  message,
+  actionAt,
+  member,
+  actions,
+}) => {
   return (
     <S.TeamLogContainer>
       <div>
         <S.TeamLogMessage>{message}</S.TeamLogMessage>
-        <S.TeamLogDateText>{actionAt.format("YYYY/MM/DD HH:mm:ss")}</S.TeamLogDateText>
+        <S.TeamLogDateText>
+          {actionAt.format("YYYY/MM/DD HH:mm:ss")}
+          {member && `- ${member}`}
+        </S.TeamLogDateText>
       </div>
       <S.TeamLogActionsContainer>
         {actions?.map((props, i) => (

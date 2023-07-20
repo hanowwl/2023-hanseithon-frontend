@@ -6,6 +6,7 @@ export const TeamLogSectionsGridContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: minmax(32rem, 44rem);
   margin-top: 5rem;
+  grid-gap: 2.4rem;
 
   @media screen and (max-width: 991px) {
     grid-template-columns: 1fr;
@@ -15,11 +16,9 @@ export const TeamLogSectionsGridContainer = styled.div`
 `;
 
 export const TeamMembersListContainer = styled.div`
-  display: flex;
+  display: -webkit-inline-box;
   align-items: center;
   gap: 0.8rem;
-  overflow: auto;
-
   @media screen and (max-width: 991px) {
     flex-direction: column;
 
@@ -27,4 +26,11 @@ export const TeamMembersListContainer = styled.div`
       width: 100%;
     }
   }
+`;
+
+export const TeamFileNameWrapper = styled.div`
+  max-width: 24rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;

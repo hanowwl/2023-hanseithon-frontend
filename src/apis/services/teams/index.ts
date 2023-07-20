@@ -6,6 +6,7 @@ import {
   FileUploadParameters,
   JoinTeamParameters,
   Team,
+  TeamFile,
   TeamLog,
   TeamMember,
 } from "./types";
@@ -26,6 +27,14 @@ export const getMyTeam = async () => {
 
 export const getMyTeamAllLogs = async () => {
   return await instance.get<APIResponse<TeamLog[]>>("/teams/@me/logs").then((res) => res.data);
+};
+
+export const getMyTeamAllFiles = async () => {
+  return await instance.get<APIResponse<TeamFile[]>>("/teams/@me/files").then((res) => res.data);
+};
+
+export const getFileDownloadLink = async (id: string) => {
+  return await instance.get<APIResponse<string>>(`/teams/@me/files/${id}`).then((res) => res.data);
 };
 
 export const getTeamByInviteCode = async (inviteCode: string) => {

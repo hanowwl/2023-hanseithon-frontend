@@ -43,4 +43,7 @@ export const TeamSectionActionsContainer = styled.div`
 
 export const TeamSectionChildrenContainer = styled.div`
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
